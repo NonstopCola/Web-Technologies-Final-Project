@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="JKTN job application website about page.">
@@ -26,43 +26,49 @@
         <!-- Setup headings and a basic description-->
 
         <p>
-            Here we list the current ID's of our members and JKTN's overlapping class times.
+            Here we list the current class's of our members and JKTN's overlapping class times.
         </p>
 
         <ul>
-            <li>JKTN</li>
-            <ul>
-                <li>Monday 12:30-2:30</li>
-            </ul>
+            <li>JKTN
+                <ul>
+                    <li>Monday 12:30-2:30</li>
+                </ul>
+            </li>
             <!-- Created unordered list for JKTN then a nested unorder listed for the class schedule -->
-            <li id="Member">Jake Hardy</li>
-            <ul>
-                <li id="StudentID">ID: 105921038</li>
-            </ul>
-            <li id="Member">Kyle Perry</li>
-            <ul>
-                <li id="StudentID">ID: 105911291</li>
-            </ul>
-            <li id="Member">Tate Newman</li>
-            <ul>
-                <li id="StudentID">ID: 105750274</li>
-            </ul>
-            <li id="Member">Nathan Rohner</li>
-            <ul>
-                <li id="StudentID">ID: 105620335</li>
-            </ul>
-            <!-- Added entries for each members names, setting an ID for styles.css of "Member", 
-             then added nested list with Student IDs, set "StudentID" -->
+
+            <li class="Member">Jake Hardy
+                <ul>
+                    <li class="StudentID">class: 105921038</li>
+                </ul>
+            </li>
+            <li class="Member">Kyle Perry
+                <ul>
+                    <li class="StudentID">class: 105911291</li>
+                </ul>
+            </li>
+            <li class="Member">Tate Newman
+                <ul>
+                    <li class="StudentID">class: 105750274</li>
+                </ul>
+            </li>
+            <li class="Member">Nathan Rohner
+                <ul>
+                    <li class="StudentID">class: 105620335</li>
+                </ul>
+            </li>
+            <!-- Added entries for each members names, setting an class for styles.css of "Member", 
+             then added nested list with Student classs, set "StudentID" -->
         </ul>
 
         <p>
-            Here we list our current supervisor who will be guiding us through our learning and this project.
+            Here we list our current supervisor who will be guclassing us through our learning and this project.
         </p>
 
         <dl>
-            <dt id="Tutor">Tutor</dt>
-            <dd id="TutorName">Enrique Ketterer Ortiz</dd>
-            <!-- Added definition list with Tutor as a title and the tutor's name as the subject with ID's set to both as it 
+            <dt class="Tutor">Tutor</dt>
+            <dd class="TutorName">Enrique Ketterer Ortiz</dd>
+            <!-- Added definition list with Tutor as a title and the tutor's name as the subject with class's set to both as it 
              shares the same tags as the responsibilites list -->
         </dl>
 
@@ -150,7 +156,7 @@
         <!-- Created a table listing each members interests, general info and any other info they'd like to share -->
          
          <footer>
-            <p id="Copyright">&copy;<a href="./index.html" target="_self">JKTN</a></p>
+            <p class="Copyright">&copy;<a href="./index.html" target="_self">JKTN</a></p>
                 <!-- Created a footer that contains the copyright -->
          </footer>
     </body>
