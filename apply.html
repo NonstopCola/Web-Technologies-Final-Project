@@ -122,7 +122,7 @@
                 <!-- street
                  ONLY : Letters and numbers, from 1 - 40 characters
                 -->
-                <p><label for="street">Street Address</label>
+                <p><label id="street">Street Address</label>
                     <input type="text"
                     name="streetAddress"
                     pattern="[a-zA-Z0-9]{1, 40}"
@@ -134,7 +134,7 @@
                 <!-- suburb
                  ONLY : Letters from 1 - 40 characters
                 -->
-                <p><label for="suburb">Suburb / Town</label>
+                <p><label id="suburb">Suburb / Town</label>
                     <input type="text"
                     name="suburb"
                     pattern="[a-zA-Z]{1, 40}"
@@ -147,7 +147,7 @@
                 drop down menu for each state + empty 'please select state'
                 -->
                 <p><label for="state">State</label>
-                    <select type="state" id="state">
+                    <select id="state">
                         <option value="">Please Select</option>
                         <option value="VIC">VIC</option>
                         <option value="NSW">NSW</option>
@@ -180,7 +180,7 @@
             <fieldset>
                 <legend>Contact Details</legend>
                 <!-- email, requires @ and .com -->
-                <p><label for="contact-details">Email</label>
+                <p><label id="contact-details">Email</label>
                     <input type="email"
                     name="contact-email"
                     id="contact-email"
@@ -230,7 +230,7 @@
                     id="powershell"
                     name="category[]" value="powershell">
                 </p>
-                <p><label for="other-skills">Other Skills</label>
+                <p><label id="other-skills">Other Skills</label>
                 </p>
                 <textarea id="textarea"
                 name="textarea"
