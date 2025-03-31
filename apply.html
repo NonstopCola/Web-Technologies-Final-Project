@@ -2,7 +2,6 @@
  + Add other job roles
  + Add more placeholders
  + Add reference numbers to job roles
- + Fix phone nummber validation (8 - 12 digits or spaces)
  + Validate html
  + Check Assignment requirements
 -->
@@ -205,9 +204,11 @@
                     <input type="text"
                     name="phone-number"
                     id="phone-number"
-                    pattern="(\+61[0-9]{9})"
-                    oninvalid="this.setCustomValidity('Please enter a valid email!')"
-                    oninput="if(!this.value.startsWith('+61')) this.value = '+61';"
+                    minlength="8"
+                    maxlength="12"
+                    pattern="([0-9_])"
+                    oninvalid="this.setCustomValidity('Please enter a valid phone number!')"
+                    oninput="this.setCustomValidity('')"
                     required="required">
                 </p>
             </fieldset> 
