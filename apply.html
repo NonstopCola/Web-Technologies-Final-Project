@@ -1,7 +1,10 @@
 <!-- TO DO
  + Add other job roles
- + Check Assignment requirements
  + Add more placeholders
+ + Add reference numbers to job roles
+ + Fix phone nummber validation (8 - 12 digits or spaces)
+ + Validate html
+ + Check Assignment requirements
 -->
 
 <!DOCTYPE html>
@@ -52,7 +55,8 @@
                     <input type="text"
                     name="firstName"
                     id="firstName"
-                    pattern="[a-zA-Z]+" 
+                    maxlength="20"
+                    pattern="[a-zA-Z]{20}+" 
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
                     required="required">
@@ -64,6 +68,7 @@
                     <input type="text"
                     name="lastName"
                     id="lastName"
+                    maxlength="20"
                     pattern="[a-zA-Z]+" 
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
