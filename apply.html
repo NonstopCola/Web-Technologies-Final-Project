@@ -1,13 +1,7 @@
 <!-- TO DO
- + Fix date input
- + Fix post-code input
- + Make sure fields are all required as per assignment doc
-
- - Add email addree
- - Add phone number
- - Add required tech list check boxes
- - Add other skills check box
-
+ + Add other job roles
+ + Check Assignment requirements
+ + Add more placeholders
 -->
 
 <!DOCTYPE html>
@@ -37,11 +31,11 @@
             <!--job reference-->
             <fieldset>
                 <legend>Job Reference</legend>
-                <p><label for="job">Job Reference</label>
-                    <select name="tutor" id="job">
+                <p><label for="job-ref">Job Reference</label>
+                    <select name="job-ref" id="job-ref">
                         <!-- change list of jobs here, be sure to keep first value as empty -->
                         <option value="">Please Select</option>
-                        <option value="job1">Job 1</option>
+                        <option value="job-network-admin">Network Administrator</option>
                         <option value="job2">Job 2</option>
                         <option value="job3">Job 3</option>
                     </select>
@@ -77,16 +71,33 @@
                 </p>
 
                 <!-- DOB 
-                 ONLY : Date from oldest person birthday to current day of programming.
-                -->
+                 ONLY : Date from oldest person alive birthday to current day of programming.
+
+                 PATTERN EXPLAINATION:
+                 0[1-9] : Number starts with 0 and ends with from 1 - 9 (01 - 09)
+                 [12][0-9] : Number starts with 1 or 2 and ends from 0 - 9 (10 to 29)
+                 3[01] : Number start with 3 and ends with 0 or 1 (30 - 31)
+
+                 / : character to seperate day and month
+
+                 0[1-9] : Same as day (months ranging from 01 - 09))
+                 1[0-2] : Number starts with 1 and ends from 0 - 2 (10 - 12)
+
+                 / : character to seperate day and month
+
+                 19[08-9] : Last Numbers ranging from 1908 (Oldest person birthday) - 1909
+                 [0-9] : Second to last numbers ranging from 190X - 199X
+                 20[02][05] : First two digits have to be 20, third numnber ranges from 0 -2, fourth number ranges from 0 - 5
+                 So years can range from (1908 - 2025)
+                 -->
+
                 <p><label for="date">Date</label>
                     <input type="text" 
                     name="date" 
                     id="date" 
-                    placeholder="dd/mm/yyyy" 
-                    min="4/03/1907"
-                    max="26/03/2025"
-                    oninvalid="this.setCustomValidity('Invalid date!')" 
+                    placeholder="DD/MM/YYYY" 
+                    pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[08-9][0-9]|20[0-2][0-5])" 
+                    oninvalid="this.setCustomValidity('Invalid date! (Format must be DD/MM/YYYY)')" 
                     oninput="this.setCustomValidity('')">
                 </p>
                  </fieldset>
@@ -97,7 +108,7 @@
                  <fieldset>
                     <legend>Gender</legend>
                  <p><label for="male">Male</label>
-                    <input type="radio" name="gender" id="male">
+                    <input type="radio" name="gender" id="male" checked="checked">
                     <label for="female">Female</label>
                     <input type="radio" name="gender" id="female">
                     <label for="other">Other</label>
@@ -150,14 +161,15 @@
                 </p>
 
                 <!-- post-code
-                ONLY : numbers ranging from 0000 - 9999
+                ONLY : numbers ranging from 0200 - 9944 (Australian Post-Code range)
                 -->
                 <p><label for="post-code">Post Code</label>
                     <input type="number" 
                     name="post-code"
                     id="post-code"
-                    pattern="[0-9](4)"
-                    oninvalid="this.setCustomValidity('Please enter number between 0000 - 9999')"
+                    min="0200"
+                    max="9944"
+                    oninvalid="this.setCustomValidity('Please enter number between 1000 - 9999')"
                     oninput="this.setCustomValidity('')"
                     required="required">
                 </p>
@@ -166,12 +178,65 @@
 
             <!--contact details-->
             <fieldset>
-                
+                <legend>Contact Details</legend>
+                <!-- email, requires @ and .com -->
+                <p><label for="contact-details">Email</label>
+                    <input type="email"
+                    name="contact-email"
+                    id="contact-email"
+                    placeholder="john@gmail.com"
+                    oninvalid="this.SetCustomValidity('Please enter a valid email!')"
+                    oninput="this.setCustomValidity('')"
+                    required="required">
+                </p>
+                <!--
+                PATTERN EXPLAINATINO
+                \+ : the \ changes '+'' to character, instead of a usual expression
+                61 : automatically adds 61 to the string of characters
+                [0-9] : a numbers value can range from 0 - 9
+                {9} : limit characters to 9 
+                -->
+                <p><label for="phone-number">Phone Number</label>
+                    <input type="text"
+                    name="phone-number"
+                    id="phone-number"
+                    pattern="(\+61[0-9]{9})"
+                    oninvalid="this.setCustomValidity('Please enter a valid email!')"
+                    oninput="if(!this.value.startsWith('+61')) this.value = '+61';"
+                    required="required">
+                </p>
             </fieldset> 
 
             <!--required skills-->
             <fieldset>
-                
+                <legend>Required Skills</legend>
+                <p><label for="windows-server">Windows Server</label>
+                    <input type="checkbox"
+                    id="windows-server"
+                    name="category[]" value="windows-server" checked="checked">
+
+                    <label for="cloudfare-zero">Cloudfare Zero</label>
+                    <input type="checkbox"
+                    id="cloudfare-zero"
+                    name="category[]" value="cloudfare-zero">
+
+                    <label for="cloudfare-zero">Python</label>
+                    <input type="checkbox"
+                    id="python"
+                    name="category[]" value="python">
+
+                    <label for="powershell">PowerShell</label>
+                    <input type="checkbox"
+                    id="powershell"
+                    name="category[]" value="powershell">
+                </p>
+                <p><label for="other-skills">Other Skills</label>
+                </p>
+                <textarea id="textarea"
+                name="textarea"
+                rows="5"
+                cols="50">Let us know other skills you have that may be important!
+                </textarea>
             </fieldset>
 
             <!-- submit or reset buttons-->
