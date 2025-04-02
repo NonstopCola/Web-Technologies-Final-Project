@@ -5,11 +5,13 @@ created: 31-3-2025
 last modified: 31-3-2025
 description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
 */
+
 * {
     font-family:Arial, Helvetica, sans-serif
     
 } /* can use monospace font family (lucida console) for headings */
 
+/* basic styling for nav bar, including list items, links and active pages */
 #nav {
     list-style-type: none;
     margin: 0;
