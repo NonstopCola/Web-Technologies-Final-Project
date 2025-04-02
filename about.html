@@ -12,10 +12,15 @@
         <!-- Linked to stylesheet located at ./styles/styles.css -->
     </head>
     <body>
-        <p>Email us at: <a href="mailto:jktngroup4@gmail.com">info@jktn.com.au</a></p>
-        <!-- Menu format needs to be set in index.html before email can be properly formatted and placed -->
-
         <h1>About Us</h1>
+
+        <ul id="nav">
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="apply.html">Apply</a></li>
+            <li><a href="mailto:jktngroup4@gmail.com">info@jktn.com.au</a></li>
+        </ul>
+
         <p>At JKTN we strive to innovate and help amazing talents create their dreams, promoting a positive workplace culture that helps
             us create an environment that we love and hope you can be apart of. Currently we are a small team of 4, that was founded on the 24th
             of March this year, as a relatively new company we are always looking for new talent so if you think you have what it takes to be apart
@@ -92,8 +97,9 @@
 
         <h3>Our Members</h3>
         <figure>
-            <a href="./images/group.png" target="_blank"><img src="./images/group_low.png" alt="The JKTN team" 
-                loading="lazy" title="The JKTN team, we look forward to working with you!"></a>
+            <!-- The Image was set to a 432x188 pixel limit, can be removed for css changes if need be -->
+            <a href="./images/group.jpg" target="_blank"><img src="./images/group_low.jpg" alt="The JKTN team" 
+                loading="lazy" title="The JKTN team, we look forward to working with you!" width="432" height="188"></a>
             <!-- Created an image referencing ./image/group_low.png for it's source, the image needs to be less than 300kb,
             but it is referencing the original image -->
             <figcaption>The JKTN team!</figcaption>
