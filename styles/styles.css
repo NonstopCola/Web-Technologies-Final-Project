@@ -4,7 +4,7 @@ author: Tate Newman
 created: 31-3-2025
 last modified: 31-3-2025
 description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
-references:
+References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
 */
 
 * {
@@ -34,4 +34,7 @@ references:
     text-decoration: none;
     color: gainsboro;
     font-weight: bold;
+}
+#nav li a.active {
+    background-color: black !important;
 }
