@@ -24,7 +24,7 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
 #nav li {
     float: left;
 }
-/* styles the naviagtion links available to user */
+/* styles the naviagtion links available to user: hover, active & general style */
 #nav li a:hover {
     background-color:dodgerblue;
 }
@@ -36,5 +36,6 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
     font-weight: bold;
 }
 #nav li a.active {
-    background-color: black !important;
+    background-color: black;
 }
+
