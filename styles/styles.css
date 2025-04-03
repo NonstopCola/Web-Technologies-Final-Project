@@ -20,17 +20,18 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
     overflow: hidden;
     background-color: navy;
 }
-/* styles the list elements: */
 #nav li {
-    float: left;
+    float:left
 }
 /* styles the naviagtion links available to user: hover, active & general style */
 #nav li a:hover {
     background-color:dodgerblue;
 }
+
 #nav li a {
     display: block;
     padding: 15px;
+    text-align: center;
     text-decoration: none;
     color: gainsboro;
     font-weight: bold;
