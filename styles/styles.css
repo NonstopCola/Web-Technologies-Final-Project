@@ -23,11 +23,7 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
 #nav li {
     float:left
 }
-/* styles the naviagtion links available to user: hover, active & general style */
-#nav li a:hover {
-    background-color:dodgerblue;
-}
-
+/* nav link styles: hover, active, static & emoji pseudo elements */
 #nav li a {
     display: block;
     padding: 15px;
@@ -36,7 +32,22 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
     color: gainsboro;
     font-weight: bold;
 }
+#nav li a:hover {
+    background-color:dodgerblue;
+}
 #nav li a.active {
     background-color: black;
+}
+#nav li a[href*="index"]::before {
+    content: "🏠\00a0";
+}
+#nav li a[href*="about"]::before {
+    content: "👤\00a0";
+}
+#nav li a[href*="apply"]::before {
+    content: "💼\00a0";
+}
+#nav li a[href*="jobs"]::before {
+    content: "📩\00a0";
 }
 
