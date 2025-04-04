@@ -20,12 +20,6 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
     overflow: hidden;
     background-color: navy;
 }
-#nav li {
-    float:left
-}
-#nav li.mail {
-    float: right;
-}
 /* nav link styles: hover, active, staticx & emoji pseudo elements */
 #nav li a {
     display: block;
@@ -34,6 +28,12 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
     text-decoration: none;
     color: gainsboro;
     font-weight: bold;
+}
+#nav li {
+    float:left
+}
+#nav li.mail {
+    float: right;
 }
 #nav li a:hover {
     background-color:dodgerblue;
