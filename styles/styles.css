@@ -26,7 +26,7 @@ References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_ho
 #nav li.mail {
     float: right;
 }
-/* nav link styles: hover, active, static & emoji pseudo elements */
+/* nav link styles: hover, active, staticx & emoji pseudo elements */
 #nav li a {
     display: block;
     padding: 15px;
