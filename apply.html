@@ -48,14 +48,14 @@
             <fieldset>
                 <legend>Personal Details</legend>
                 <!-- first name
-                ONLY : Letters 
+                ONLY : Letters (a-zA-Z) and letters no longer than 20 {20}
                 -->
                 <p><label for="firstName">First Name</label>
                     <input type="text"
                     name="firstName"
                     id="firstName"
                     maxlength="20"
-                    pattern="[a-zA-Z]{20}+" 
+                    pattern="[a-zA-Z]{1,20}" 
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
                     required="required">
@@ -68,14 +68,14 @@
                     name="lastName"
                     id="lastName"
                     maxlength="20"
-                    pattern="[a-zA-Z]+" 
+                    pattern="[a-zA-Z]+"
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
                     required="required">
                 </p>
 
                 <!-- DOB 
-                 ONLY : Date from oldest person alive birthday to current day of programming.
+                 ONLY : Dates from years 1900 to 2025.
 
                  PATTERN EXPLAINATION:
                  0[1-9] : Number starts with 0 and ends with from 1 - 9 (01 - 09)
@@ -89,10 +89,11 @@
 
                  / : character to seperate day and month
 
-                 19[08-9] : Last Numbers ranging from 1908 (Oldest person birthday) - 1909
+                 19[0-9] : Last Numbers ranging from 19X0 - 19X9
                  [0-9] : Second to last numbers ranging from 190X - 199X
-                 20[02][05] : First two digits have to be 20, third numnber ranges from 0 -2, fourth number ranges from 0 - 5
-                 So years can range from (1908 - 2025)
+                 20[0-2][0-5] : First two digits have to be 20, third numnber ranges from 0-2, fourth number ranges from 0-5
+                 So years can range from (1900 - 2025)
+
                  -->
 
                 <p><label for="date">Date</label>
@@ -100,7 +101,7 @@
                     name="date" 
                     id="date" 
                     placeholder="DD/MM/YYYY" 
-                    pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[08-9][0-9]|20[0-2][0-5])" 
+                    pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9][0-9]|20[0-2][0-5])" 
                     oninvalid="this.setCustomValidity('Invalid date! (Format must be DD/MM/YYYY)')" 
                     oninput="this.setCustomValidity('')">
                 </p>
@@ -124,27 +125,27 @@
             <fieldset>
                 <legend>Address</legend>
                 <!-- street
-                 ONLY : Letters and numbers, from 1 - 40 characters
+                 ONLY : Letters and numbers, from 1-40 characters
                 -->
-                <p><label id="street">Street Address</label>
+                <p><label id="street">Street Address
                     <input type="text"
                     name="streetAddress"
                     pattern="[a-zA-Z0-9]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
 
                 <!-- suburb
                  ONLY : Letters from 1 - 40 characters
                 -->
-                <p><label id="suburb">Suburb / Town</label>
+                <p><label id="suburb">Suburb / Town
                     <input type="text"
                     name="suburb"
                     pattern="[a-zA-Z]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
 
                 <!-- states
@@ -166,47 +167,56 @@
 
                 <!-- post-code
                 ONLY : numbers ranging from 0200 - 9944 (Australian Post-Code range)
+                \d - only digit
+                {4} - cant only be digit of 4
+                
                 -->
                 <p><label for="post-code">Post Code</label>
                     <input type="number" 
                     name="post-code"
                     id="post-code"
-                    min="0200"
-                    max="9944"
-                    oninvalid="this.setCustomValidity('Please enter number between 1000 - 9999')"
+                    pattern="\d{4}"
+                    oninvalid="this.setCustomValidity('Please enter number between 0200 - 9944')"
                     oninput="this.setCustomValidity('')"
                     required="required">
                 </p>
 
             </fieldset>
 
-            <!--contact details-->
+            <!--contact details
+            Used Pattern from module 3
+            Self-explaination
+            [A-Za-z0-9._%+-] - allow a to z, 0 to 9 as well as . _ % + - symbols
+            +@ plus an @ symbol
+            +\. include a .
+            [A-Za-z]{2,} include letters a to Z with at least 2 characters
+
+            -->
             <fieldset>
                 <legend>Contact Details</legend>
                 <!-- email, requires @ and .com -->
-                <p><label id="contact-details">Email</label>
-                    <input type="email"
+                <p><label id="contact-details">Email
+                    <input type="text"
                     name="contact-email"
                     id="contact-email"
                     placeholder="john@gmail.com"
+                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
                     oninvalid="this.SetCustomValidity('Please enter a valid email!')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
                 <!--
+                phone numner : minimun length 8 - max 12
+                
                 PATTERN EXPLAINATINO
-                \+ : the \ changes '+'' to character, instead of a usual expression
-                61 : automatically adds 61 to the string of characters
-                [0-9] : a numbers value can range from 0 - 9
-                {9} : limit characters to 9 
+                [0-9 ] : only digits ranging from 0-9 and spaces
+                {8,12} : limit between 8-12 characters
                 -->
                 <p><label for="phone-number">Phone Number</label>
                     <input type="text"
                     name="phone-number"
                     id="phone-number"
-                    minlength="8"
-                    maxlength="12"
-                    pattern="([0-9_])"
+                    pattern="[0-9 ]{8,12}"
                     oninvalid="this.setCustomValidity('Please enter a valid phone number!')"
                     oninput="this.setCustomValidity('')"
                     required="required">
@@ -226,7 +236,7 @@
                     id="cloudfare-zero"
                     name="category[]" value="cloudfare-zero">
 
-                    <label for="cloudfare-zero">Python</label>
+                    <label for="python">Python</label>
                     <input type="checkbox"
                     id="python"
                     name="category[]" value="python">
@@ -236,21 +246,17 @@
                     id="powershell"
                     name="category[]" value="powershell">
                 </p>
-                <p><label id="other-skills">Other Skills</label>
-                </p>
+                <p><label id="other-skills">Other Skills
                 <textarea id="textarea"
                 name="textarea"
                 rows="5"
-                cols="50">Let us know other skills you have that may be important!
-                </textarea>
+                cols="50"
+                placeholder="Let us know other skills you have that may be important!"></textarea></label></p>
             </fieldset>
 
-            <!-- submit or reset buttons-->
+            <!-- submit buttons-->
              <input type="submit" value="Apply">
-             <input type="reset" value="Reset">
         </form>
-
-
 
          <footer>
             <p class="Copyright">&copy;<a href="./index.html" target="_self">JKTN</a></p>

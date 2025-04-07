@@ -2,10 +2,56 @@
 filename: styles.css 
 author: Tate Newman 
 created: 31-3-2025
-last modified: 31-3-2025
+last modified: 6-4-2025
 description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
+References: W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
 */
+
 * {
     font-family:Arial, Helvetica, sans-serif
+    /* can use monospace font family (lucida console) for headings */
+} 
+
+/* basic styling for ul element: removing bullet points etc. */
+h1 {font-family: monospace, Lucida Console}
+#nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: navy;
 }
-/* can use monospace font family (lucida console) for headings */
+/* nav link styles: hover, active, staticx & emoji pseudo elements */
+#nav li a {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: gainsboro;
+    font-weight: bold;
+}
+#nav li {
+    float:left
+}
+#nav li.mail {
+    float: right;
+}
+#nav li a:hover {
+    background-color:dodgerblue;
+}
+#nav li a.active {
+    background-color: black;
+}
+#nav li a[href*="index"]::before {
+    content: "🏠\00a0";
+}
+#nav li a[href*="about"]::before {
+    content: "👤\00a0";
+}
+#nav li a[href*="apply"]::before {
+    content: "💼\00a0";
+}
+#nav li a[href*="jobs"]::before {
+    content: "📩\00a0";
+}
+
