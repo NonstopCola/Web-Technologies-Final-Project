@@ -1,6 +1,6 @@
 /* 
 filename: styles.css 
-author: Tate Newman 
+author: Tate Newman, Kyle Perry 
 created: 31-3-2025
 last modified: 6-4-2025
 description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
@@ -67,4 +67,5 @@ footer p{
 }
 footer a{
     text-decoration: none;
+    color: gainsboro;
 }
