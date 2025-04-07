@@ -127,25 +127,25 @@
                 <!-- street
                  ONLY : Letters and numbers, from 1-40 characters
                 -->
-                <p><label id="street">Street Address</label>
+                <p><label id="street">Street Address
                     <input type="text"
                     name="streetAddress"
                     pattern="[a-zA-Z0-9]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
 
                 <!-- suburb
                  ONLY : Letters from 1 - 40 characters
                 -->
-                <p><label id="suburb">Suburb / Town</label>
+                <p><label id="suburb">Suburb / Town
                     <input type="text"
                     name="suburb"
                     pattern="[a-zA-Z]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
 
                 <!-- states
@@ -195,7 +195,7 @@
             <fieldset>
                 <legend>Contact Details</legend>
                 <!-- email, requires @ and .com -->
-                <p><label id="contact-details">Email</label>
+                <p><label id="contact-details">Email
                     <input type="text"
                     name="contact-email"
                     id="contact-email"
@@ -203,7 +203,7 @@
                     pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
                     oninvalid="this.SetCustomValidity('Please enter a valid email!')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required="required"></label>
                 </p>
                 <!--
                 phone numner : minimun length 8 - max 12
@@ -236,7 +236,7 @@
                     id="cloudfare-zero"
                     name="category[]" value="cloudfare-zero">
 
-                    <label for="cloudfare-zero">Python</label>
+                    <label for="python">Python</label>
                     <input type="checkbox"
                     id="python"
                     name="category[]" value="python">
@@ -246,13 +246,12 @@
                     id="powershell"
                     name="category[]" value="powershell">
                 </p>
-                <p><label id="other-skills">Other Skills</label>
-                </p>
+                <p><label id="other-skills">Other Skills
                 <textarea id="textarea"
                 name="textarea"
                 rows="5"
                 cols="50"
-                placeholder="Let us know other skills you have that may be important!"></textarea>
+                placeholder="Let us know other skills you have that may be important!"></textarea></label></p>
             </fieldset>
 
             <!-- submit buttons-->
