@@ -9,12 +9,11 @@ References:
 - footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
 */
 
-/*specifies the default font for the entire site*/
-* {font-family:Arial, Helvetica, sans-serif} 
-/*adjusts font size for heading elements */
-h1 {font-family: monospace, Lucida Console}
+* {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
 
-/* basic styling for nav bar */
+h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elements */
+
+/* Basic styling for nav bar */
 #nav {
     list-style-type: none;
     padding: 0;
@@ -22,7 +21,7 @@ h1 {font-family: monospace, Lucida Console}
     overflow: hidden;
     background-color: navy;
 }
-/* nav link styles: hover, active, static & emoji pseudo elements */
+/* Nav link styles: hover, active, static & emoji pseudo elements */
 #nav li a {
     display: block;
     padding: 15px;
@@ -55,11 +54,11 @@ h1 {font-family: monospace, Lucida Console}
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
-
+/* Positioning the logo within the logo container */
 .logoContainer {
     position: relative;
     padding-top: 1em;
-} /* container for logo with to allow absolute positioned elements */
+} 
 #Logo {
     position: absolute;
     top: 0.5em;
@@ -70,7 +69,7 @@ h1 {font-family: monospace, Lucida Console}
     border-radius: 8%;
     box-shadow: 10px 10px 5px lightgray;
 }
-/*styling for the footer using flexboc method for response design */
+/*Styling of the footer using flexbox method for reponsive design*/
 footer {
     display: flex;
     justify-content: space-between; 
@@ -87,7 +86,7 @@ footer p {
     text-align: center;
 }
 #SwinburneCopy {
-    text-align: left; /* overrides center alignment in footer p hence the text-align */
+    text-align: left; /* overrides center alignment in footer p{}, hence the text-align */
 }
 #JKTNCopy {
     text-align: right;
@@ -96,3 +95,5 @@ footer a{
     text-decoration: none;
     color: black;
 }
+
+
