@@ -61,11 +61,15 @@ footer {
     border-top: 4px double darkslategray;
     clear: both;
 }
-footer p{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+#SwinburneCopy {
+    float: left;
+}
+#JIRA{
+    text-align: center;
+    margin: auto;
+}
+#JKTNCopy {
+    float: right;
 }
 footer a{
     text-decoration: none;
