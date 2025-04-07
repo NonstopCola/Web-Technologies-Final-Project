@@ -10,13 +10,16 @@ References:
 - footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
 */
 
+/*specifies the default font for the entire site*/
 * {
     font-family:Arial, Helvetica, sans-serif
-    /* can use monospace font family (lucida console) for headings */
 } 
-
-/* basic styling for ul element: removing bullet points etc. */
+/*adjusts font size for heading elements */
 h1 {font-family: monospace, Lucida Console}
+/* basic styling for nav bar */
+#logo {
+    float: right;
+}
 #nav {
     list-style-type: none;
     padding: 0;
