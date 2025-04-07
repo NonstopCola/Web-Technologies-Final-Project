@@ -56,7 +56,7 @@ h1 {font-family: monospace, Lucida Console}
     content: "📩\00a0";
 }
 
-#logo.container {position: relative;} /* container for logo with to allow absolute positioned elements */
+.logo.container{position: relative;} /* container for logo with to allow absolute positioned elements */
 #Logo {
     position: absolute;
     top: 0.5em;
