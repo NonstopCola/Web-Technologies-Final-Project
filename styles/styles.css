@@ -17,8 +17,10 @@ References:
 /*adjusts font size for heading elements */
 h1 {font-family: monospace, Lucida Console}
 /* basic styling for nav bar */
-#logo {
-    float: right;
+#Logo {
+    display: flex;
+    justify-content: right;
+    border-radius: 8%;
 }
 #nav {
     list-style-type: none;
@@ -27,7 +29,7 @@ h1 {font-family: monospace, Lucida Console}
     overflow: hidden;
     background-color: navy;
 }
-/* nav link styles: hover, active, staticx & emoji pseudo elements */
+/* nav link styles: hover, active, static & emoji pseudo elements */
 #nav li a {
     display: block;
     padding: 15px;
