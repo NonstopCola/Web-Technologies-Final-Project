@@ -62,10 +62,12 @@ footer {
     clear: both;
 }
 footer p{
-    display: inline-block;
-    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 footer a{
     text-decoration: none;
-    color: gainsboro;
+    color: black;
 }
