@@ -7,6 +7,7 @@ description: this style sheet refers to all pages within site, including: index.
 References: 
 - W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
 - lab05 footer styling 
+- footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
 */
 
 * {
@@ -56,20 +57,26 @@ h1 {font-family: monospace, Lucida Console}
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
-
+/*styling for the footer using flexboc method for response design */
 footer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding:1em;
     border-top: 4px double darkslategray;
-    clear: both;
+    position: relative;
+    background-color: lightgray;
+}
+footer p {
+    margin: 0;
+    flex: 1; /* allows the text to grow and shrink equally */
+    text-align: center;
 }
 #SwinburneCopy {
-    float: left;
-}
-#JIRA{
-    text-align: center;
-    margin: auto;
+    text-align: left; /* overrides center alignment in footer p hence the text-align */
 }
 #JKTNCopy {
-    float: right;
+    text-align: right;
 }
 footer a{
     text-decoration: none;
