@@ -32,7 +32,7 @@ h1 {font-family: monospace, Lucida Console}
     font-weight: bold;
 }
 #nav li {
-    float:left
+    float:left;
 }
 #nav li.mail {
     float: right;
@@ -56,15 +56,19 @@ h1 {font-family: monospace, Lucida Console}
     content: "📩\00a0";
 }
 
-.logo.container{position: relative;} /* container for logo with to allow absolute positioned elements */
+.logoContainer {
+    position: relative;
+    padding-top: 1em;
+} /* container for logo with to allow absolute positioned elements */
 #Logo {
     position: absolute;
     top: 0.5em;
     right: 10px;
     height: 3.8em;
     width: auto;
-    padding: 4px;
+    padding: 0px;
     border-radius: 8%;
+    box-shadow: 10px 10px 5px lightgray;
 }
 /*styling for the footer using flexboc method for response design */
 footer {
