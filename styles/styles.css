@@ -17,11 +17,7 @@ References:
 /*adjusts font size for heading elements */
 h1 {font-family: monospace, Lucida Console}
 /* basic styling for nav bar */
-#Logo {
-    display: flex;
-    justify-content: right;
-    border-radius: 8%;
-}
+#logo.container {position: relative;}
 #nav {
     list-style-type: none;
     padding: 0;
@@ -62,6 +58,15 @@ h1 {font-family: monospace, Lucida Console}
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
+#Logo {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5;
+    height: 2.5em;
+    width: auto;
+    padding: 10px;
+    border-radius: 8%;
+}
 /*styling for the footer using flexboc method for response design */
 footer {
     display: flex;
@@ -69,6 +74,7 @@ footer {
     align-items: center;
     padding:1em;
     border-top: 4px double darkslategray;
+    margin-top: 60px; /* space between footer and content above */
     position: relative;
     background-color: lightgray;
 }
