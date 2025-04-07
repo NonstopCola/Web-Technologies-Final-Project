@@ -95,5 +95,45 @@ footer a{
     text-decoration: none;
     color: black;
 }
+/*Styling for about page */
+li {
+    list-style-type: none;
+}
+#team_image {
 
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: separate;
+}
+table {
+    width: 80%;
+}
+
+/*Styling for apply page */
+.apply_container {
+    width: 70%; /* Sets the width of the apply container to have 15% padding on each side */
+    padding: 2%; /* Adds vertical padding to the container */
+    margin: 0 auto; /* Centers the container horizontally */
+}
+#other-skills {
+
+}
+#textarea {
+    resize: none; /* Prevents the user from resizing the text area */
+}
+
+.submit {
+    background-color: #2568B2;
+    color: whitesmoke;
+    padding: 10px 15px;
+    margin: 10px; 
+    border: none;
+    border-radius: 5px; 
+    box-shadow: 3px 2px 5px lightgray; 
+    cursor: pointer; /* Changes to pointer when hovering (accessibility function) */
+}
+.submit:hover {
+    background-color: #1A4E8D; /* Darker blue when hovering */
+}
 
