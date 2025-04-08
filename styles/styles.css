@@ -33,9 +33,6 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
 #nav li {
     float:left;
 }
-#nav li.mail {
-    float: right;
-}
 #nav li a:hover {
     background-color:dodgerblue;
 }
@@ -54,6 +51,17 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
+#nav li.mail {
+    float: right;
+} 
+#nav li.mail a::before {
+    content: "✉️\00a0";
+}
+#nav li.mail a span {
+    position: absolute;
+    left: -9999px;
+}
+
 /* Positioning the logo within the logo container */
 .logoContainer {
     position: relative;
