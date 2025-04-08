@@ -7,6 +7,7 @@ description: this style sheet refers to all pages within site, including: index.
 References: 
 - W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
 - footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
+- Hiding content off screen but on screen readers: https://webaim.org/techniques/css/invisiblecontent/
 */
 
 * {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
@@ -59,7 +60,7 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
 }
 #nav li.mail a span {
     position: absolute;
-    left: -9999px;
+    left: -9999px; /* Hides the text but keeps it accesible in screen readers */
 }
 
 /* Positioning the logo within the logo container */
