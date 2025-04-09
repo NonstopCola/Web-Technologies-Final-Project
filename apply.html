@@ -11,7 +11,7 @@
     <head>
         <!-- meta data -->
         <meta charset="UTF-8">
-        <meta name="description" content="JKTN job application website, job application page.">
+        <meta name="description" content="JKTN job application webpage, job application page.">
         <meta name="keywords" content="Apply, JKTN, Job application, IT company">
         <meta name="author" content="Nathan Rohner">
         <!-- title -->
@@ -19,6 +19,7 @@
         <!-- link to stylesheet at ./styles/styles.css -->
         <link rel="stylesheet" href="./styles/styles.css">
     </head>
+
     <body>
         <div class="logoContainer">
             <img id="Logo" src="images/final_logo.png" alt="JKTN Logo" width="100" height="100">
@@ -48,8 +49,8 @@
                     <select name="job-ref" id="job-ref">
                         <!-- change list of jobs here, be sure to keep first value as empty -->
                         <option value="">Please Select</option>
-                        <option value="job-network-admin">Network Administrator</option>
-                        <option value="job2">Job 2</option>
+                        <option value="job-network-admin">Network Administrator - K9986</option>
+                        <option value="job-software-developer">Software Developer - J7652</option>
                         <option value="job3">Job 3</option>
                     </select>
                 </p>
@@ -187,7 +188,7 @@
                     name="post-code"
                     id="post-code"
                     pattern="\d{4}"
-                    oninvalid="this.setCustomValidity('Please enter number between 0000 - 9999')"
+                    oninvalid="this.setCustomValidity('Please enter number between 0200 - 9999')"
                     oninput="this.setCustomValidity('')"
                     required="required">
                 </p>
@@ -269,6 +270,7 @@
             <input type="submit" value="Apply" class="submit">
         </form>
         </div>
+  
         <footer>
             <span id="SwinburneCopy">&copy;<a href="https://swin.edu.au/" target="_self">Swinburne</a></span>
 
