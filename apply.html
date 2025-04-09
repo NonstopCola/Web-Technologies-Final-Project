@@ -11,7 +11,7 @@
     <head>
         <!-- meta data -->
         <meta charset="UTF-8">
-        <meta name="description" content="JKTN job application website, job application page.">
+        <meta name="description" content="JKTN job application webpage, job application page.">
         <meta name="keywords" content="Apply, JKTN, Job application, IT company">
         <meta name="author" content="Nathan Rohner">
         <!-- title -->
@@ -19,12 +19,19 @@
         <!-- link to stylesheet at ./styles/styles.css -->
         <link rel="stylesheet" href="./styles/styles.css">
     </head>
+
     <body>
-        <!-- Menu format needs to be set in index.html before email can be properly formatted and placed -->
-        <p>Email us at: <a href="mailto:jktngroup4@gmail.com">info@jktn.com.au</a></p>
-        
-        <!-- page heading-->
-        <h3>Apply to JKTN</h3>
+        <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
+        <img src="images/final_logo.png" width="400" height="300" alt="logo of company" id="logo">
+        <!-- page heading and nav bar -->
+        <h1>Apply</h1>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="apply.html" class="active">Apply</a></li>
+            <li><a href="mailto:jktngroup4@gmail.com">jktngroup4@gmail.com</a></li>
+        </ul>
         <!-- paragraph description before form-->
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
@@ -37,8 +44,8 @@
                     <select name="job-ref" id="job-ref">
                         <!-- change list of jobs here, be sure to keep first value as empty -->
                         <option value="">Please Select</option>
-                        <option value="job-network-admin">Network Administrator</option>
-                        <option value="job2">Job 2</option>
+                        <option value="job-network-admin">Network Administrator - K9986</option>
+                        <option value="job-software-developer">Software Developer - J7652</option>
                         <option value="job3">Job 3</option>
                     </select>
                 </p>
@@ -176,7 +183,7 @@
                     name="post-code"
                     id="post-code"
                     pattern="\d{4}"
-                    oninvalid="this.setCustomValidity('Please enter number between 0000 - 9999')"
+                    oninvalid="this.setCustomValidity('Please enter number between 0200 - 9999')"
                     oninput="this.setCustomValidity('')"
                     required="required">
                 </p>
@@ -258,9 +265,13 @@
              <input type="submit" value="Apply">
         </form>
 
-         <footer>
-            <p class="Copyright">&copy;<a href="./index.html" target="_self">JKTN</a></p>
-                <!-- Created a footer that contains the copyright -->
-         </footer>
+        <footer>
+            <p id="SwinburneCopy">&copy;<a href="https://swin.edu.au/" target="_self">Swinburne</a></p>
+
+            <p id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></p>
+
+            <p id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></p>
+                <!-- Created a footer that contains the copyright and JIRA link -->
+        </footer>
     </body>
 </html>
