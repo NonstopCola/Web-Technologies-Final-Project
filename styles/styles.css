@@ -1,0 +1,148 @@
+/* 
+filename: styles.css 
+author: Tate Newman, Kyle Perry 
+created: 31-3-2025
+last modified: 6-4-2025
+description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
+References: 
+- W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
+- footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
+- Hiding content off screen but on screen readers: https://webaim.org/techniques/css/invisiblecontent/
+*/
+
+* {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
+
+h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elements */
+
+/* Basic styling for nav bar */
+#nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: navy;
+}
+/* Nav link styles: hover, active, static & emoji pseudo elements */
+#nav li a {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: gainsboro;
+    font-weight: bold;
+}
+#nav li {
+    float:left;
+}
+#nav li a:hover {
+    background-color:dodgerblue;
+}
+#nav li a.active {
+    background-color: black;
+}
+#nav li a[href*="index"]::before {
+    content: "🏠\00a0";
+}
+#nav li a[href*="about"]::before {
+    content: "👤\00a0";
+}
+#nav li a[href*="apply"]::before {
+    content: "💼\00a0";
+}
+#nav li a[href*="jobs"]::before {
+    content: "📩\00a0";
+}
+#nav li.mail {
+    float: right;
+} 
+#nav li.mail a::before {
+    content: "✉️\00a0";
+}
+#nav li.mail a span {
+    position: absolute;
+    left: -9999px; /* Hides the text but keeps it accesible in screen readers */
+}
+
+/* Positioning the logo within the logo container */
+.logoContainer {
+    position: relative;
+    padding-top: 1em;
+} 
+#Logo {
+    position: absolute;
+    top: 0.5em;
+    right: 10px;
+    height: 3.8em;
+    width: auto;
+    padding: 0px;
+    border-radius: 8%;
+    box-shadow: 10px 10px 5px lightgray;
+}
+/*Styling of the footer using flexbox method for reponsive design*/
+footer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding:1em;
+    border-top: 4px double darkslategray;
+    margin-top: 60px; /* space between footer and content above */
+    position: relative;
+    background-color: lightgray;
+}
+footer p {
+    margin: 0;
+    flex: 1; /* allows the text to grow and shrink equally */
+    text-align: center;
+}
+#SwinburneCopy {
+    text-align: left; /* overrides center alignment in footer p{}, hence the text-align */
+}
+#JKTNCopy {
+    text-align: right;
+}
+footer a{
+    text-decoration: none;
+    color: black;
+}
+/*Styling for about page */
+li {
+    list-style-type: none;
+}
+#team_image {
+
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: separate;
+}
+table {
+    width: 80%;
+}
+
+/*Styling for apply page */
+.apply_container {
+    width: 70%; /* Sets the width of the apply container to have 15% padding on each side */
+    padding: 2%; /* Adds vertical padding to the container */
+    margin: 0 auto; /* Centers the container horizontally */
+}
+#other-skills {
+
+}
+#textarea {
+    resize: none; /* Prevents the user from resizing the text area */
+}
+
+.submit {
+    background-color: #2568B2;
+    color: whitesmoke;
+    padding: 10px 15px;
+    margin: 10px; 
+    border: none;
+    border-radius: 5px; 
+    box-shadow: 3px 2px 5px lightgray; 
+    cursor: pointer; /* Changes to pointer when hovering (accessibility function) */
+}
+.submit:hover {
+    background-color: #1A4E8D; /* Darker blue when hovering */
+}
+

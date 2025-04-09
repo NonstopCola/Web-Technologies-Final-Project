@@ -21,17 +21,22 @@
     </head>
 
     <body>
-        <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
-        <img src="images/final_logo.png" width="400" height="300" alt="logo of company" id="logo">
-        <!-- page heading and nav bar -->
-        <h1>Apply</h1>
+        <div class="logoContainer">
+            <img id="Logo" src="images/final_logo.png" alt="JKTN Logo" width="100" height="100">
+    <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
+        </div>
+        <!-- page heading-->
+        <h1>Apply to JKTN</h1>
+
         <ul id="nav">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="jobs.html">Jobs</a></li>
             <li><a href="apply.html" class="active">Apply</a></li>
-            <li><a href="mailto:jktngroup4@gmail.com">jktngroup4@gmail.com</a></li>
+            <li class="mail"><a href="mailto:jktngroup4@gmail.com">info@jktn.com.au</a></li>
         </ul>
+
+        <div class="apply_container">
         <!-- paragraph description before form-->
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
@@ -253,24 +258,25 @@
                     id="powershell"
                     name="category[]" value="powershell">
                 </p>
-                <p><label id="other-skills">Other Skills
+                <p><label id="other-skills">Other Skills</p>
                 <textarea id="textarea"
                 name="textarea"
                 rows="5"
                 cols="50"
-                placeholder="Let us know other skills you have that may be important!"></textarea></label></p>
+                placeholder="Let us know other skills you have that may be important!"></textarea></label>
             </fieldset>
 
             <!-- submit buttons-->
-             <input type="submit" value="Apply">
+            <input type="submit" value="Apply" class="submit">
         </form>
-
+        </div>
+  
         <footer>
-            <p id="SwinburneCopy">&copy;<a href="https://swin.edu.au/" target="_self">Swinburne</a></p>
+            <span id="SwinburneCopy">&copy;<a href="https://swin.edu.au/" target="_self">Swinburne</a></span>
 
-            <p id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></p>
+            <span id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></span>
 
-            <p id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></p>
+            <span id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></span>
                 <!-- Created a footer that contains the copyright and JIRA link -->
         </footer>
     </body>
