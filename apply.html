@@ -46,7 +46,7 @@
             <fieldset>
                 <legend>Job Reference</legend>
                 <p><label for="job-ref">Job Reference</label>
-                    <select name="job-ref" id="job-ref">
+                    <select name="job-ref" id="job-ref" required>
                         <!-- change list of jobs here, be sure to keep first value as empty -->
                         <option value="">Please Select</option>
                         <option value="job-network-admin">Network Administrator - K9986</option>
@@ -66,11 +66,10 @@
                     <input type="text"
                     name="firstName"
                     id="firstName"
-                    maxlength="20"
                     pattern="[a-zA-Z]{1,20}" 
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
-                    required="required">
+                    required>
                 </p>
                 <!-- last name
                 ONLY : Letters 
@@ -79,11 +78,10 @@
                     <input type="text"
                     name="lastName"
                     id="lastName"
-                    maxlength="20"
-                    pattern="[a-zA-Z]+"
+                    pattern="[a-zA-Z]{1, 20}"
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
                     oninput="this.SetCustomValidity('')"
-                    required="required">
+                    required>
                 </p>
 
                 <!-- DOB 
@@ -108,14 +106,15 @@
 
                 -->
 
-                <p><label for="date">Date</label>
+                <p><label for="date-of-birth">Date of Birth</label>
                     <input type="text" 
-                    name="date" 
-                    id="date" 
+                    name="date-of-birth" 
+                    id="date-of-birth" 
                     placeholder="DD/MM/YYYY" 
                     pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9][0-9]|20[0-2][0-5])" 
                     oninvalid="this.setCustomValidity('Invalid date! (Format must be DD/MM/YYYY)')" 
-                    oninput="this.setCustomValidity('')">
+                    oninput="this.setCustomValidity('')"
+                    required>
                 </p>
             </fieldset>
 
@@ -145,7 +144,7 @@
                     pattern="[a-zA-Z0-9]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required"></label>
+                    required></label>
                 </p>
 
                 <!-- suburb
@@ -157,7 +156,7 @@
                     pattern="[a-zA-Z]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
                     oninput="this.setCustomValidity('')"
-                    required="required"></label>
+                    required></label>
                 </p>
 
                 <!-- states
@@ -184,13 +183,13 @@
                 
                 -->
                 <p><label for="post-code">Post Code</label>
-                    <input type="number" 
+                    <input type="text" 
                     name="post-code"
                     id="post-code"
                     pattern="\d{4}"
-                    oninvalid="this.setCustomValidity('Please enter number between 0200 - 9999')"
+                    oninvalid="this.setCustomValidity('Please enter a 4-digit number')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required>
                 </p>
 
             </fieldset>
@@ -207,15 +206,19 @@
             <fieldset>
                 <legend>Contact Details</legend>
                 <!-- email, requires @ and .com -->
+                <!-- I was told NOT to use HTML5s email validation.
+                 Upon testing this regex - it is not working. Can't do much 
+                 due to the restrictions of this assignment :( 
+                -->
                 <p><label id="contact-details">Email
                     <input type="text"
                     name="contact-email"
                     id="contact-email"
                     placeholder="john@gmail.com"
-                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                     oninvalid="this.SetCustomValidity('Please enter a valid email!')"
                     oninput="this.setCustomValidity('')"
-                    required="required"></label>
+                    required></label>   
                 </p>
                 <!--
                 phone numner : minimun length 8 - max 12
@@ -231,7 +234,7 @@
                     pattern="[0-9 ]{8,12}"
                     oninvalid="this.setCustomValidity('Please enter a valid phone number!')"
                     oninput="this.setCustomValidity('')"
-                    required="required">
+                    required>
                 </p>
             </fieldset> 
 
