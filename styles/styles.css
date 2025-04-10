@@ -9,6 +9,8 @@ References:
 - footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
 - Hiding content off screen but on screen readers: https://webaim.org/techniques/css/invisiblecontent/
 - Form styling inspiration: https://www.programiz.com/css/form-styling
+- Background image styling: https://www.w3schools.com/howto/howto_css_full_page.asp
+- Section styling for about page used GenAI, prompt: "how do i make a style that applies to all sections in my html"
 */
 
 * {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
@@ -79,7 +81,7 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
     border-radius: 8%;
     box-shadow: 10px 10px 5px lightgray;
 }
-/*Styling of the footer using flexbox method for reponsive design*/
+/*Styling of the footer using flexbox method for reponsive design */
 footer {
     display: flex;
     justify-content: space-between; 
@@ -105,19 +107,76 @@ footer a{
     text-decoration: none;
     color: black;
 }
+
+/*Styling for index/home page */
+.background {
+    background-image: url("Images/background.jpg");
+    height: 400px;
+    background-size: cover;
+    background-repeat: repeat; 
+}
+/* added background image with styling for image below */
+.background p {
+    color: #dcdcdc;
+}
+
 /*Styling for about page */
 li {
     list-style-type: none;
 }
+/* used flex method for responsive design */
+.aboutContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: space-between;
+}
+section {
 
+    box-sizing: border-box; 
+    margin: 10px;
+    padding: 20px;
+    border: solid 1px #626466;
+    border-radius: 8px;
+}
+#aboutJKTN {
+    padding: 0 20px; 
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 1em; /* Adds spacing between definition terms */
+}
+
+
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    height: auto;
+    width: 75%;
+    table-layout: auto;
+}
 table, th, td {
     border: 1px solid black;
-    border-collapse: separate;
+    border-collapse: collapse;
+    text-align: center;;
 }
-table {
-    width: 80%;
+td {
+    background-color: #b0c4de;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333333;
 }
-
+th {
+    background-color: #4682b4;
+    color: #000000;
+}
+th, td {
+    padding: 4px;
+}
+tr :hover {
+    background-color: #a9a9a9;
+}
 /*Styling for apply page */
 .apply_container {
     width: 70%; /* Sets the width of the apply container to have 15% padding on each side */
