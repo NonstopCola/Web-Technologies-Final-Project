@@ -174,12 +174,13 @@ input[type="checkbox"]{
     cursor: pointer; 
 }
 textarea {
+    width: 50%;
+    box-sizing: border-box;
     resize: none; 
     padding: 5px;
     border-radius: 5px;
     font-size: 1em;
 }
-
 .submit {
     background-color: #2568B2;
     color: whitesmoke;
