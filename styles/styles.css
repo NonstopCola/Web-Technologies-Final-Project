@@ -125,9 +125,13 @@ table {
     padding: 2%; /* Adds vertical padding to the container */
     margin: 0 auto; /* Centers the container horizontally */
 }
-#other-skills {
 
-}
+
+
+
+
+
+
 #textarea {
     resize: none; /* Prevents the user from resizing the text area */
 }
