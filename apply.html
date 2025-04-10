@@ -87,26 +87,26 @@
                 </p>
 
                 <!-- DOB 
-                 ONLY : Dates from years 1900 to 2025.
+                ONLY : Dates from years 1900 to 2025.
 
-                 PATTERN EXPLAINATION:
-                 0[1-9] : Number starts with 0 and ends with from 1 - 9 (01 - 09)
-                 [12][0-9] : Number starts with 1 or 2 and ends from 0 - 9 (10 to 29)
-                 3[01] : Number start with 3 and ends with 0 or 1 (30 - 31)
+                PATTERN EXPLAINATION:
+                0[1-9] : Number starts with 0 and ends with from 1 - 9 (01 - 09)
+                [12][0-9] : Number starts with 1 or 2 and ends from 0 - 9 (10 to 29)
+                3[01] : Number start with 3 and ends with 0 or 1 (30 - 31)
 
-                 / : character to seperate day and month
+                / : character to seperate day and month
 
-                 0[1-9] : Same as day (months ranging from 01 - 09))
-                 1[0-2] : Number starts with 1 and ends from 0 - 2 (10 - 12)
+                0[1-9] : Same as day (months ranging from 01 - 09))
+                1[0-2] : Number starts with 1 and ends from 0 - 2 (10 - 12)
 
-                 / : character to seperate day and month
+                / : character to seperate day and month
 
-                 19[0-9] : Last Numbers ranging from 19X0 - 19X9
-                 [0-9] : Second to last numbers ranging from 190X - 199X
-                 20[0-2][0-5] : First two digits have to be 20, third numnber ranges from 0-2, fourth number ranges from 0-5
-                 So years can range from (1900 - 2025)
+                19[0-9] : Last Numbers ranging from 19X0 - 19X9
+                [0-9] : Second to last numbers ranging from 190X - 199X
+                20[0-2][0-5] : First two digits have to be 20, third numnber ranges from 0-2, fourth number ranges from 0-5
+                So years can range from (1900 - 2025)
 
-                 -->
+                -->
 
                 <p><label for="date">Date</label>
                     <input type="text" 
@@ -117,27 +117,27 @@
                     oninvalid="this.setCustomValidity('Invalid date! (Format must be DD/MM/YYYY)')" 
                     oninput="this.setCustomValidity('')">
                 </p>
-                 </fieldset>
+            </fieldset>
 
                 <!-- Gender
                 Radio selection of Male, Female and Other 
                 -->
-                 <fieldset>
+                <fieldset>
                     <legend>Gender</legend>
-                 <p><label for="male">Male</label>
+                <p><label for="male">Male</label>
                     <input type="radio" name="gender" id="male" checked="checked">
                     <label for="female">Female</label>
                     <input type="radio" name="gender" id="female">
                     <label for="other">Other</label>
                     <input type="radio" name="gender" id="other">
-                 </p>
+                </p>
             </fieldset>
 
             <!--address-->
             <fieldset>
                 <legend>Address</legend>
                 <!-- street
-                 ONLY : Letters and numbers, from 1-40 characters
+                ONLY : Letters and numbers, from 1-40 characters
                 -->
                 <p><label id="street">Street Address
                     <input type="text"
@@ -149,7 +149,7 @@
                 </p>
 
                 <!-- suburb
-                 ONLY : Letters from 1 - 40 characters
+                ONLY : Letters from 1 - 40 characters
                 -->
                 <p><label id="suburb">Suburb / Town
                     <input type="text"
@@ -270,7 +270,7 @@
             <input type="submit" value="Apply" class="submit">
         </form>
         </div>
-  
+
         <footer>
             <span id="SwinburneCopy">&copy;<a href="https://swin.edu.au/" target="_self">Swinburne</a></span>
 

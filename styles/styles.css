@@ -109,9 +109,7 @@ footer a{
 li {
     list-style-type: none;
 }
-#team_image {
 
-}
 table, th, td {
     border: 1px solid black;
     border-collapse: separate;
@@ -128,31 +126,52 @@ table {
 }
 
 fieldset {
-    margin: 2em 0; /* Adds vertical spacing between fieldsets */
-    padding: 1em 2em; /* Adds padding inside the fieldset */
-    border: solid 1px #2568B2; /* Adds a border around the fieldset */
+    position: relative;
+    margin: 1.5em 0; /* Adds vertical spacing between fieldsets */
+    padding: 1.25em 2em  1em; 
+    padding-top: 2em;
+    border: solid 1px #2568B2;
     border-radius: 6px;
     min-width: 200px; /* Sets a minimum width for the fieldset */
 }
 legend {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 .5em; 
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
     font-size: 1.25em;
-    padding: 0 .25em; 
+    font-weight: bold;
     color: #2568B2;
 }
 select {
     background-color: #D3D3D3 ;
     border-radius: 5px;
+    padding: 3px;
 }
-input {
+input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    margin-right: 3%;
+    cursor: pointer;
+}
+input[type="text"] {
     background-color: snow;
     border-radius: 5px;
 }
-input:hover {
+input[type="text"]:hover {
     box-shadow: #d3d3d3 0px 0px 5px 2px;
 }
-input:focus {
+input[type="text"]:focus {
     outline: none; 
     box-shadow: #d3d3d3 0px 0px 5px 2px; 
+}
+input[type="checkbox"]{
+    width: 15px;
+    height: 15px;
+    margin-right: 3%;
+    cursor: pointer; 
 }
 #textarea {
     resize: none; 
