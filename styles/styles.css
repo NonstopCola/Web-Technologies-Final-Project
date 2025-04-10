@@ -8,6 +8,7 @@ References:
 - W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
 - footer styling used Gen AI, using the prompt: "with the flexbox method how can I ensure the "Our Plans" element is centred" 
 - Hiding content off screen but on screen readers: https://webaim.org/techniques/css/invisiblecontent/
+- Form styling inspiration: https://www.programiz.com/css/form-styling
 */
 
 * {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
@@ -126,14 +127,38 @@ table {
     margin: 0 auto; /* Centers the container horizontally */
 }
 
-
-
-
-
-
-
+fieldset {
+    margin: 2em 0; /* Adds vertical spacing between fieldsets */
+    padding: 1em 2em; /* Adds padding inside the fieldset */
+    border: solid 1px #2568B2; /* Adds a border around the fieldset */
+    border-radius: 6px;
+    min-width: 200px; /* Sets a minimum width for the fieldset */
+}
+legend {
+    font-size: 1.25em;
+    padding: 0 .25em; 
+    color: #2568B2;
+}
+select {
+    background-color: #D3D3D3 ;
+    border-radius: 5px;
+}
+input {
+    background-color: snow;
+    border-radius: 5px;
+}
+input:hover {
+    box-shadow: #d3d3d3 0px 0px 5px 2px;
+}
+input:focus {
+    outline: none; 
+    box-shadow: #d3d3d3 0px 0px 5px 2px; 
+}
 #textarea {
-    resize: none; /* Prevents the user from resizing the text area */
+    resize: none; 
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
 .submit {
