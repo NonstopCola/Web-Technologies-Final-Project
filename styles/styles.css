@@ -261,3 +261,51 @@ textarea {
     background-color: #1A4E8D; /* Darker blue when hovering */
 }
 
+/*Styling for job page */
+#network_admin, #software_dev, #web_dev {
+    overflow: hidden; /* Ensures that floated elements are contained within the parent */
+}
+p.reference {
+    float: right;
+    margin-top: -3em; /* Moves the reference to the top right corner */
+}
+.qualifications {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 1em;
+}
+.other_info {
+    display: flex;
+    justify-content: space-between; /* Aligns items to the left and right */
+    align-items: center;
+    flex-wrap: wrap; /* Ensures items wrap to the next line if they don't fit */
+    margin-top: 1em;
+}
+.qualifications div, .other_info p {
+    flex: 0 0 48%; /* Sets the width of each div to 48% */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+.essential, .preferred {
+    padding: 1em;
+    border-radius: 0.5em;
+}
+.other_info .report, .other_info .salary {
+    margin: 0;
+    flex: 1 0 48%; /* Sets the width of each div to 48% */
+}
+.salary {
+    text-align : right;
+}
+.responsibilities li {
+    list-style-type: decimal; /* Changes the list style for responsibilities to decimal */
+}
+.qualifications li {
+    list-style-type: square; /* Changes the list style for qualifications to square */
+}
+#aside {
+    text-align: center;
+}
+#main h2, h3, h4 {
+    font-size: 1.5em;
+}
