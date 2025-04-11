@@ -130,11 +130,10 @@ footer a{
     color: #dcdcdc;
 }
 
-/*Styling for about page */
+/*Styling for about page, used flex method for responsive design */
 li {
     list-style-type: none;
 }
-/* used flex method for responsive design */
 .aboutContainer {
     display: flex;
     flex-direction: column;
@@ -145,6 +144,10 @@ section {
     padding: 10px;
     border: solid 1px #626466;
     border-radius: 8px;
+}
+.intro {
+    align-items: center;
+    text-align: center;
 }
 #aboutJKTN {
     padding: 0 20px; 
