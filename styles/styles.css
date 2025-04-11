@@ -98,7 +98,7 @@ footer p {
     text-align: center;
 }
 #SwinburneCopy {
-    text-align: left; /* overrides center alignment in footer p{}, hence the text-align */
+    text-align: left; 
 }
 #JKTNCopy {
     text-align: right;
@@ -126,40 +126,42 @@ li {
 }
 /* used flex method for responsive design */
 .aboutContainer {
-    /*
-    FOR TATE - SEE IF THIS WORKS:
     display: flex;
     flex-direction: column;
-    */
-    display: flex;
     flex-wrap: wrap;
-    gap: 20px; 
-    justify-content: space-between;
 }
 section {
-
-    box-sizing: border-box; 
-    margin: 10px;
-    padding: 20px;
+    margin: 5px;
+    padding: 10px;
     border: solid 1px #626466;
     border-radius: 8px;
 }
 #aboutJKTN {
     padding: 0 20px; 
+    align-self: flex-end;
 }
-
+#teamimage {
+    border-radius: 50%;
+    border: solid 1px #626466;
+}
+#team_image {
+    align-self: flex-end ; 
+}
 dt {
     font-weight: bold;
     margin-top: 1em; /* Adds spacing between definition terms */
 }
-
+#responsibilities {
+    align-self: left;
+    max-width: fit-content;
+}
 
 
 table {
     border-collapse: collapse;
     border: 1px solid black;
     height: auto;
-    width: 75%;
+    width: fit-content;
     table-layout: auto;
 }
 table, th, td {
@@ -181,6 +183,12 @@ th, td {
 }
 tr :hover {
     background-color: #a9a9a9;
+}
+#interests {
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    text-align: center;
 }
 /*Styling for apply page */
 .apply_container {
