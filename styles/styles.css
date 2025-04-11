@@ -1,8 +1,8 @@
 /* 
 filename: styles.css 
-author: Tate Newman, Kyle Perry 
+author: Tate Newman, Kyle Perry, Nathan Rohner
 created: 31-3-2025
-last modified: 6-4-2025
+last modified: 11-4-2025
 description: this style sheet refers to all pages within site, including: index.html, jobs.html, apply.html & about.html
 References: 
 - W3 Schools CSS Nav Bar - https://www.w3schools.com/css/css_navbar_horizontal.asp
@@ -126,6 +126,11 @@ li {
 }
 /* used flex method for responsive design */
 .aboutContainer {
+    /*
+    FOR TATE - SEE IF THIS WORKS:
+    display: flex;
+    flex-direction: column;
+    */
     display: flex;
     flex-wrap: wrap;
     gap: 20px; 
@@ -179,6 +184,8 @@ tr :hover {
 }
 /*Styling for apply page */
 .apply_container {
+    display: flex;
+    flex-direction: column;
     width: 70%; /* Sets the width of the apply container to have 15% padding on each side */
     padding: 2%; /* Adds vertical padding to the container */
     margin: 0 auto; /* Centers the container horizontally */
