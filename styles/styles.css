@@ -329,3 +329,15 @@ p.reference {
 #main h2, h3, h4 {
     font-size: 1.5em;
 }
+#main h2::first-letter, h3::first-letter, h4::first-letter {
+    color: #2568B2;
+}
+.details {
+    max-height: 0; /* Collapses the content by default */
+    overflow: hidden; /* Hides the content when not hovered */
+    transition: max-height 0.2s ease-out; /* Allows for smooth transition when collapsing */
+}
+section:hover .details {
+    max-height: 1000px; /* Set a large enough value to allow for expansion */
+    transition: max-height 0.2s ease-in; /* Allows for smooth transition when expanding */
+}
