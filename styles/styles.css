@@ -165,7 +165,7 @@ dt {
     margin-top: 1em; /* Adds spacing between definition terms */
 }
 #responsibilities {
-    align-self: left;
+    float: left;
     max-width: fit-content;
 }
 table {
