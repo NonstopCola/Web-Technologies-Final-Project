@@ -85,25 +85,7 @@
                 </p>
 
                 <!-- DOB 
-                ONLY : Dates from years 1900 to 2025.
-
-                PATTERN EXPLAINATION:
-                0[1-9] : Number starts with 0 and ends with from 1 - 9 (01 - 09)
-                [12][0-9] : Number starts with 1 or 2 and ends from 0 - 9 (10 to 29)
-                3[01] : Number start with 3 and ends with 0 or 1 (30 - 31)
-
-                / : character to seperate day and month
-
-                0[1-9] : Same as day (months ranging from 01 - 09))
-                1[0-2] : Number starts with 1 and ends from 0 - 2 (10 - 12)
-
-                / : character to seperate day and month
-
-                19[0-9] : Last Numbers ranging from 19X0 - 19X9
-                [0-9] : Second to last numbers ranging from 190X - 199X
-                20[0-2][0-5] : First two digits have to be 20, third numnber ranges from 0-2, fourth number ranges from 0-5
-                So years can range from (1900 - 2025)
-
+                ONLY : Dates from years 1900 to 2025, with dd being between 01-31, mm being 01-12, yy being 1950-2007.
                 -->
 
                 <p><label for="date-of-birth">Date of Birth</label>
@@ -111,10 +93,9 @@
                     name="date-of-birth" 
                     id="date-of-birth" 
                     placeholder="DD/MM/YYYY" 
-                    pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9][0-9]|20[0-2][0-5])" 
-                    oninvalid="this.setCustomValidity('Invalid date! (Format must be DD/MM/YYYY)')" 
-                    oninput="this.setCustomValidity('')"
-                    required>
+                    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19[5-9][0-9])|(200[0-7]))$"
+                    title="Invalid date! (Format must be DD/MM/YYYY and have a valid date)"
+                    required="required">
                 </p>
             </fieldset>
 
@@ -124,11 +105,11 @@
                 <fieldset>
                     <legend>Gender</legend>
                 <p><label for="male">Male</label>
-                    <input type="radio" name="gender" id="male" checked="checked">
+                    <input type="radio" name="gender" id="male" value="male" checked="checked">
                     <label for="female">Female</label>
-                    <input type="radio" name="gender" id="female">
+                    <input type="radio" name="gender" id="female" value="female">
                     <label for="other">Other</label>
-                    <input type="radio" name="gender" id="other">
+                    <input type="radio" name="gender" id="other" value="other">
                 </p>
             </fieldset>
 
