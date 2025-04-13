@@ -13,6 +13,7 @@ References:
 - Section styling for about page used GenAI, prompt: "how do i make a style that applies to all sections in my html"
 - Styling text position on index/home GenAI, prompt: heres my css for background.p, i want it to not streatch as wide across the box, how to go about it?"
 - Learnt how to use fade-in animation on home page: https://www.w3schools.com/css/css3_animations.asp & https://dev.to/tiaeastwood/super-simple-css-animation-for-fade-in-on-page-load-2p8m  
+- Learnt another keyframe animation for home page: https://www.w3schools.com/css/css3_animations.asp & GenAI prompt: "how to use @keyframe css animations, to bounce text up and down when loaded"
 */
 
 * {font-family:Arial, Helvetica, sans-serif} /*specifies the default font for the entire site*/
@@ -151,6 +152,21 @@ footer a{
     color: #62a1ff;
     font-weight: bold;
 }
+.background h2 {
+    display: inline-block;
+    color: #dcdcdc ;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+    animation: wave 1s ease-in-out 2;
+}
+@keyframes wave {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+/*.background h2:hover {
+    color: #2568B2;
+} */
 .background p.missionStatement {
     color: skyblue; 
     font-weight: 800;
