@@ -15,11 +15,11 @@ References:
 - Learnt how to use fade-in animation on home page: https://www.w3schools.com/css/css3_animations.asp & https://dev.to/tiaeastwood/super-simple-css-animation-for-fade-in-on-page-load-2p8m  
 */
 
-* {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
+* {font-family:Arial, Helvetica, sans-serif} /*specifies the default font for the entire site*/
 
-h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elements */
+h1 {font-family: monospace, Lucida Console} /*adjusts font size for main page heading elements */
 
-/* Basic styling for nav bar */
+/* STYLING FOR NAV BAR */
 #nav {
     list-style-type: none;
     padding: 0;
@@ -27,7 +27,7 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
     overflow-x: hidden;
     background-color: navy;
 }
-/* Nav link styles: hover, active, static & emoji pseudo elements */
+/* nav link styles: hover, active, static & emoji pseudo elements */
 #nav li a {
     display: block;
     padding: 15px;
@@ -65,10 +65,10 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
 }
 #nav li.mail a span {
     position: absolute;
-    left: -9999px; /* Hides the text but keeps it accesible in screen readers */
+    left: -9999px; /* hides the text but keeps it accesible in screen readers */
 }
 
-/* Positioning the logo within the logo container */
+/* positioning the logo within the logo container */
 .logoContainer {
     position: relative;
     padding-top: 1em;
@@ -83,7 +83,7 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
     border-radius: 8%;
     box-shadow: 10px 10px 5px lightgray;
 }
-/*Styling of the footer using flexbox method for reponsive design */
+/* STYLING FOR FOOTER: using flexbox method for reponsive design */
 footer {
     display: flex;
     justify-content: space-between; 
@@ -110,7 +110,7 @@ footer a{
     color: black;
 }
 
-/*Styling for index/home page */
+/* STYLING FOR INDEX/HOME PAGE */
 .homeContent {
     display: flex;
     flex-direction: column;
@@ -119,11 +119,11 @@ footer a{
     padding: 20px;
     margin: 0 auto;
     border: double 1px #626466;
-    width: 100%; /* reponsiviness fpr mobile */
-    max-width: 1200px; /*keeps the content within the screen/more centred */
+    width: 100%; /* reponsiviness for mobile */
+    max-width: 1200px; /*keeps the content within the screen/more centered */
     overflow-x: hidden; 
     box-sizing: border-box;
-    animation: fadeIn 1.2s ease-in; /* Animation for the home content */
+    animation: fadeIn 1.2s ease-in; /* animation */
 }
 @keyframes fadeIn  {
     from {
@@ -142,11 +142,11 @@ footer a{
     background-position: center;
     width: 100%;
     padding: 20px;
-    box-sizing: border-box; /* Ensures padding between background image & box */
+    box-sizing: border-box; /* ensures padding between background image & box */
     border-radius: 8px;
     box-shadow: 10px 10px 5px lightgray;
 }
-/* Utilisied a class in HTML to highlight important text for readers */
+/* utilisied a class in HTML to highlight important text for readers */
 .highlight {
     color: #62a1ff;
     font-weight: bold;
@@ -163,14 +163,14 @@ footer a{
     margin-bottom: 15px;
     line-height: 1.6;
     font-size: 16px;
-    max-width: 900px; /* Sets a maximum width for the text, for larger screens mainly */
+    max-width: 900px; /* sets a maximum width for the text, for larger screens mainly */
 }
 .background p:first-of-type {
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
 }
-/*Styling for about page, used flex method for responsive design */
+/* STYLING FOR ABOUT PAGE: used flex method for responsive design */
 li {
     list-style-type: none;
 }
@@ -178,6 +178,9 @@ li {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+.aboutContainer h2::first-letter, h3::first-letter {
+    color: #2568B2; /* matches text styling from JOBS page */
 }
 section {
     margin: 5px;
@@ -189,6 +192,7 @@ section {
     align-items: center;
     text-align: center;
 }
+
 #aboutJKTN {
     padding: 0 20px; 
     align-self: flex-end;
@@ -202,7 +206,7 @@ section {
 }
 dt {
     font-weight: bold;
-    margin-top: 1em; /* Adds spacing between definition terms */
+    margin-top: 1em; 
 }
 #responsibilities {
     float: left;
@@ -242,23 +246,23 @@ tr :hover {
     text-align: center;
 }
 
-/*Styling for apply page */
+/* STYLING FOR APPLY PAGE  */
 .apply_container {
     display: flex;
     flex-direction: column;
-    width: 70%; /* Sets the width of the apply container to have 15% padding on each side */
-    padding: 2%; /* Adds vertical padding to the container */
-    margin: 0 auto; /* Centers the container horizontally */
+    width: 70%; /* sets the width of the apply container to have 15% padding on each side (team design decisions) */
+    padding: 2%; 
+    margin: 0 auto; /* centers the container horizontally */
 }
 
 fieldset {
     position: relative;
-    margin: 1.5em 0; /* Adds vertical spacing between fieldsets */
+    margin: 1.5em 0; /* adds vertical spacing between fieldsets */
     padding: 1.25em 2em  1em; 
     padding-top: 2em;
     border: solid 1px #2568B2;
     border-radius: 6px;
-    min-width: 200px; /* Sets a minimum width for the fieldset */
+    min-width: 200px; /* sets a minimum width for the fieldset */
 }
 legend {
     position: absolute;
@@ -315,19 +319,19 @@ textarea {
     border: none;
     border-radius: 5px; 
     box-shadow: 3px 2px 5px lightgray; 
-    cursor: pointer; /* Changes to pointer when hovering (accessibility function) */
+    cursor: pointer; /* changes to pointer when hovering (accessibility function) */
 }
 .submit:hover {
     background-color: #1A4E8D; /* Darker blue when hovering */
 }
 
-/*Styling for job page */
+/* STYLING FOR JOBS PAGE */
 #network_admin, #software_dev, #web_dev {
-    overflow: hidden; /* Ensures that floated elements are contained within the parent */
+    overflow: hidden; /* ensures that floated elements are contained within the parent */
 }
 p.reference {
     float: right;
-    margin-top: -3em; /* Moves the reference to the top right corner */
+    margin-top: -3em; /* moves the reference to the top right corner */
 }
 .qualifications {
     display: flex;
@@ -337,14 +341,14 @@ p.reference {
 }
 .other_info {
     display: flex;
-    justify-content: space-between; /* Aligns items to the left and right */
+    justify-content: space-between; /* aligns items to the left and right */
     align-items: center;
-    flex-wrap: wrap; /* Ensures items wrap to the next line if they don't fit */
+    flex-wrap: wrap; /* ensures items wrap to the next line if they don't fit */
     margin-top: 1em;
 }
 .qualifications div, .other_info p {
-    flex: 0 0 48%; /* Sets the width of each div to 48% */
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    flex: 0 0 48%; /* sets the width of each div to 48% */
+    box-sizing: border-box; /* ensures padding and border are included in the width */
 }
 .essential, .preferred {
     padding: 1em;
@@ -352,16 +356,16 @@ p.reference {
 }
 .other_info .report, .other_info .salary {
     margin: 0;
-    flex: 1 0 48%; /* Sets the width of each div to 48% */
+    flex: 1 0 48%; /* sets the width of each div to 48% */
 }
 .salary {
     text-align : right;
 }
 .responsibilities li {
-    list-style-type: decimal; /* Changes the list style for responsibilities to decimal */
+    list-style-type: decimal; /* changes the list style for responsibilities to decimal */
 }
 .qualifications li {
-    list-style-type: square; /* Changes the list style for qualifications to square */
+    list-style-type: square; /* changes the list style for qualifications to square */
 }
 #aside {
     text-align: center;
@@ -373,11 +377,11 @@ p.reference {
     color: #2568B2;
 }
 .details {
-    max-height: 0; /* Collapses the content by default */
-    overflow: hidden; /* Hides the content when not hovered */
-    transition: max-height 0.2s ease-out; /* Allows for smooth transition when collapsing */
+    max-height: 0; /* collapses the content by default */
+    overflow: hidden; /* hides the content when not hovered */
+    transition: max-height 0.2s ease-out; /* allows for smooth transition when collapsing */
 }
 section:hover .details {
-    max-height: 1000px; /* Set a large enough value to allow for expansion */
-    transition: max-height 0.2s ease-in; /* Allows for smooth transition when expanding */
+    max-height: 1000px; /* set a large enough value to allow for expansion */
+    transition: max-height 0.2s ease-in; /* allows for smooth transition when expanding */
 }
