@@ -137,7 +137,7 @@ footer a{
     }
 }
 .background {
-    background-image: url("./Images/background.jpg");
+    background-image: url("./Images/background2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -149,12 +149,12 @@ footer a{
 }
 /* utilisied a class in HTML to highlight important text for readers */
 .highlight {
-    color: #62a1ff;
+    color: black;
     font-weight: bold;
 }
 .background h2 {
     display: inline-block;
-    color: #dcdcdc ;
+    color: black ;
     font-size: 1.5em;
     text-shadow: 2px 2px 4px #000000;
     letter-spacing: 1px;
@@ -169,23 +169,22 @@ footer a{
     color: #2568B2;
 } */
 .background p.missionStatement {
-    color: skyblue; 
+    color: black; 
     font-weight: 800;
     font-style: italic;
     text-align: center;
 }
 /* added background image with styling for image below */
 .background p {
-    color: #dcdcdc;
+    color: black;
     margin-bottom: 15px;
     line-height: 1.6;
     font-size: 16px;
     max-width: 900px; /* sets a maximum width for the text, for larger screens mainly */
 }
 .background p:first-of-type {
-    font-weight: bold;
-    font-size: 18px;
-    color: #ffffff;
+    font-size: 16px;
+    color: black;
 }
 /* STYLING FOR ABOUT PAGE: used flex method for responsive design */
 li {
