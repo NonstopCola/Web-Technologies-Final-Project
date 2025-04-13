@@ -11,6 +11,8 @@ References:
 - Form styling inspiration: https://www.programiz.com/css/form-styling
 - Background image styling: https://www.w3schools.com/howto/howto_css_full_page.asp
 - Section styling for about page used GenAI, prompt: "how do i make a style that applies to all sections in my html"
+- Styling text position on index/home GenAI, prompt: heres my css for background.p, i want it to not streatch as wide across the box, how to go about it?"
+- Learnt how to use fade-in animation on home page: https://www.w3schools.com/css/css3_animations.asp & https://dev.to/tiaeastwood/super-simple-css-animation-for-fade-in-on-page-load-2p8m  
 */
 
 * {font-family:Arial, Helvetica, sans-serif} /*Specifies the default font for the entire site*/
@@ -22,7 +24,7 @@ h1 {font-family: monospace, Lucida Console} /*Adjusts font size for heading elem
     list-style-type: none;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: navy;
 }
 /* Nav link styles: hover, active, static & emoji pseudo elements */
@@ -117,19 +119,57 @@ footer a{
     padding: 20px;
     margin: 0 auto;
     border: double 1px #626466;
+    width: 100%; /* reponsiviness fpr mobile */
+    max-width: 1200px; /*keeps the content within the screen/more centred */
+    overflow-x: hidden; 
+    box-sizing: border-box;
+    animation: fadeIn 1.2s ease-in; /* Animation for the home content */
 }
-
+@keyframes fadeIn  {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .background {
     background-image: url("Images/background.jpg");
-    height: 400px;
     background-size: cover;
-    background-repeat: repeat; 
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding between background image & box */
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px lightgray;
+}
+/* Utilisied a class in HTML to highlight important text for readers */
+.highlight {
+    color: #62a1ff;
+    font-weight: bold;
+}
+.background p.missionStatement {
+    color: skyblue; 
+    font-weight: 800;
+    font-style: italic;
+    text-align: center;
 }
 /* added background image with styling for image below */
 .background p {
     color: #dcdcdc;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 16px;
+    max-width: 900px; /* Sets a maximum width for the text, for larger screens mainly */
 }
-
+.background p:first-of-type {
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+}
 /*Styling for about page, used flex method for responsive design */
 li {
     list-style-type: none;
@@ -172,7 +212,7 @@ table {
     border-collapse: collapse;
     border: 1px solid black;
     height: auto;
-    width: fit-content;
+    overflow-x: auto;
     table-layout: auto;
 }
 table, th, td {
