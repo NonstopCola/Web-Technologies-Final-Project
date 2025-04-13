@@ -155,6 +155,7 @@ footer a{
 .background h2 {
     display: inline-block;
     color: #dcdcdc ;
+    font-size: 0.8em
     text-shadow: 2px 2px 4px #000000;
     letter-spacing: 1px;
     animation: wave 1s ease-in-out 2;
