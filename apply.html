@@ -169,8 +169,8 @@
                     <input type="text" 
                     name="post-code"
                     id="post-code"
-                    pattern="\d{4}"
-                    oninvalid="this.setCustomValidity('Please enter a 4-digit number')"
+                    pattern="0[2-9][0-9]{2}|[1-8][0-9]{3}|9[1-8][0-9]{2}|99[0-3][0-9]|994[0-4]"
+                    oninvalid="this.setCustomValidity('Please enter a 4-digit number between 0200-9944')"
                     oninput="this.setCustomValidity('')"
                     required>
                 </p>
