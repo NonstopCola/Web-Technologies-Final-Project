@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="JKTN homepage">
-        <meta name="keywords" content="JKTN, IT company">
-        <meta name="author" content="Jake Hardy, Tate Newman, Kyle Perry, Nathan Rohner">
+        <?php
+            include './header.inc'
+        ?>
         <!-- Key Meta Data -->
         <title>Homepage</title>
         <!-- Titled Page -->
-        <link rel="stylesheet" href="./styles/styles.css">
-        <!-- Linked to stylesheet located at ./styles/styles.css -->
     </head>
     <body>
         <div class="logoContainer">
@@ -17,13 +14,9 @@
             <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
         </div>
         <h1>JKTN Homepage</h1>
-        <ul id="nav">
-            <li><a href="./index.html" class="active">Home</a></li> 
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./jobs.html">Jobs</a></li>
-            <li><a href="./apply.html">Apply</a></li>
-            <li class="mail"><a href="mailto:jktngroup4@gmail.com"><span>info@jktn.com.au</span></a></li>
-        </ul>
+        <?php
+            include './nav.inc';
+        ?>
         <!-- Added navigation bar that contains links to the 3 other pages and email -->
         <div class="homeContent">
             <div class="background">
@@ -50,13 +43,8 @@
                 </p>
             </div>
         </div>
-        <footer>
-            <span id="GITHUB"><a href="https://github.com/NonstopCola/Web-Technologies-Final-Project" target="_blank">Our Projects</a></span>
-
-            <span id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></span>
-
-            <span id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></span>
-                <!-- Created a footer that contains the copyright and JIRA link -->
-        </footer>
+        <?php
+            include './footer.inc';
+        ?>
     </body>
 </html>

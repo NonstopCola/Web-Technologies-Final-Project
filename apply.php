@@ -9,15 +9,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- meta data -->
-        <meta charset="UTF-8">
-        <meta name="description" content="JKTN job application webpage, job application page.">
-        <meta name="keywords" content="Apply, JKTN, Job application, IT company">
-        <meta name="author" content="Nathan Rohner">
+        <?php
+            include './header.inc'
+        ?>
         <!-- title -->
         <title>Apply</title>
-        <!-- link to stylesheet at ./styles/styles.css -->
-        <link rel="stylesheet" href="./styles/styles.css">
     </head>
 
     <body>
@@ -28,13 +24,9 @@
         <!-- page heading-->
         <h1>Apply to JKTN</h1>
 
-        <ul id="nav">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./jobs.html">Jobs</a></li>
-            <li><a href="./apply.html" class="active">Apply</a></li>
-            <li class="mail"><a href="mailto:jktngroup4@gmail.com"><span>info@jktn.com.au</span></a></li>
-        </ul>
+        <?php
+            include './nav.inc';
+        ?>
 
         <div class="apply_container">
         <!-- paragraph description before form-->
@@ -257,13 +249,8 @@
         </form>
         </div>
 
-        <footer>
-            <span id="GITHUB"><a href="https://github.com/NonstopCola/Web-Technologies-Final-Project" target="_blank">Our Projects</a></span>
-
-            <span id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></span>
-
-            <span id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></span>
-                <!-- Created a footer that contains the copyright and JIRA link -->
-        </footer>
+        <?php
+            include './footer.inc';
+        ?>
     </body>
 </html>

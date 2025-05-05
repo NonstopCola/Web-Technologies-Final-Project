@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!--meta data describing the character set, description of the page, keywords and the author-->
-        <meta charset="UTF-8">
-        <meta name="description" content="page listing all available jobs, giving descriptions of said jobs and linking to the application page of the website">
-        <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings, Strong, section, Unordered List, Ordered List, Image, Link, Navigation Bar, Footer, Copyright, JIRA, GitHub, JKTN, Job, Network Administrator, Software Developer, Cybersecurity Specialist, Job Summary, Responsibilities, Qualifications, Reference Number, Direct Report, Salary Range, Essential Qualifications, Preferred Qualifications, Responsibilities">
-        <meta name="author" content="Kyle Perry">
+        <?php
+            include './header.inc'
+        ?>
         <title>Available Jobs</title>
-        <link rel="stylesheet" href="./styles/styles.css">
-        <!--link to the external CSS file that contains all the styling for the website-->
     </head>
 
     <body>
@@ -17,13 +13,9 @@
         <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
         </div>
         <h1>Available Jobs</h1>
-        <ul id="nav">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./jobs.html" class="active">Jobs</a></li>
-            <li><a href="./apply.html">Apply</a></li>
-            <li class="mail"><a href="mailto:jktngroup4@gmail.com"><span>info@jktn.com.au</span></a></li>
-        </ul>
+        <?php
+            include './nav.inc';
+        ?>
         <!--base html code for the navigation bar, uses the id nav.-->
         <div id="main">
         <!--main section of the page that contains all the content-->
@@ -194,14 +186,9 @@
                         </div>
                     </div>
                 </section>
-                <footer>
-                    <span id="GITHUB"><a href="https://github.com/NonstopCola/Web-Technologies-Final-Project" target="_blank">Our Projects</a></span>
-        
-                    <span id="JIRA"><a href="https://jktn.atlassian.net/jira/software/projects/SCRUM/summary" target="_self">Our Plans</a></span>
-        
-                    <span id="JKTNCopy">&copy;<a href="./index.html" target="_self">JKTN</a></span>
-                        <!-- Created a footer that contains the copyright and JIRA link -->
-                </footer>
+                <?php
+                include './footer.inc';
+                ?>
             </div>
     </body>
 </html>
