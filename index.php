@@ -15,6 +15,8 @@
         </div>
         <h1>JKTN Homepage</h1>
         <?php
+            $activePage = 'index';
+            // Set the active page for navigation highlighting
             include './nav.inc';
         ?>
         <!-- Added navigation bar that contains links to the 3 other pages and email -->

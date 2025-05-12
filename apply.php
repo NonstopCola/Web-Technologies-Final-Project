@@ -25,6 +25,8 @@
         <h1>Apply to JKTN</h1>
 
         <?php
+            $activePage = 'apply';
+            // Set the active page for navigation highlighting
             include './nav.inc';
         ?>
 

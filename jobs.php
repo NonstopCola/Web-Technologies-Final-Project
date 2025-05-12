@@ -14,6 +14,8 @@
         </div>
         <h1>Available Jobs</h1>
         <?php
+            $activePage = 'jobs';
+            // Set the active page for navigation highlighting
             include './nav.inc';
         ?>
         <!--base html code for the navigation bar, uses the id nav.-->

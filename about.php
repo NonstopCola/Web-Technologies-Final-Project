@@ -14,6 +14,8 @@
         </div>
         <h1>About Us</h1>
         <?php
+            $activePage = 'about';
+            // Set the active page for navigation highlighting
             include './nav.inc';
         ?>
 
