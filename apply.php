@@ -87,12 +87,11 @@
                 -->
 
                 <p><label for="date-of-birth">Date of Birth</label>
-                    <input type="text" 
-                    name="date-of-birth" 
-                    id="date-of-birth" 
-                    placeholder="DD/MM/YYYY" 
-                    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19[5-9][0-9])|(200[0-7]))$"
-                    title="Invalid date! (Format must be DD/MM/YYYY and have a valid date)"
+                    <input type="date" 
+                    id="date-of-birth"
+                    value="2000-01-01"
+                    min="1950-01-01"
+                    max="2007-01-01"
                     required="required">
                 </p>
             </fieldset>
