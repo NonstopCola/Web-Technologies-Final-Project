@@ -106,6 +106,12 @@
                 // If the query failed, displays a failure message
                 echo "<p id='failed'>No registrations found.</p>";
             }
+            
+            // Doesn't allow anyone to access this page unless they are logged in
+            if (!isset($_SESSION['username'])) {
+                header('Location: index.php');
+                exit();
+            }
 
             // Includes the footer
             include './footer.inc';
