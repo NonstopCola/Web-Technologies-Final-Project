@@ -5,24 +5,32 @@
             // Calls for the start of the session and includes the header
             session_start();
             include './header.inc';
+            if (isset($_SESSION['username'])) {
+                echo "<title>Logout Page</title>";
+            } else {
+                echo "<title>Login Page</title>";
+            }
+            // Login/Logout page title
         ?>
-        <title>Login Page</title>
-        <!-- Titled Page -->
     </head>
     <body>
         <div class="logoContainer">
             <img src="./images/final_logo.png" alt="logo of company" id="Logo">
             <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
         </div>
-        <h1>Login</h1>
 
         <?php
+            // Displays the title based on whether the user is logged in or not
+            if (isset($_SESSION['username'])) {
+                echo "<h1>Logout</h1>";
+            } else {
+                echo "<h1>Login</h1>";
+            }
+
             // Sets the active page for navigation highlighting
             $activePage = 'login';
             include './nav.inc';
-        ?>
 
-        <?php
             // Connects to the database
             require_once 'settings.php';
             
@@ -38,14 +46,19 @@
             }
             // Checks if the user is already logged in and prompts them to log out
             if (isset($_SESSION['username'])) {
+                echo "<section id='logoutForm'>";
                 echo "<p>Welcome back, " . htmlspecialchars($_SESSION['username']) . "!</p>";
                 echo "<p>Did you want to log out?</p>";
                 echo "<form method='POST' action='login.php'>";
                 echo "<input type='submit' value='Logout' name='logout'>";
                 echo "</form>";
+                echo "</section>";
+                // Includes the footer
+                include './footer.inc';
                 exit();
             }
             else { // If the user is not logged in, display the login form
+                echo "<section id='loginForm'>";
                 echo "<form method='POST' action='login.php'>";
                 echo "<label for='username'>Username:</label>";
                 echo "<input type='text' id='username' name='username' required>";
@@ -53,6 +66,7 @@
                 echo "<input type='password' id='password' name='password' required>";
                 echo "<input type='submit' value='Login'>";
                 echo "</form>";
+                echo "</section>";
             }
             // Checks if the form has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -71,9 +85,11 @@
                     header('Location: index.php');
                     exit();
                 } else { // If the user is not found, display an error message
-                    echo "<p>Invalid username or password.</p>";
+                    echo "<p id='loginFailed'>Invalid username or password.</p>";
                 }
             }
+            // Includes the footer
+            include './footer.inc';
         ?>
     </body>
 </html>

@@ -234,6 +234,71 @@ dt {
     float: left;
     max-width: fit-content;
 }
+/* Login Page Styling */
+#loginForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin-top: 2em;
+    margin: 2em auto;
+}
+#loginForm form{
+    width: 50%;
+    padding: 1.25em;
+}
+#loginForm label{
+    display: block;
+    margin-bottom: 0.5em;
+}
+#loginForm input{
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+}
+/* Set the submit button to a different style, making it smaller */
+#loginForm input[type="submit"]{
+    padding: 0em 1em;
+    width: 30%;
+    margin: 0 auto;
+}
+#logoutForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin-top: 2em;
+    margin: 2em auto;
+    display: block;
+}
+/* Setup failed message styling when the incorrect username/password is inputted */
+#loginFailed{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    position: absolute; 
+    top: 1em; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5em;
+    border: 1px solid red; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    animation: failedSlideOut 7s forwards;
+}
+/* Made it slide off the screen after 3.5s of waiting */
+@keyframes failedSlideOut {
+    50% { 
+        opacity: 1; 
+        top: 1em;
+    }
+    100% { 
+        opacity: 0; 
+        top: -5em;
+    }
+}
 table {
     border-collapse: collapse;
     border: 1px solid black;

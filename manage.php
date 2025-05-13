@@ -5,7 +5,7 @@ the eoi table and returns a web page with the appropriate results.
 • List all EOIs for a particular position (given a job reference number).
 • List all EOIs for a particular applicant given their first name, last name or both.
 • Delete all EOIs with a specified job reference number
-• Change the Status of an EOI. >
+• Change the Status of an EOI. -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +15,15 @@ the eoi table and returns a web page with the appropriate results.
             session_start();
             include './header.inc';
         ?>
+        <title>Manage Page</title>
     </head>
     <body>
+        <div class="logoContainer">
+            <img id="Logo" src="./images/final_logo.png" alt="JKTN Logo">
+            <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
+        </div>
+
+        <h1>Manage</h1>
         <?php
             // Sets the active page for navigation highlighting
             $activePage = 'manage';
@@ -26,6 +33,9 @@ the eoi table and returns a web page with the appropriate results.
                 header('Location: index.php');
                 exit();
             }
+
+            // Includes the footer
+            include './footer.inc';
         ?>
     </body>
 </html>
