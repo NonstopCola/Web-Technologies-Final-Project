@@ -61,9 +61,15 @@ h1 {font-family: monospace, Lucida Console} /*adjusts font size for main page he
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
-#nav li.mail, #nav li.login {
+#nav li a[href*="enhancements"]::before {
+    content: "🔧\00a0";
+}
+#nav li.mail, #nav li.login, #nav li.registrations {
     float: right;
 } 
+#nav li a[href*="registrations"]::before {
+    content: "🗂️\00a0";
+}
 #nav li.login a::before {
     content: "🔐\00a0";
 }
@@ -235,7 +241,7 @@ dt {
     max-width: fit-content;
 }
 /* Login Page Styling */
-#loginForm {
+#login_register_Form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,21 +250,21 @@ dt {
     margin-top: 2em;
     margin: 2em auto;
 }
-#loginForm form{
+#login_register_Form form {
     width: 50%;
     padding: 1.25em;
 }
-#loginForm label{
+#login_register_Form label{
     display: block;
     margin-bottom: 0.5em;
 }
-#loginForm input{
+#login_register_Form input{
     display: block;
     width: 100%;
     margin-bottom: 1em;
 }
 /* Set the submit button to a different style, making it smaller */
-#loginForm input[type="submit"]{
+#login_register_Form input[type="submit"]{
     padding: 0em 1em;
     width: 30%;
     margin: 0 auto;
@@ -274,7 +280,7 @@ dt {
     display: block;
 }
 /* Setup failed message styling when the incorrect username/password is inputted */
-#loginFailed{
+#failed{
     color: red;
     font-weight: bold;
     text-align: center;
@@ -286,10 +292,25 @@ dt {
     border: 1px solid red; 
     border-radius: 5px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    animation: failedSlideOut 7s forwards;
+    animation: SlideOut 7s forwards;
+}
+/* Setup success message when a process succeeds */
+#success{
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    position: absolute; 
+    top: 1em; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5em;
+    border: 1px solid green; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    animation: SlideOut 7s forwards;
 }
 /* Made it slide off the screen after 3.5s of waiting */
-@keyframes failedSlideOut {
+@keyframes SlideOut {
     50% { 
         opacity: 1; 
         top: 1em;
@@ -298,6 +319,29 @@ dt {
         opacity: 0; 
         top: -5em;
     }
+}
+/* Styling for registrations page */
+.approve input[type="submit"]{
+    background-color: #77da88;
+}
+.deny input[type="submit"]{
+    background-color: #da7777;
+}
+/* Ensuring the empty fields in the registrations table aren't visible */
+.empty {
+    border: none;
+    background-color: transparent;
+}
+.regmanage {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin-top: 2em;
+    margin: 2em auto;
+    display: block;
 }
 table {
     border-collapse: collapse;
