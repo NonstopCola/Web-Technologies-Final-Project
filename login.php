@@ -57,7 +57,7 @@
                 $user = mysqli_fetch_assoc($result);
 
                 // If the user is found, set the session variable and redirect to index.php
-                if ($user['valid'] == 1) {
+                if ($user && $user['valid'] == 1) {
                     $_SESSION['username'] = $user['username'];
                     header('Location: index.php');
                     exit();
