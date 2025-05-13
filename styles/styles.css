@@ -243,6 +243,7 @@ dt {
 /* Login Page Styling */
 #login_register_Form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -254,7 +255,7 @@ dt {
     width: 50%;
     padding: 1.25em;
 }
-#login_register_Form label{
+#login_register_Form label, h3.setMiddle{
     display: block;
     margin-bottom: 0.5em;
 }
@@ -262,6 +263,12 @@ dt {
     display: block;
     width: 100%;
     margin-bottom: 1em;
+}
+.setMiddle{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 /* Set the submit button to a different style, making it smaller */
 #login_register_Form input[type="submit"]{

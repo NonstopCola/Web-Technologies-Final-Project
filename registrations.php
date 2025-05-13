@@ -77,12 +77,20 @@
                 echo "</tr>";
                 // Loops through the results and displays them in the table
                 while ($row = mysqli_fetch_assoc($result)){
-                    // Formats the date to be in the Australian fromat of dd/mm/yyyy
-                    $formatted_date = date('d/m/Y', strtotime($row['register_date']));
+                    if ($row['register_date'] != null){
+                        // Formats the date to be in the Australian fromat of dd/mm/yyyy
+                        $formatted_date = date('d/m/Y', strtotime($row['register_date']));
+                    }
                     echo "<tr>";
                     // Displays the username, formatted date, and valid status
                     echo "<td>" . $row['username'] . "</td>";
-                    echo "<td>" . $formatted_date . "</td>";
+                    if ($row['register_date'] == null){
+                        // If the date is null, displays a message
+                        echo "<td>Null</td>";
+                    } else{
+                        // Otherwise, displays the formatted date
+                        echo "<td>" . $formatted_date . "</td>";
+                    }
                     echo "<td>" . $row['valid'] . "</td>";
                     echo "<td>";
                     // Creates a form for approving the registration

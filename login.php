@@ -68,8 +68,9 @@
 
             // Checks if the user is already logged in and prompts them to log out
             if (isset($_SESSION['username'])) {
+                echo "<h2 class='setMiddle'>Sign out of your account</h2>";
                 echo "<section id='logoutForm'>";
-                echo "<p>Welcome back, " . htmlspecialchars($_SESSION['username']) . "!</p>";
+                echo "<h3>Welcome back, " . htmlspecialchars($_SESSION['username']) . "!</h3>";
                 echo "<p>Did you want to log out?</p>";
                 echo "<form method='POST' action='login.php'>";
                 echo "<input type='submit' value='Logout' name='logout'>";
@@ -80,7 +81,9 @@
                 exit();
             }
             else { // If the user is not logged in, display the login form
+                echo "<h2 class='setMiddle'>Sign in to your account</h2>";
                 echo "<section id='login_register_Form'>";
+                echo "<h3 class='setMiddle'>Details</h3>";
                 echo "<form method='POST' action='login.php'>";
                 echo "<label for='username'>Username:</label>";
                 echo "<input type='text' id='username' name='username' required>";
@@ -89,9 +92,7 @@
                 echo "<input type='submit' value='Login'>";
                 echo "</form>";
                 echo "</section>";
-                echo "<section id='login_register_Form'>";
-                echo "<a href='register.php'>Want to create a manager account?</a>";
-                echo "</section>";
+                echo "<a class='setMiddle' href='register.php'>Want to create an account?</a>";
                 // Includes the footer
                 include './footer.inc';
             }

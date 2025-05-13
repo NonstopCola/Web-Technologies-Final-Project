@@ -21,8 +21,12 @@
             $activePage = null;
             include './nav.inc';
         ?>
+        
+        <h2 class='setMiddle'>Register an account</h2>
+
         <!-- Creates a form that asks for a username and password, in addition giving the current date when submitted -->
         <section id="login_register_Form">
+            <h3 class='setMiddle'>Details</h3>
             <form method="POST" action="register.php">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -41,6 +45,12 @@
             
             $conn = mysqli_connect($host, $username, $password, $database);
 
+            if (isset($_SESSION['username'])) {
+                // If the user is logged in, redirect to the index page
+                header('Location: index.php');
+                exit();
+            }
+            
             // Checks if the form has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // Retrieves the username, password, and date from the form
