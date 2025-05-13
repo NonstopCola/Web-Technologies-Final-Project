@@ -10,6 +10,8 @@
 <html lang="en">
     <head>
         <?php
+            // Calls for the start of the session and includes the header
+            session_start();
             include './header.inc'
         ?>
         <!-- title -->

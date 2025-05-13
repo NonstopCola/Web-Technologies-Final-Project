@@ -52,15 +52,21 @@ h1 {font-family: monospace, Lucida Console} /*adjusts font size for main page he
 #nav li a[href*="about"]::before {
     content: "👤\00a0";
 }
+#nav li a[href*="manage"]::before {
+    content: "📋\00a0";
+}
 #nav li a[href*="apply"]::before {
     content: "💼\00a0";
 }
 #nav li a[href*="jobs"]::before {
     content: "📩\00a0";
 }
-#nav li.mail {
+#nav li.mail, #nav li.login {
     float: right;
 } 
+#nav li.login a::before {
+    content: "🔐\00a0";
+}
 #nav li.mail a::before {
     content: "✉️\00a0";
 }

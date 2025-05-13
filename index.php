@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <?php
+            // Starts the session and includes the header
+            session_start();
             include './header.inc'
         ?>
         <!-- Key Meta Data -->

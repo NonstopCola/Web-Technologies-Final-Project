@@ -4,5 +4,9 @@
     <li><a class="<?= ($activePage == 'about') ? 'active' : '' ?>" href="./about.php">About</a></li>
     <li><a class="<?= ($activePage == 'jobs') ? 'active' : '' ?>" href="./jobs.php">Jobs</a></li>
     <li><a class="<?= ($activePage == 'apply') ? 'active' : '' ?>" href="./apply.php">Apply</a></li>
+    <?php if (isset($_SESSION['username'])): ?>
+        <li><a class="<?= ($activePage == 'manage') ? 'active' : '' ?>" href="./manage.php">Manage</a></li>
+    <?php endif; ?>
     <li class="mail"><a href="mailto:jktngroup4@gmail.com"><span>info@jktn.com.au</span></a></li>
+    <li class="login"><a class="<?= ($activePage == 'login') ? 'active' : '' ?>" href="./login.php">Login</a></li>
 </ul>
