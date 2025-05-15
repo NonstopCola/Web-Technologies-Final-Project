@@ -37,7 +37,7 @@
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
         <!--create form to post to link required in assignment -->
-        <form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+        <form method="post" action="process_eoi.php">
             <!--job reference-->
             <fieldset>
                 <legend>Job Reference</legend>
