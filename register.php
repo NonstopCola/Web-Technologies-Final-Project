@@ -69,10 +69,12 @@
                     $query = "INSERT INTO users (username, password, valid, register_date) VALUES ('$new_username', '$new_password', 0, '$date')";
                     $result = mysqli_query($conn, $query);
                     // Echos a success message if the query was successful
-                    echo "<p id='success'>Account created successfully.</p>";
+                    echo "<input type='checkbox' id='close'>
+                    <label for='close' id='success'>Account created successfully.</label>";
                 } else{
                     // Echos a failure message if the user is found
-                    echo "<p id='failed'>Invalid account.</p>";
+                    echo "<input type='checkbox' id='close'>
+                    <label for='close' id='failed'>Invalid account.</label>";
                 }
             }
             

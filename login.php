@@ -72,26 +72,7 @@
                 exit();
             }
 
-            // Checks if the form has been submitted
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // Retrieves the username and password from the form
-                $username = trim($_POST['username']);
-                $password = trim($_POST['password']);
-                
-                // Checks the database for the username and password
-                $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-                $result = mysqli_query($conn, $query);
-                $user = mysqli_fetch_assoc($result);
 
-                // If the user is found, set the session variable and redirect to index.php
-                if ($user && $user['valid'] == 1) {
-                    $_SESSION['username'] = $user['username'];
-                    header('Location: index.php');
-                    exit();
-                } else { // If the user is not found, display an error message
-                    echo "<p id='failed'>Invalid username or password.</p>";
-                }
-            }
 
             // Checks if the user is already logged in and prompts them to log out
             if (isset($_SESSION['username'])) {
@@ -122,6 +103,28 @@
                 echo "<a class='setMiddle' href='register.php'>Want to create an account?</a>";
                 // Includes the footer
                 include './footer.inc';
+
+                // Checks if the form has been submitted
+                if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    // Retrieves the username and password from the form
+                    $username = trim($_POST['username']);
+                    $password = trim($_POST['password']);
+                    
+                    // Checks the database for the username and password
+                    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                    $result = mysqli_query($conn, $query);
+                    $user = mysqli_fetch_assoc($result);
+
+                    // If the user is found, set the session variable and redirect to index.php
+                    if ($user && $user['valid'] == 1) {
+                        $_SESSION['username'] = $user['username'];
+                        header('Location: index.php');
+                        exit();
+                    } else { // If the user is not found, display an error message
+                        echo "<input type='checkbox' id='close'>
+                        <label for='close' id='failed'>Invalid username or password.</label>"; 
+                    }
+                }
             }
         ?>
     </body>
