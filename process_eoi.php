@@ -1,7 +1,9 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once("settings.php");
 //-- Allow access strictly by POST when data is posted to form not by typing in process_eoi URL
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -17,7 +19,10 @@ function clean_input($data) {
     return $data;
 }
 
-//If table doesn't exist, create table 
+// -- Initialises the error array to be used to redirect to errors page 
+$_SESSION['errors'] = [];
+
+//-- If table doesn't exist, create table 
 $sql_table = "eoi";
 $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
         EOInumber VARCHAR(20) PRIMARY KEY, 
@@ -58,10 +63,12 @@ if (isset($_POST["textarea"])) {
     $other_skills = ""; //if no input, assign empty 
 }
 
-//Redirects if any errors have occurred
+// -- Add server-sed validation for each input 
+
+//-- Redirects if any errors have occurred
 include './redirect.inc';
 
-//Insert data from user into eoi table 
+//-- Insert data from user into eoi table 
 $insert_data = "INSERT INTO $sql_table (   
             Job_Reference_Number, First_Name, Last_Name,Street_Address, Suburb, State, Postcode, Email_Address, Phone_Number, Skills, Other_Skills
             ) VALUES (
@@ -72,7 +79,7 @@ if (!$result) {
     die("Data Upload Failed: " . mysqli_error($conn));
 }
 
-//Show confirmation & include EOInumber 
+//-- Show confirmation & include EOInumber 
 $EOInumber = mysqli_insert_id($conn);
 echo "<h2>Application Submitted, Thankyou so much!!</h2>";
-echo "<p>Your EOI Number is: <strong>$EOInumber</strong></p>";
+echo "<p>Your Reference Number is: <strong>$EOInumber</strong></p>";
