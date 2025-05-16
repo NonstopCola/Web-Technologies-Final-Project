@@ -20,7 +20,7 @@
             // Set the active page for navigation highlighting
             include './nav.inc';
         ?>
-
+    
     <div class="intro">
         <p>At JKTN we strive to innovate and help amazing talents create their dreams, promoting a positive workplace culture that helps
             us create an environment that we love and hope you can be apart of. Currently we are a small team of 4, that was founded on the 24th

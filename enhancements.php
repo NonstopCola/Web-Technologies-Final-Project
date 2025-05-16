@@ -19,11 +19,9 @@
             $activePage = 'enhancements';
             include './nav.inc';
 
-            // Doesn't allow anyone to access this page unless they are logged in
-            if (!isset($_SESSION['username'])) {
-                header('Location: index.php');
-                exit();
-            }
+            // Redirects to error page if the user is not logged in, stores the error type as 'authorisation'
+            $_SESSION['errortype'] = 'authorisation';
+            include './redirect.inc';
             
             // Sets up the footer
             include './footer.inc';

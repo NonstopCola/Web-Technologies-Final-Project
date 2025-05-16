@@ -33,7 +33,7 @@ $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
 mysqli_query($conn, $create_table);
 
 //-- Retrieve data from form and sanatise the input using clean_input function & add any errors to $errors[] array
-$errors = [];
+$_SESSION['errors'] = [];
 $job_reference = clean_input($_POST["job-ref"]);
 $first_name = clean_input($_POST["firstName"]);
 $last_name = clean_input($_POST["lastName"]);
@@ -55,8 +55,8 @@ if (isset($_POST["textarea"])) {
     $other_skills = ""; //if no input, assign empty 
 }
 
-//Display error page, if any errors occur 
-if 
+//Redirects if any errors have occurred
+include './redirect.inc';
 
 //Insert data from user into eoi table 
 $insert_data = "INSERT INTO $sql_table (   

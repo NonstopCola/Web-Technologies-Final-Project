@@ -17,7 +17,7 @@
         <h1>Register</h1>
 
         <?php
-            // Unsets the active page for no navigation highlighting
+            // Sets the active page for no navigation highlighting
             $activePage = null;
             include './nav.inc';
         ?>

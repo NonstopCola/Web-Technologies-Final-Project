@@ -28,11 +28,9 @@ the eoi table and returns a web page with the appropriate results.
             // Sets the active page for navigation highlighting
             $activePage = 'manage';
             include './nav.inc';
-            // Doesn't allow anyone to access this page unless they are logged in
-            if (!isset($_SESSION['username'])) {
-                header('Location: index.php');
-                exit();
-            }
+            
+            // Redirects to error page if an issue arises
+            include './redirect.inc';
 
             // Includes the footer
             include './footer.inc';
