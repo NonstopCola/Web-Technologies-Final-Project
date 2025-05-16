@@ -122,7 +122,7 @@
                 drop down menu for each state + empty 'please select state'
                 -->
                 <p><label for="state">State</label>
-                    <select id="state">
+                    <select id="state" name="state">
                         <option value="">Please Select</option>
                         <option value="VIC">VIC</option>
                         <option value="NSW">NSW</option>

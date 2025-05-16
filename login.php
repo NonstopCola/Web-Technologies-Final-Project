@@ -33,8 +33,35 @@
 
             // Connects to the database
             require_once './settings.php';
-            
             $conn = mysqli_connect($host, $username, $password, $database);
+
+            if (!$conn) {
+                // If the connection fails, display an error message
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
+            $sql_table = "users";
+            $create_table = "CREATE TABLE IF NOT EXISTS `users` (
+                `username` varchar(20) NOT NULL PRIMARY KEY,
+                `password` varchar(20) NOT NULL,
+                `valid` tinyint(1) NOT NULL,
+                `register_date` date DEFAULT NULL
+                )";
+            
+            if (!mysqli_query($conn, $create_table)){
+                die("Table creation failed: " . mysqli_error($conn));
+            }
+
+            mysqli_query($conn, $create_table);
+
+            $query = "SELECT * FROM users WHERE username = 'admin' AND password = '123'";
+            $result = mysqli_query($conn, $query);
+
+            if (mysqli_num_rows($result) == 0) {
+                // If the admin user does not exist, create it
+                $create_admin = "INSERT INTO users (username, password, valid) VALUES ('admin', '123', 1)";
+                mysqli_query($conn, $create_admin);
+            }
 
             // Checks if the user has submitted the logout form
             if (isset($_POST['logout'])) {
