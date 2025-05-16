@@ -45,11 +45,8 @@
             
             $conn = mysqli_connect($host, $username, $password, $database);
 
-            if (isset($_SESSION['username'])) {
-                // If the user is logged in, redirect to the index page
-                header('Location: index.php');
-                exit();
-            }
+            $require_not_login = true;
+            include './redirect.inc';
             
             // Checks if the form has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){

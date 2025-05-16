@@ -40,6 +40,12 @@
                     echo "<li>$error</li>";
                 }
                 echo "</ul>";
+            } elseif ($_SESSION['errortype'] == 'over_authorised'){
+                echo "<h2 class='setMiddle'>You are already logged in.</h2>";
+                echo "<p class='setMiddle'>Please logout to access this page.</p>";
+                echo "<form method='POST' action='login.php' class='setMiddle'>";
+                echo "<input type='submit' value='Logout' name='logout'>";
+                echo "</form>";
             }
 
             // Includes the footer

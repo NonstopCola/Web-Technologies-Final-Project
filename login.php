@@ -76,7 +76,7 @@
 
             // Checks if the user is already logged in and prompts them to log out
             if (isset($_SESSION['username'])) {
-                echo "<h2 class='setMiddle'>Sign out of your account</h2>";
+                echo "<h2 class='setMiddle'>Log out of your account</h2>";
                 echo "<section id='logoutForm'>";
                 echo "<h3>Welcome back, " . htmlspecialchars($_SESSION['username']) . "!</h3>";
                 echo "<p>Did you want to log out?</p>";
