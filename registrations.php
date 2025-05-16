@@ -115,7 +115,8 @@
                 echo "<p id='failed'>No registrations found.</p>";
             }
             
-            // Redirects to error page if the user is not logged in
+            // Redirects to error page if an issue arises, sets it so a login is required
+            $require_login = true;
             include './redirect.inc';
             
 

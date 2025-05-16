@@ -4,9 +4,11 @@
         $_SESSION['errortype'] = 'validation';
         header('Location: error.php');
         exit();
-    }   elseif (!isset($_SESSION['username'])) {
-        $_SESSION['errortype'] = 'authorisation';
-        header('Location: error.php');
-        exit();
-    }  
+    }   elseif (!empty($require_login)){
+        if (!isset($_SESSION['username'])) {
+            $_SESSION['errortype'] = 'authorisation';
+            header('Location: error.php');
+            exit();
+        }  
+    } 
 ?>

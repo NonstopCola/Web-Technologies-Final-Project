@@ -29,7 +29,8 @@ the eoi table and returns a web page with the appropriate results.
             $activePage = 'manage';
             include './nav.inc';
             
-            // Redirects to error page if an issue arises
+            // Redirects to error page if an issue arises, sets it so a login is required
+            $require_login = true;
             include './redirect.inc';
 
             // Includes the footer
