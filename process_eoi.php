@@ -38,6 +38,7 @@ $job_reference = clean_input($_POST["job-ref"]);
 $first_name = clean_input($_POST["firstName"]);
 $last_name = clean_input($_POST["lastName"]);
 $street = clean_input($_POST["streetAddress"]);
+$suburb = clean_input($_POST["suburb"]);
 $state = clean_input($_POST["state"]);
 $postcode = clean_input($_POST["post-code"]);
 $email = clean_input($_POST["contact-email"]);
@@ -58,8 +59,17 @@ if (isset($_POST["textarea"])) {
 if 
 
 //Insert data from user into eoi table 
-
+$insert_data = "INSERT INTO $sql_table (   
+            Job_Reference_Number, First_Name, Last_Name,Street_Address, Suburb, State, Postcode, Email_Address, Phone_Number, Skills, Other_Skills
+            ) VALUES (
+            '$job_reference', '$first_name', '$last_name', '$street', '$suburb', '$state', 
+            '$postcode', '$email', '$phone_number, '$required_skills', '$other_skills');"
+$result = mysqli_query($conn, $insert_data)
+if (!$result) {
+    die("Data Upload Failed: " . mysqli_error($conn));
+}
 
 //Show confirmation & include EOInumber 
-$EOInumber = uniqid('EOI') //uniqid() explanation from W3 Schools: https://www.w3schools.com/Php/func_misc_uniqid.asp
-
+$EOInumber = mysqli_insert_id($conn);
+echo "<h2>Application Submitted, Thankyou so much!!</h2>";
+echo "<p>Your EOI Number is: <strong>$EOInumber</strong></p>";
