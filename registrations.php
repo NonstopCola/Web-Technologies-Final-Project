@@ -21,8 +21,6 @@
             include './nav.inc';
             
             require_once './settings.php';
-
-            $conn = mysqli_connect($host, $username, $password, $database);
             
             // Checks if a POST request has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){

@@ -43,8 +43,6 @@
             // Connects to the database
             require_once './settings.php';
             
-            $conn = mysqli_connect($host, $username, $password, $database);
-
             $require_not_login = true;
             include './redirect.inc';
             
