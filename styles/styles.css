@@ -337,8 +337,41 @@ textarea {
     box-shadow: 3px 2px 5px lightgray; 
     cursor: pointer; /* changes to pointer when hovering (accessibility function) */
 }
+
 .submit:hover {
     background-color: #1A4E8D; /* Darker blue when hovering */
+}
+
+.update {
+    background-color:  #27b225;
+    color: whitesmoke;
+    padding: 10px 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px lightgray;
+    cursor: pointer;
+}
+
+.update:hover {
+    background-color:  #208d1a;
+}
+
+
+.delete {
+    float: right;
+    background-color:  #b22525;
+    color: whitesmoke;
+    padding: 10px 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px lightgray;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color:  #8d1a1a;
 }
 
 /* STYLING FOR JOBS PAGE */
