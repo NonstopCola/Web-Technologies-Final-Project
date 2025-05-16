@@ -19,8 +19,7 @@
             $activePage = 'enhancements';
             include './nav.inc';
 
-            // Redirects to error page if the user is not logged in, stores the error type as 'authorisation'
-            $_SESSION['errortype'] = 'authorisation';
+            // Redirects to error page if the user is not logged in
             include './redirect.inc';
             
             // Sets up the footer

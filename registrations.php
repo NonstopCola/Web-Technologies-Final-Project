@@ -115,8 +115,7 @@
                 echo "<p id='failed'>No registrations found.</p>";
             }
             
-            // Redirects to error page if the user is not logged in, stores the error type as 'authorisation'
-            $_SESSION['errortype'] = 'authorisation';
+            // Redirects to error page if the user is not logged in
             include './redirect.inc';
             
 
