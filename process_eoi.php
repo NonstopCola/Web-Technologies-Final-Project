@@ -19,9 +19,6 @@ function clean_input($data) {
     return $data;
 }
 
-// -- Initialises the error array to be used to redirect to errors page 
-$_SESSION['errors'] = [];
-
 //-- If table doesn't exist, create table 
 $sql_table = "eoi";
 $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
@@ -39,9 +36,12 @@ $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
         Other_Skills TEXT, 
         Status ENUM('New', 'In Progress', 'Finalised') DEFAULT 'New');";
 mysqli_query($conn, $create_table);
+if (!mysqli_query($conn, $create_table)) {
+    die("Table creation failed: " . mysqli_error($conn));
+}
 
 //-- Retrieve data from form and sanatise the input using clean_input function & add any errors to $errors[] array
-$_SESSION['errors'] = [];
+$_SESSION['errors'] = []; // -- Initialises the error array to be used to redirect to errors page 
 $job_reference = clean_input($_POST["job-ref"]);
 $first_name = clean_input($_POST["firstName"]);
 $last_name = clean_input($_POST["lastName"]);
