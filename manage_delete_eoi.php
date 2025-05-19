@@ -36,7 +36,9 @@
         <p><i>This cannot be undone.</i></p>
 
     <?php
+    // Get the POST submission from manage.php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
+        
         // Set the id variable from post 
         $id = $_POST['id'];
 
@@ -44,14 +46,17 @@
         if (isset($_POST['confirm_delete'])) {
             $delete_query = "DELETE FROM eoi WHERE id = $id";
             if (mysqli_query($conn, $delete_query)) {
-                echo "Item deleted successfully.";
+                // Commented out section until we add a continue button, otherwise there is no point in showing something nobody will see!
+                // echo "<p>✅ Item deleted successfully.</p>";
                 header("Location: manage.php");
                 exit();
             } else {
-                echo "Error deleting record: " . mysqli_error($conn);
+                error_log("Error deleting record: " . mysqli_error($conn, $delete_query));
+                echo "<p>❌ Error deleting item. Contact administrator.</p>";
             }
+        }
         // If we haven't got a flag yet, then we should show the information we want deleted!
-        } else {
+        else {
             // Show confirmation prompt as you already do
             $query = "SELECT * FROM eoi WHERE id = $id";
             $result = mysqli_query($conn, $query);
@@ -79,11 +84,13 @@
                 echo "</fieldset>";
 
             } else {
-                echo "Error: Application not found.";
+                error_log("Failed to get row for manage_delete. Error Code:  " .  mysqli_error($row););
+                echo "<p>Item to delete not found 😢</p>";
             }
         }
     } else {
-    echo "Invalid request.";
+        error_log("Failed to lookup id number from database in manage_delete. Error Code: "  . mysqli_error($_POST['id']));
+        echo "<p>❌ Failed to find item in database.</p>";
     }
 ?>
     </div>

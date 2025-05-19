@@ -12,6 +12,7 @@
     ?>
 
   <title>Updating...</title>
+
 </head>
   <body>
     <div class="logoContainer">
@@ -39,12 +40,14 @@
                     echo "<input type='submit' value='Go Back' class='submit'>";
                     echo "</form>";
                 } else {
-                    echo "<p>❌ Failed to update EOI. Please try again.</p>";
+                    error_log("Failed to EXECUTE EOI update on manage_update. ERROR: " . mysqli_error($updateQuery));
+                    echo "<p>❌ Failed to submit update EOI. Contact administrator.</p>";
                 }
                 // Closes query
                 $updateQuery->close();
             } else {
-                echo "<p>❌ Database error: could not prepare statement.</p>";
+                error_log("Failed to update EOI on manage_update. ERROR: " . mysqli_error($updateQuery));
+                echo "<p>❌ Failed to update EOI. Contact administrator.</p>";
             }
         }
     }
