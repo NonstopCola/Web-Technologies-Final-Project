@@ -33,8 +33,51 @@
 
             // Connects to the database
             require_once './settings.php';
+
+            // Checks if the system has intialized the login attempts
+            if (!isset($_SESSION['login_attempts'])) {
+                // Initializes the login attempts, attempt time, and block time
+                $_SESSION['login_attempts'] = 0;
+                $_SESSION['first_attempt_time'] = time();
+                $_SESSION['login_blocked_until'] = 0;
+            } elseif (time() < $_SESSION['login_blocked_until']) { // Checks if the user is blocked
+                // Calculates the remaining time until the user is unblocked
+                $remaining = $_SESSION['login_blocked_until'] - time();
+                // Displays an error message if the user is blocked
+                echo "<input type='checkbox' id='close'><label for='close' id='failed'>Too many failed login attempts. Please wait {$remaining} seconds before trying again.</label>";
+                echo "<h2 class='setMiddle'>You have made {$_SESSION['login_attempts']} failed login attempts.</h2>";
+                echo "<p class='setMiddle'>Please wait before trying again.</p>";
+                include './footer.inc';
+                exit();
+            } elseif (time() - $_SESSION['first_attempt_time'] > 60) { // Checks if the first attempt was made more than 60 seconds ago
+                // Resets the login attempts
+                $_SESSION['login_attempts'] = 0;
+                $_SESSION['first_attempt_time'] = time();
+            }
+
+
+            $sql_table = "users";
+            $create_table = "CREATE TABLE IF NOT EXISTS `users` (
+                `username` varchar(20) NOT NULL PRIMARY KEY,
+                `password` varchar(20) NOT NULL,
+                `valid` tinyint(1) NOT NULL,
+                `register_date` date DEFAULT NULL
+                )";
             
-            $conn = mysqli_connect($host, $username, $password, $database);
+            if (!mysqli_query($conn, $create_table)){
+                die("Table creation failed: " . mysqli_error($conn));
+            }
+
+            mysqli_query($conn, $create_table);
+
+            $query = "SELECT * FROM users WHERE username = 'admin' AND password = '123'";
+            $result = mysqli_query($conn, $query);
+
+            if (mysqli_num_rows($result) == 0) {
+                // If the admin user does not exist, create it
+                $create_admin = "INSERT INTO users (username, password, valid) VALUES ('admin', '123', 1)";
+                mysqli_query($conn, $create_admin);
+            }
 
             // Checks if the user has submitted the logout form
             if (isset($_POST['logout'])) {
@@ -45,30 +88,11 @@
                 exit();
             }
 
-            // Checks if the form has been submitted
-            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // Retrieves the username and password from the form
-                $username = trim($_POST['username']);
-                $password = trim($_POST['password']);
-                
-                // Checks the database for the username and password
-                $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-                $result = mysqli_query($conn, $query);
-                $user = mysqli_fetch_assoc($result);
 
-                // If the user is found, set the session variable and redirect to index.php
-                if ($user && $user['valid'] == 1) {
-                    $_SESSION['username'] = $user['username'];
-                    header('Location: index.php');
-                    exit();
-                } else { // If the user is not found, display an error message
-                    echo "<p id='failed'>Invalid username or password.</p>";
-                }
-            }
 
             // Checks if the user is already logged in and prompts them to log out
             if (isset($_SESSION['username'])) {
-                echo "<h2 class='setMiddle'>Sign out of your account</h2>";
+                echo "<h2 class='setMiddle'>Log out of your account</h2>";
                 echo "<section id='logoutForm'>";
                 echo "<h3>Welcome back, " . htmlspecialchars($_SESSION['username']) . "!</h3>";
                 echo "<p>Did you want to log out?</p>";
@@ -95,6 +119,46 @@
                 echo "<a class='setMiddle' href='register.php'>Want to create an account?</a>";
                 // Includes the footer
                 include './footer.inc';
+            }
+
+            // Checks if the form has been submitted
+            if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // Retrieves the username and password from the form
+                $username = trim($_POST['username']);
+                $password = trim($_POST['password']);
+                
+                // Increments the login attempts by 1
+                $_SESSION['login_attempts']++;
+                    
+                // Checks if the user has made 3 failed login attempts
+                if ($_SESSION['login_attempts'] >= 3){
+                    // Blocks the user for 60 seconds
+                    $_SESSION['login_blocked_until'] = time() + 60;
+                    // Reloads the page to show the error message
+                    header('Location: login.php');
+                    exit();
+                }
+
+                // Checks the database for the username and password
+                $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                $result = mysqli_query($conn, $query);
+                $user = mysqli_fetch_assoc($result);
+
+                // If the user is found, set the session variable and redirect to index.php
+                if ($user && $user['valid'] == 1) {
+                    $_SESSION['username'] = $user['username'];
+                    // Resets the login attempts and block time
+                    $_SESSION['login_attempts'] = 0;
+                    $_SESSION['first_attempt_time'] = time();
+                    $_SESSION['login_blocked_until'] = 0;
+                    header('Location: index.php');
+                    exit();
+                } else { // If the user is not found, display an error message
+                    if ($_SESSION['login_attempts'] < 3){
+                        echo "<input type='checkbox' id='close'>
+                        <label for='close' id='failed'>Invalid username or password.</label>"; 
+                    }  
+                }
             }
         ?>
     </body>

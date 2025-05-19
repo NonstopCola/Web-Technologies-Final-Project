@@ -21,8 +21,6 @@
             include './nav.inc';
             
             require_once './settings.php';
-
-            $conn = mysqli_connect($host, $username, $password, $database);
             
             // Checks if a POST request has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -36,10 +34,12 @@
                     // Checks if the query was successful
                     if ($result){
                         // Displays a success message if it was successful
-                        echo "<p id='success'>User $username approved successfully.</p>";
+                        echo "<input type='checkbox' id='close'>
+                            <label for='close' id='success'>User $username approved successfully.</label>";
                     } else{
                         // If it wasn't, displays a failure message
-                        echo "<p id='failed'>Failed to approve user $username.</p>";
+                        echo "<input type='checkbox' id='close'>
+                            <label for='close' id='fail'>Failed to approve user $username.</label>";
                     }
                 }
                 if (isset($_POST['deny'])){
@@ -51,10 +51,12 @@
                     // Checks if the query was successful
                     if ($result){
                         // Displays a success message if it was successful
-                        echo "<p id='success'>User $username denied successfully.</p>";
+                        echo "<input type='checkbox' id='close'>
+                            <label for='close' id='success'>User $username denied successfully.</label>";
                     } else{
                         // If it wasn't, displays a failure message
-                        echo "<p id='failed'>Failed to deny user $username.</p>";
+                        echo "<input type='checkbox' id='close'>
+                            <label for='close' id='failed'>Failed to deny user $username.</label>";
                     }
                 }
             }
@@ -112,14 +114,14 @@
                 echo "</section>";
             } else{
                 // If the query failed, displays a failure message
-                echo "<p id='failed'>No registrations found.</p>";
+                echo "<input type='checkbox' id='close'>
+                    <label for='close' id='failed'>No registrations found.</label>";
             }
             
-            // Doesn't allow anyone to access this page unless they are logged in
-            if (!isset($_SESSION['username'])) {
-                header('Location: index.php');
-                exit();
-            }
+            // Redirects to error page if an issue arises, sets it so a login is required
+            $require_login = true;
+            include './redirect.inc';
+            
 
             // Includes the footer
             include './footer.inc';

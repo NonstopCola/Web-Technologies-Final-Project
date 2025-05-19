@@ -17,7 +17,7 @@
         <h1>Register</h1>
 
         <?php
-            // Unsets the active page for no navigation highlighting
+            // Sets the active page for no navigation highlighting
             $activePage = null;
             include './nav.inc';
         ?>
@@ -43,13 +43,8 @@
             // Connects to the database
             require_once './settings.php';
             
-            $conn = mysqli_connect($host, $username, $password, $database);
-
-            if (isset($_SESSION['username'])) {
-                // If the user is logged in, redirect to the index page
-                header('Location: index.php');
-                exit();
-            }
+            $require_not_login = true;
+            include './redirect.inc';
             
             // Checks if the form has been submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -69,10 +64,12 @@
                     $query = "INSERT INTO users (username, password, valid, register_date) VALUES ('$new_username', '$new_password', 0, '$date')";
                     $result = mysqli_query($conn, $query);
                     // Echos a success message if the query was successful
-                    echo "<p id='success'>Account created successfully.</p>";
+                    echo "<input type='checkbox' id='close'>
+                    <label for='close' id='success'>Account created successfully.</label>";
                 } else{
                     // Echos a failure message if the user is found
-                    echo "<p id='failed'>Invalid account.</p>";
+                    echo "<input type='checkbox' id='close'>
+                    <label for='close' id='failed'>Invalid account.</label>";
                 }
             }
             
