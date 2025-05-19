@@ -55,28 +55,35 @@
                 $_SESSION['first_attempt_time'] = time();
             }
 
-
-            $sql_table = "users";
             $create_table = "CREATE TABLE IF NOT EXISTS `users` (
                 `username` varchar(20) NOT NULL PRIMARY KEY,
-                `password` varchar(20) NOT NULL,
+                `password` varchar(255) NOT NULL,
                 `valid` tinyint(1) NOT NULL,
                 `register_date` date DEFAULT NULL
                 )";
             
             if (!mysqli_query($conn, $create_table)){
-                die("Table creation failed: " . mysqli_error($conn));
+                echo "<input type='checkbox' id='close'>
+                    <label for='close' id='fail'>Table creation failed: " . mysqli_error($conn) . "</label>";            
             }
 
             mysqli_query($conn, $create_table);
 
-            $query = "SELECT * FROM users WHERE username = 'admin' AND password = '123'";
-            $result = mysqli_query($conn, $query);
+            $admin_username = 'admin';
+
+            // Checks if the admin user exists in the database
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->bind_param("s", $admin_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $admin_password = password_hash('123', PASSWORD_DEFAULT);
 
             if (mysqli_num_rows($result) == 0) {
                 // If the admin user does not exist, create it
-                $create_admin = "INSERT INTO users (username, password, valid) VALUES ('admin', '123', 1)";
-                mysqli_query($conn, $create_admin);
+                $stmt = $conn->prepare("INSERT INTO users (username, password, valid) VALUES (?, ?, 1)");
+                $stmt->bind_param("ss", $admin_username, $admin_password);
+                $stmt->execute();
             }
 
             // Checks if the user has submitted the logout form
@@ -139,13 +146,16 @@
                     exit();
                 }
 
-                // Checks the database for the username and password
-                $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-                $result = mysqli_query($conn, $query);
-                $user = mysqli_fetch_assoc($result);
+                // Checks the database for the username
+                $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
 
                 // If the user is found, set the session variable and redirect to index.php
-                if ($user && $user['valid'] == 1) {
+                if ($user && $user['valid'] == 1 && password_verify($password, $user['password'])) {
+                    session_regenerate_id(true);
                     $_SESSION['username'] = $user['username'];
                     // Resets the login attempts and block time
                     $_SESSION['login_attempts'] = 0;
@@ -156,7 +166,7 @@
                 } else { // If the user is not found, display an error message
                     if ($_SESSION['login_attempts'] < 3){
                         echo "<input type='checkbox' id='close'>
-                        <label for='close' id='failed'>Invalid username or password.</label>"; 
+                            <label for='close' id='fail'>Login failed: " . mysqli_error($conn) . "</label>";; 
                     }  
                 }
             }

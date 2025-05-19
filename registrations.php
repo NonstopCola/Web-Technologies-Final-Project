@@ -29,34 +29,37 @@
                     // Gets the username from the POST request
                     $username = trim($_POST['username']);
                     // Updates the database to set the user as valid
-                    $query = "UPDATE users SET valid = 1 WHERE username = '$username'";
-                    $result = mysqli_query($conn, $query);
+                    $stmt = $conn->prepare("UPDATE users SET valid = 1 WHERE username = ?");
+                    $stmt->bind_param("s", $username);
+                    $stmt->execute();
                     // Checks if the query was successful
-                    if ($result){
+                    if ($stmt->affected_rows > 0){
                         // Displays a success message if it was successful
                         echo "<input type='checkbox' id='close'>
                             <label for='close' id='success'>User $username approved successfully.</label>";
                     } else{
                         // If it wasn't, displays a failure message
                         echo "<input type='checkbox' id='close'>
-                            <label for='close' id='fail'>Failed to approve user $username.</label>";
-                    }
+                            <label for='close' id='fail'>Approval failed: " . mysqli_error($conn) . "</label>";                    }
                 }
+
                 if (isset($_POST['deny'])){
                     // Gets the username from the POST request
                     $username = trim($_POST['username']);
                     // Updates the database to remove the registration request
-                    $query = "DELETE FROM users WHERE username = '$username'";
-                    $result = mysqli_query($conn, $query);
+                    $stmt = $conn->prepare("DELETE FROM users WHERE username = ?");
+                    $stmt->bind_param("s", $username);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
                     // Checks if the query was successful
-                    if ($result){
+                    if ($stmt->affected_rows > 0){
                         // Displays a success message if it was successful
                         echo "<input type='checkbox' id='close'>
                             <label for='close' id='success'>User $username denied successfully.</label>";
                     } else{
                         // If it wasn't, displays a failure message
                         echo "<input type='checkbox' id='close'>
-                            <label for='close' id='failed'>Failed to deny user $username.</label>";
+                            <label for='close' id='fail'>Denial failed: " . mysqli_error($conn) . "</label>";
                     }
                 }
             }
