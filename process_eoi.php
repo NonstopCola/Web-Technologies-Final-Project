@@ -19,9 +19,6 @@ function clean_input($data) {
     return $data;
 }
 
-// -- Initialises the error array to be used to redirect to errors page 
-$_SESSION['errors'] = [];
-
 //-- If table doesn't exist, create table 
 $sql_table = "eoi";
 $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
@@ -38,10 +35,13 @@ $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
         Skills VARCHAR(20), 
         Other_Skills TEXT, 
         Status ENUM('New', 'In Progress', 'Finalised') DEFAULT 'New');";
-mysqli_query($conn, $create_table);
+
+if (!mysqli_query($conn, $create_table)) {
+    die("Table creation failed: " . mysqli_error($conn));
+}
 
 //-- Retrieve data from form and sanatise the input using clean_input function & add any errors to $errors[] array
-$_SESSION['errors'] = [];
+$_SESSION['errors'] = []; // -- Initialises the error array to be used to redirect to errors page 
 $job_reference = clean_input($_POST["job-ref"]);
 $first_name = clean_input($_POST["firstName"]);
 $last_name = clean_input($_POST["lastName"]);
@@ -63,23 +63,25 @@ if (isset($_POST["textarea"])) {
     $other_skills = ""; //if no input, assign empty 
 }
 
-// -- Add server-sed validation for each input 
+// -- Add server-side validation? using !preg_match or !filter_var ?
 
 //-- Redirects if any errors have occurred
-include './redirect.inc';
+// include './redirect.inc';
 
 //-- Insert data from user into eoi table 
 $insert_data = "INSERT INTO $sql_table (   
             Job_Reference_Number, First_Name, Last_Name,Street_Address, Suburb, State, Postcode, Email_Address, Phone_Number, Skills, Other_Skills
             ) VALUES (
             '$job_reference', '$first_name', '$last_name', '$street', '$suburb', '$state', 
-            '$postcode', '$email', '$phone_number', '$required_skills', '$other_skills');"
+            '$postcode', '$email', '$phone_number', '$required_skills', '$other_skills')";
 $result = mysqli_query($conn, $insert_data);
 if (!$result) {
     die("Data Upload Failed: " . mysqli_error($conn));
 }
 
 //-- Show confirmation & include EOInumber 
-$EOInumber = mysqli_insert_id($conn);
-echo "<h2>Application Submitted, Thankyou so much!!</h2>";
-echo "<p>Your Reference Number is: <strong>$EOInumber</strong></p>";
+$_SESSION['EOInumber'] = mysqli_insert_id($conn);
+
+
+
+//success o
