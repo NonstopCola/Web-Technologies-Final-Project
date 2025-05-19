@@ -35,7 +35,7 @@ $create_table = "CREATE TABLE IF NOT EXISTS $sql_table (
         Skills VARCHAR(20), 
         Other_Skills TEXT, 
         Status ENUM('New', 'In Progress', 'Finalised') DEFAULT 'New');";
-mysqli_query($conn, $create_table);
+
 if (!mysqli_query($conn, $create_table)) {
     die("Table creation failed: " . mysqli_error($conn));
 }
@@ -63,17 +63,17 @@ if (isset($_POST["textarea"])) {
     $other_skills = ""; //if no input, assign empty 
 }
 
-// -- Add server-sed validation for each input 
+// -- Add server-side validation? using !preg_match or !filter_var ?
 
 //-- Redirects if any errors have occurred
-include './redirect.inc';
+// include './redirect.inc';
 
 //-- Insert data from user into eoi table 
 $insert_data = "INSERT INTO $sql_table (   
             Job_Reference_Number, First_Name, Last_Name,Street_Address, Suburb, State, Postcode, Email_Address, Phone_Number, Skills, Other_Skills
             ) VALUES (
             '$job_reference', '$first_name', '$last_name', '$street', '$suburb', '$state', 
-            '$postcode', '$email', '$phone_number', '$required_skills', '$other_skills');"
+            '$postcode', '$email', '$phone_number', '$required_skills', '$other_skills')";
 $result = mysqli_query($conn, $insert_data);
 if (!$result) {
     die("Data Upload Failed: " . mysqli_error($conn));
