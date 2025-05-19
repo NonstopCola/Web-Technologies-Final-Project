@@ -80,6 +80,8 @@ if (!$result) {
 }
 
 //-- Show confirmation & include EOInumber 
-$EOInumber = mysqli_insert_id($conn);
-echo "<h2>Application Submitted, Thankyou so much!!</h2>";
-echo "<p>Your Reference Number is: <strong>$EOInumber</strong></p>";
+$_SESSION['EOInumber'] = mysqli_insert_id($conn);
+
+
+
+//success o
