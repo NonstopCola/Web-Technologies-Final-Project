@@ -1,198 +1,152 @@
+<?php
+session_start();
+require_once './settings.php';
+$activePage = 'jobs';
+?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <?php include './header.inc'; ?>
+    <title>Available Jobs</title>
+</head>
+<body>
+    <div class="logoContainer">
+        <img src="./images/final_logo.png" alt="logo of company" id="Logo">
+    </div>
+
+    <h1>Available Jobs</h1>
+
+    <?php include './nav.inc'; ?>
+
+    <div id="main">
+        <aside id="aside">
+            <p>Applicants for all jobs must be willing to work in office at least 3 days a week</p>
+        </aside>
+
         <?php
-            // Starts the session and includes the header
-            session_start();
-            include './header.inc'
+        // Create jobs table if it does not exist
+        $create_table = "CREATE TABLE IF NOT EXISTS `jobs` (
+            `title` varchar(50) NOT NULL PRIMARY KEY,
+            `reference_number` varchar(5) NOT NULL,
+            `summary` text NOT NULL,
+            `responsibilities` text NOT NULL,
+            `essential` text NOT NULL,
+            `preferred` text NOT NULL,
+            `report` varchar(30) NOT NULL,
+            `salary` varchar(10) NOT NULL
+        )";
+
+        if (!mysqli_query($conn, $create_table)) {
+            echo "<p>Error creating jobs table: " . mysqli_error($conn) . "</p>";
+        }
+
+        // Check if jobs are present
+        $sql = "SELECT * FROM jobs ORDER BY title";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) == 0) {
+            // insert jobs into table if empty
+            $pre_job = [
+                [
+                    'title' => "Network Administrator",
+                    'reference_number' => "K9986",
+                    'summary' => "We are seeking a skilled and detail-oriented Network Administrator to manage, maintain, and optimize our organization's network infrastructure.",
+                    'responsibilities' => "<ol><li>Install, configure, and maintain network hardware and software.</li><li>Monitor network performance and troubleshoot issues as they arise.</li><li>Implement security measures to protect the network from unauthorized access.</li><li>Manage and maintain firewalls, VPNs, and intrusion detection systems.</li><li>Collaborate with IT teams to support network-related projects and initiatives.</li><li>Document network configurations, procedures, and policies.</li><li>Provide technical support to end-users regarding network-related issues.</li></ol>",
+                    'essential' => "<ul><li>Bachelor's degree in Computer Science, Information Technology, or a related field.</li><li>5 Years of proven experience as a Network Administrator or similar role.</li><li>Experience with network security practices and tools.</li><li>Familiarity with firewalls, VPNs, and intrusion detection systems.</li><li>Strong troubleshooting and problem-solving skills.</li><li>Excellent communication and interpersonal abilities.</li><li>High level understanding of the coding language Python.</li><li>High level understanding of the coding language Perl.</li></ul>",
+                    'preferred' => "<ul><li>Experience with network monitoring tools (e.g., Wireshark, SolarWinds).</li><li>Ability to work in a fast-paced environment and manage multiple tasks.</li><li>Ability to excel when working from home and or being alone.</li></ul>",
+                    'report' => "Direct report - Lead Network Administrator",
+                    'salary' => "90,000 - 110,000"
+                ],
+                [
+                    'title' => "Software Developer",
+                    'reference_number' => "J7652",
+                    'summary' => "We are looking for a knowledgeable and proactive Software Developer to join our team.",
+                    'responsibilities' => "<ol><li>Design, develop, and maintain software applications.</li><li>Write clean, scalable, and efficient code.</li><li>Debug and troubleshoot software issues.</li><li>Participate in code reviews and provide constructive feedback.</li><li>Stay updated with emerging technologies and industry trends.</li></ol>",
+                    'essential' => "<ul><li>Bachelor's degree in Computer Science, Information Technology, or a related field.</li><li>5 Years of proven experience as a Software Developer or similar role.</li><li>Experience with multiple coding languages such as python, c++ and java.</li><li>Strong troubleshooting and problem-solving skills.</li><li>Excellent communication and interpersonal abilities.</li></ul>",
+                    'preferred' => "<ul><li>Strong portfolio of prior projects in the field.</li><li>Ability to work in a fast-paced environment and manage multiple tasks.</li><li>Ability to excel when working from home and or being alone.</li></ul>",
+                    'report' => "Direct report - Lead Software Developer",
+                    'salary' => "80,000 - 100,000"
+                ],
+                [
+                    'title' => "Cybersecurity Specialist",
+                    'reference_number' => "S9475",
+                    'summary' => "We are seeking a highly skilled Cybersecurity Specialist to protect systems from cyber threats.",
+                    'responsibilities' => "<ol><li>Monitor network traffic for suspicious activity and potential threats.</li><li>Conduct vulnerability assessments and penetration testing.</li><li>Implement security measures to protect sensitive data and systems.</li><li>Respond to security incidents and breaches, conducting investigations as needed.</li><li>Develop and maintain security policies, procedures, and documentation.</li><li>Provide training and support to staff on cybersecurity best practices.</li></ol>",
+                    'essential' => "<ul><li>Bachelor's degree in Cybersecurity, Information Technology, or a related field.</li><li>5 Years of proven experience as a Cybersecurity Specialist or similar role.</li><li>Experience with security tools and technologies (e.g., firewalls, intrusion detection systems).</li><li>Strong understanding of network protocols and security practices.</li></ul>",
+                    'preferred' => "<ul><li>Ability to work in a fast-paced environment and manage multiple tasks.</li><li>Ability to excel when working from home and or being alone.</li><li>Excellent analytical and problem-solving skills.</li><li>Strong communication and interpersonal abilities.</li></ul>",
+                    'report' => "Direct report - Lead Cybersecurity Specialist",
+                    'salary' => "115,000 - 168,000"
+                ]
+            ];
+
+            $stmt = mysqli_prepare($conn, "INSERT INTO jobs (title, reference_number, summary, responsibilities, essential, preferred, report, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            if ($stmt) {
+                foreach ($pre_job as $job) {
+                    mysqli_stmt_bind_param(
+                        $stmt,
+                        "ssssssss",
+                        $job['title'],
+                        $job['reference_number'],
+                        $job['summary'],
+                        $job['responsibilities'],
+                        $job['essential'],
+                        $job['preferred'],
+                        $job['report'],
+                        $job['salary']
+                    );
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "<p>Error inserting job: " . mysqli_stmt_error($stmt) . "</p>";
+                    }
+                }
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "<p>Prepare failed: " . mysqli_error($conn) . "</p>";
+            }
+
+            $result = mysqli_query($conn, $sql); // Re-fetch after inserting
+        }
+
+        if (!$result) {
+            echo "<p>Error fetching jobs: " . mysqli_error($conn) . "</p>";
+        } elseif (mysqli_num_rows($result) == 0) {
+            echo "<p>No jobs available at the moment.</p>";
+        } else {
         ?>
-        <title>Available Jobs</title>
-    </head>
-
-    <body>
-        <div class="logoContainer">
-            <img src="./images/final_logo.png" alt="logo of company" id="Logo">
-        <!--company logo created through chatgpt.com using the prompt "Create a logo for a tech company called JKTN using a simplistic design and the base colour blue" -->
-        </div>
-        <h1>Available Jobs</h1>
-        <?php
-            $activePage = 'jobs';
-            // Set the active page for navigation highlighting
-            include './nav.inc';
-        ?>
-        <!--base html code for the navigation bar, uses the id nav.-->
-        <div id="main">
-        <!--main section of the page that contains all the content-->
-            <aside id="aside"><p>Applicants for all jobs must be willing to work in office at least 3 days a week</p></aside>
-            <!--aside section that contains a message to all applicants that they must be willing to work in office at least 3 days a week-->
-                <section id="network_admin">
-                <!--Section to contain all code for the network administration job-->
-                    <h2>Network Administrator</h2>
-                    <p class="reference">Reference number - K9986</p>
-                    <!--reference number for the network administrator job-->
-                    <p><strong>Summary</strong></p>
-                    <!--summary of the network administrator job generated by chatgpt.com using prompt "write a job summary for a network administrator"-->
-                    <p>We are seeking a skilled and detail-oriented Network Administrator to manage, maintain, and optimize our organization's network infrastructure. The ideal candidate will be responsible for ensuring the stability, security, and efficiency of data communications and network services across all departments. This role involves configuring and supporting LANs, WANs, VPNs, firewalls, and other network hardware and software. The Network Administrator will also monitor network performance, troubleshoot issues, and implement upgrades to support evolving business needs. Strong analytical skills, a proactive attitude, and the ability to work both independently and as part of a team are essential for success in this role.</p>
-                    <div class="details">
-                        <div class="responsibilities">
-                        <!--section to contain all responsibilities needed for the network administrator job-->
-                        <p><strong>Responsibilities</strong></p>
-                        <!--list of responsibilities for the network administrator job-->
-                            <ol>
-                                <li>Install, configure, and maintain network hardware and software.</li>
-                                <li>Monitor network performance and troubleshoot issues as they arise.</li>
-                                <li>Implement security measures to protect the network from unauthorized access.</li>
-                                <li>Manage and maintain firewalls, VPNs, and intrusion detection systems.</li>
-                                <li>Collaborate with IT teams to support network-related projects and initiatives.</li>
-                                <li>Document network configurations, procedures, and policies.</li>
-                                <li>Provide technical support to end-users regarding network-related issues.</li>
-                            </ol>
-                        </div>
-                        <div class="qualifications">
-                        <!--section to contain essential and preferred qualifications needed for the network administrator job-->
-                            <div class="essential">
-                            <!--section to contain essential qualifications needed for the network administrator job-->
-                                <p><strong> Essential Qualifications</strong></p>
-                                <!--list of Essential qualifications for the network administrator job-->
-                                <ul>
-                                    <li>Bachelor's degree in Computer Science, Information Technology, or a related field.</li>
-                                    <li>5 Years of proven experience as a Network Administrator or similar role.</li>
-                                    <li>Experience with network security practices and tools.</li>
-                                    <li>Familiarity with firewalls, VPNs, and intrusion detection systems.</li>
-                                    <li>Strong troubleshooting and problem-solving skills.</li>
-                                    <li>Excellent communication and interpersonal abilities.</li>
-                                    <li>High level understanding of the coding language Python.</li>
-                                    <li>High level understanding of the coding language Perl.</li>
-                                </ul>
-                            </div>
-                            <div class="preferred">
-                            <!--section to contain preferred qualifications needed for the network administrator job-->
-                                <p><strong>Preferred Qualifications</strong></p>
-                                <!--list of preferred qualifications for the network administrator job-->
-                                <ul>
-                                    <li>Experience with network monitoring tools (e.g., Wireshark, SolarWinds).</li>
-                                    <li>Ability to work in a fast-paced environment and manage multiple tasks.</li>
-                                    <li>Ability to excel when working from home and or being alone.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="other_info">
-                        <!--section to contain direct report and salary needed for the network administrator job-->
-                            <p class="report">Direct report - Lead Network Administrator</p>
-                            <p class="salary">Salary range - 90,000 - 110,000</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="software_developer">
-                    <!--Section to contain all code for the software developer job-->
-                    <h3>Software Developer</h3>
-                    <p  class="reference">Reference number - J7652</p>
-                    <!--reference number for the software developer job-->
-                    <p><strong>Summary</strong></p>
-                    <!--summary of software developer job generated by chatgpt.com using prompt "write a job summary for a software developer"-->
-                    <p>We are looking for a knowledgeable and proactive Network Administrator to join our IT team. In this role, you will be responsible for installing, configuring, and maintaining our organization's computer networks and related systems. You will ensure the integrity, performance, and security of our network infrastructure, including local area networks (LAN), wide area networks (WAN), internet connections, and other data communication systems. Key duties include monitoring network performance, troubleshooting issues, managing network hardware and software, and implementing upgrades and security measures. The ideal candidate will have strong problem-solving skills, attention to detail, and a solid understanding of network protocols, firewalls, and routing/switching technologies.</p>
-                    <div class="details">
-                        <div class="responsibilites">
-                        <!--section to contain all responsibilities needed for the software developer job-->
-                            <p>Responsibilities</p>
-                            <!--list of responsibilities for the software developer job-->
-                            <ol>
-                                <li>Design, develop, and maintain software applications.</li>
-                                <li>Write clean, scalable, and efficient code.</li>
-                                <li>Debug and troubleshoot software issues.</li>
-                                <li>Participate in code reviews and provide constructive feedback.</li>
-                                <li>Stay updated with emerging technologies and industry trends.</li>
-                            </ol>
-                        </div>
-                        <div class="qualifications">
-                            <!--section to contain essential and preferred qualifications needed for the software developer job-->
-                            <div class="essential">
-                                <!--section to contain essential qualifications needed for the software developer job-->
-                                <p><strong>Essential Qualifications</strong></p>
-                                <!--list of essential qualifications for the software developer job-->
-                                <ul>
-                                    <li>Bachelor's degree in Computer Science, Information Technology, or a related field.</li>
-                                    <li>5 Years of proven experience as a Software Developer or similar role.</li>
-                                    <li>Experience with multiple coding languages such as python, c++ and java.</li>
-                                    <li>Strong troubleshooting and problem-solving skills.</li>
-                                    <li>Excellent communication and interpersonal abilities.</li>
-                                </ul>
-                            </div>
-                            <div class="preferred">
-                            <!--section to contain preferred qualifications needed for the software developer job-->
-                                <p><strong>Preferred Qualifications</strong></p>
-                                <!--list of preferred qualifications for the software developer job-->
-                                <ul>
-                                <li>Strong portfolio of prior projects in the field.</li>
-                                <li>Ability to work in a fast-paced environment and manage multiple tasks.</li>
-                                <li>Ability to excel when working from home and or being alone.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="other_info">
-                        <!--section to contain direct report and salary needed for the software developer job-->
-                            <p class="report">Direct report - Lead Software Developer</p>
-                            <p class="salary">Salary range - 80,000 - 100,000</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="cybersecurity_specialist">
-                    <!--Section to contain all code for the cybersecurity specialist job-->
-                    <h4>Cybersecurity Specialist</h4>
-                    <p class="reference">Reference number - S9475</p>
-                    <!--reference number for the cybersecurity specialist job-->
-                    <p><strong>Summary</strong></p>
-                    <!--summary of cybersecurity specialist job generated by chatgpt.com using prompt "write a job summary for a cybersecurity specialist"-->
-                    <p>We are seeking a highly skilled and detail-oriented Cybersecurity Specialist to join our IT security team. The ideal candidate will be responsible for protecting our organization's computer systems and networks from cyber threats. This role involves monitoring network traffic, identifying vulnerabilities, implementing security measures, and responding to security incidents. The Cybersecurity Specialist will also conduct risk assessments, develop security policies, and provide training to staff on best practices for data protection. Strong analytical skills, a proactive approach to problem-solving, and the ability to work both independently and collaboratively are essential for success in this role.</p>
-                    <div class="details">
-                        <div class="responsibilities">
-                        <!--section to contain all responsibilities needed for the cybersecurity specialist job-->
-                            <p><strong>Responsibilities</strong></p>
-                            <!--list of responsibilities for the cybersecurity specialist job-->
-                            <ol>
-                                <li>Monitor network traffic for suspicious activity and potential threats.</li>
-                                <li>Conduct vulnerability assessments and penetration testing.</li>
-                                <li>Implement security measures to protect sensitive data and systems.</li>
-                                <li>Respond to security incidents and breaches, conducting investigations as needed.</li>
-                                <li>Develop and maintain security policies, procedures, and documentation.</li>
-                                <li>Provide training and support to staff on cybersecurity best practices.</li>
-                            </ol>
-                        </div>
-                        <div class="qualifications"> 
-                        <!--section to contain essential and preferred qualifications needed for the cybersecurity specialist job-->
-                            <div class="essential">
-                                <p><strong>Essential Qualifications</strong></p>
-                                <!--list of essential qualifications for the cybersecurity specialist job-->
-                                <ul>
-                                    <li>Bachelor's degree in Cybersecurity, Information Technology, or a related field.</li>
-                                    <li>5 Years of proven experience as a Cybersecurity Specialist or similar role.</li>
-                                    <li>Experience with security tools and technologies (e.g., firewalls, intrusion detection systems).</li>
-                                    <li>Strong understanding of network protocols and security practices.</li>
-                                </ul>
-                            </div>
-                            <div class="preferred">
-                                <p><strong>Preferred Qualifications</strong></p>
-                                <!--list of preferred qualifications for the cybersecurity specialist job-->
-                                <ul>
-                                    <li>Ability to work in a fast-paced environment and manage multiple tasks.</li>
-                                    <li>Ability to excel when working from home and or being alone.</li>
-                                    <li>Excellent analytical and problem-solving skills.</li>
-                                    <li>Strong communication and interpersonal abilities.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="other_info">
-                        <!--section to contain direct report and salary needed for the cybersecurity specialist job-->
-                            <p class="report">Direct report - Lead Cybersecurity Specialist</p>
-                            <p class="salary">Salary range - 115,000 - 168,000</p>
-                        </div>
-                    </div>
-                </section>
+        <table class="jobs-table">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Reference Number</th>
+                    <th>Summary</th>
+                    <th>Responsibilities</th>
+                    <th>Essential Qualifications</th>
+                    <th>Preferred Qualifications</th>
+                    <th>Direct Report</th>
+                    <th>Salary Range</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
-                include './footer.inc';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['title']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['reference_number']) . "</td>";
+                    echo "<td class='summary'>" . nl2br(htmlspecialchars($row['summary'])) . "</td>";
+                    echo "<td class='responsibilities'>" . $row['responsibilities'] . "</td>";
+                    echo "<td class='essential'>" . $row['essential'] . "</td>";
+                    echo "<td class='preferred'>" . $row['preferred'] . "</td>";
+                    echo "<td>" . htmlspecialchars($row['report']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['salary']) . "</td>";
+                    echo "</tr>";
+                }
                 ?>
-            </div>
-    </body>
+            </tbody>
+        </table>
+        <?php } ?>
+
+        <?php include './footer.inc'; ?>
+    </div>
+</body>
 </html>
