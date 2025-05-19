@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <?php
+            // Starts the session and includes the header
+            session_start();
             include './header.inc'
         ?>
         <title>About Page</title>
@@ -86,13 +88,13 @@
 
         <dl>
             <dt>Jake Hardy</dt>
-            <dd>Team Leader, About Page, Planning, Index Page</dd>
+            <dd>Team Leader, About Page, Planning, Index Page, Enhancements Page, Settings, Include Files</dd>
             <dt>Kyle Perry</dt>
-            <dd>Jobs Page, Index Page</dd>
+            <dd>Jobs Page, Index Page, Updating Job Descriptions</dd>
             <dt>Tate Newman</dt>
-            <dd>CSS, Index Page</dd>
+            <dd>CSS, Index Page, MySQL, Expressions of Interest</dd>
             <dt>Nathan Rohner</dt>
-            <dd>Application Page, Index Page</dd>
+            <dd>Application Page, Index Page, Manage Page</dd>
             <!-- Added definition list that lists out the responsibilities of each member of JKTN -->
         </dl>
         </section>

@@ -10,6 +10,8 @@
 <html lang="en">
     <head>
         <?php
+            // Calls for the start of the session and includes the header
+            session_start();
             include './header.inc'
         ?>
         <!-- title -->
@@ -34,8 +36,8 @@
         <!-- paragraph description before form-->
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
-        <!--create form to post to link required in assignment -->
-        <form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+        <!--create form, data top be sent to process_eoi file to add records to table-->
+        <form action="process_eoi.php" method="post">
             <!--job reference-->
             <fieldset>
                 <legend>Job Reference</legend>
@@ -57,25 +59,17 @@
                 ONLY : Letters (a-zA-Z) and letters no longer than 20 {20}
                 -->
                 <p><label for="firstName">First Name</label>
-                    <input type="text"
-                    name="firstName"
-                    id="firstName"
-                    pattern="[a-zA-Z]{1,20}" 
-                    oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
-                    oninput="this.SetCustomValidity('')"
-                    required>
+                    <input type="text" name="firstName" id="firstName" pattern="[a-zA-Z]{1,20}"
+                    oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')" 
+                    oninput="this.SetCustomValidity('')" required>
                 </p>
                 <!-- last name
                 ONLY : Letters 
                 -->
                 <p><label for="lastName">Last Name</label>
-                    <input type="text"
-                    name="lastName"
-                    id="lastName"
-                    pattern="[a-zA-Z]{1, 20}"
+                    <input type="text" name="lastName" id="lastName" pattern="[a-zA-Z]{1, 20}"
                     oninvalid="this.SetCustomValidity('Ensure name only contains alphabetic letters, NOT Symbols or Numbers')"
-                    oninput="this.SetCustomValidity('')"
-                    required>
+                    oninput="this.SetCustomValidity('')" required>
                 </p>
 
                 <!-- DOB 
@@ -85,12 +79,7 @@
                 -->
 
                 <p><label for="date-of-birth">Date of Birth</label>
-                    <input type="date" 
-                    id="date-of-birth"
-                    value="2000-01-01"
-                    min="1950-01-01"
-                    max="2007-01-01"
-                    required="required">
+                    <input type="date" id="date-of-birth" value="2000-01-01" min="1950-01-01" max="2007-01-01" required="required">
                 </p>
             </fieldset>
 
@@ -115,24 +104,18 @@
                 ONLY : Letters and numbers, from 1-40 characters
                 -->
                 <p><label id="street">Street Address
-                    <input type="text"
-                    name="streetAddress"
-                    pattern="[a-zA-Z0-9]{1, 40}"
+                    <input type="text" name="streetAddress" pattern="[a-zA-Z0-9]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
-                    oninput="this.setCustomValidity('')"
-                    required></label>
+                    oninput="this.setCustomValidity('')" required></label>
                 </p>
 
                 <!-- suburb
                 ONLY : Letters from 1 - 40 characters
                 -->
                 <p><label id="suburb">Suburb / Town
-                    <input type="text"
-                    name="suburb"
-                    pattern="[a-zA-Z]{1, 40}"
+                    <input type="text" name="suburb" pattern="[a-zA-Z]{1, 40}"
                     oninvalid="this.setCustomValidity('Max 40 characters')"
-                    oninput="this.setCustomValidity('')"
-                    required></label>
+                    oninput="this.setCustomValidity('')" required></label>
                 </p>
 
                 <!-- states
@@ -159,13 +142,10 @@
                 
                 -->
                 <p><label for="post-code">Post Code</label>
-                    <input type="text" 
-                    name="post-code"
-                    id="post-code"
+                    <input type="text" name="post-code" id="post-code"
                     pattern="0[2-9][0-9]{2}|[1-8][0-9]{3}|9[1-8][0-9]{2}|99[0-3][0-9]|994[0-4]"
                     oninvalid="this.setCustomValidity('Please enter a 4-digit number between 0200-9944')"
-                    oninput="this.setCustomValidity('')"
-                    required>
+                    oninput="this.setCustomValidity('')" required>
                 </p>
 
             </fieldset>
@@ -183,18 +163,14 @@
                 <legend>Contact Details</legend>
                 <!-- email, requires @ and .com -->
                 <!-- I was told NOT to use HTML5s email validation.
-                 Upon testing this regex - it is not working. Can't do much 
-                 due to the restrictions of this assignment :( 
+                Upon testing this regex - it is not working. Can't do much 
+                due to the restrictions of this assignment :( 
                 -->
                 <p><label id="contact-details">Email
-                    <input type="text"
-                    name="contact-email"
-                    id="contact-email"
-                    placeholder="john@gmail.com"
+                    <input type="text" name="contact-email" id="contact-email" placeholder="john@gmail.com"
                     pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                     oninvalid="this.SetCustomValidity('Please enter a valid email!')"
-                    oninput="this.setCustomValidity('')"
-                    required></label>   
+                    oninput="this.setCustomValidity('')" required></label>   
                 </p>
                 <!--
                 phone numner : minimun length 8 - max 12
@@ -204,13 +180,9 @@
                 {8,12} : limit between 8-12 characters
                 -->
                 <p><label for="phone-number">Phone Number</label>
-                    <input type="text"
-                    name="phone-number"
-                    id="phone-number"
-                    pattern="[0-9 ]{8,12}"
+                    <input type="text" name="phone-number" id="phone-number" pattern="[0-9 ]{8,12}"
                     oninvalid="this.setCustomValidity('Please enter a valid phone number!')"
-                    oninput="this.setCustomValidity('')"
-                    required>
+                    oninput="this.setCustomValidity('')" required>
                 </p>
             </fieldset> 
 
@@ -218,30 +190,19 @@
             <fieldset>
                 <legend>Required Skills</legend>
                 <p><label for="windows-server">Windows Server</label>
-                    <input type="checkbox"
-                    id="windows-server"
-                    name="category[]" value="windows-server" checked="checked">
+                    <input type="checkbox" id="windows-server" name="category[]" value="windows-server" checked="checked">
 
                     <label for="cloudfare-zero">Cloudfare Zero</label>
-                    <input type="checkbox"
-                    id="cloudfare-zero"
-                    name="category[]" value="cloudfare-zero">
+                    <input type="checkbox" id="cloudfare-zero" name="category[]" value="cloudfare-zero">
 
                     <label for="python">Python</label>
-                    <input type="checkbox"
-                    id="python"
-                    name="category[]" value="python">
+                    <input type="checkbox" id="python" name="category[]" value="python">
 
                     <label for="powershell">PowerShell</label>
-                    <input type="checkbox"
-                    id="powershell"
-                    name="category[]" value="powershell">
+                    <input type="checkbox" id="powershell" name="category[]" value="powershell">
                 </p>
                 <p><label id="other-skills">Other Skills<br>
-                <textarea id="textarea"
-                name="textarea"
-                rows="5"
-                cols="50"
+                <textarea id="textarea" name="textarea" rows="5"cols="50"
                 placeholder="Let us know other skills you have that may be important!"></textarea></label></p>
             </fieldset>
 
