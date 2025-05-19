@@ -20,6 +20,11 @@
             $activePage = 'index';
             // Set the active page for navigation highlighting
             include './nav.inc';
+            if (isset($_SESSION['EOInumber'])){
+                echo "<input type = 'checkboc' id = 'close'> 
+                <label for = 'close' id = 'success'>Application submitted, EOI number: " . $_SESSION['EOInumber'] . "</label>";
+                unset($_SESSION['EOInumber']);
+            }
         ?>
         <!-- Added navigation bar that contains links to the 3 other pages and email -->
         <div class="homeContent">
