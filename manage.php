@@ -32,10 +32,8 @@ the eoi table and returns a web page with the appropriate results.
     include './nav.inc'; 
 
     // Doesn't allow anyone to access this page unless they are logged in
-    if(!isset($_SESSION['username'])){
-      header('Location: index.php');
-      exit();
-    }
+    $require_login = true;
+    include './redirect.inc';
     ?>
     
 <!-- WIP div container for page -->
