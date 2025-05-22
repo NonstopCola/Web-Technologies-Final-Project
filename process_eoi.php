@@ -1,4 +1,10 @@
 <?php
+//!! 
+// Postcode: Asked AI best type for 4-digit Australian postcode — CHAR/VARCHAR better than INT to preserve leading 0s and avoid arithmetic.
+// Required skills: Asked AI how to store multiple checkbox values — separate columns not scalable, use one VARCHAR field with comma-separated values.
+// Convert array to string using implode(): https://www.w3schools.com/PHP/func_string_implode.asp
+// Clean array input with array_map(): https://www.w3schools.com/php/func_array_map.asp
+// Date validation using checkdate(): https://www.w3schools.com/php/func_date_checkdate.asp
 session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
