@@ -37,7 +37,7 @@
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
         <!--create form, data top be sent to process_eoi file to add records to table-->
-        <form action="process_eoi.php" method="post">
+        <form action="process_eoi.php" method="post" novalidate="novalidate">
             <!--job reference-->
             <fieldset>
                 <legend>Job Reference</legend>
@@ -79,7 +79,7 @@
                 -->
 
                 <p><label for="date-of-birth">Date of Birth</label>
-                    <input type="date" id="date-of-birth" value="2000-01-01" min="1950-01-01" max="2007-01-01" required="required">
+                    <input type="date" name = "date-of-birth" id="date-of-birth" value="2000-01-01" min="1950-01-01" max="2007-01-01" required="required">
                 </p>
             </fieldset>
 
