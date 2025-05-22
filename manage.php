@@ -1,11 +1,15 @@
 <!-- 5. HR manager queries (manage.php)
 Create a web page manage.php that allows a manager to make the following queries of
 the eoi table and returns a web page with the appropriate results.
-✔ List all EOIs.
+FIX:
+- Getting a position full-name
+- Getting a position code
+TODO:
+• List all EOIs.
 • List all EOIs for a particular position (given a job reference number).
 ✔ List all EOIs for a particular applicant given their first name, last name or both.
 • Delete all EOIs with a specified job reference number
-• Change the Status of an EOI. >
+✔ Change the Status of an EOI. >
 -->
 
   <!DOCTYPE html>
@@ -83,9 +87,9 @@ the eoi table and returns a web page with the appropriate results.
   if($conn && !empty($_POST)){
     // trim (in case a user adds a space) 
     // ?? checks if $variable is filled? If not set variable to empty (which is the '')
-    $firstname = trim($_POST['firstname'] ?? '');
-    $lastname = trim($_POST['lastname'] ?? '');
-    $position = trim($_POST['position'] ?? '');
+    $firstname = trim($_POST['First_Name'] ?? '');
+    $lastname = trim($_POST['Last_Name'] ?? '');
+    $position = trim($_POST['Job_Reference_Number'] ?? '');
     $refnumber = trim($_POST['refnumber'] ?? '');
 
     // Searches database for EOI which we chech each result for below
@@ -130,9 +134,9 @@ the eoi table and returns a web page with the appropriate results.
       echo "<fieldset>";
       // Show first and last name
       echo "<label><b>Name: </b></label>";
-      echo "<label>" . $row['firstname'] . " " . $row['lastname'] . "</label><br>";
+      echo "<label>" . $row['First_Name'] . " " . $row['First_Name'] . "</label><br>";
       echo "<label><b>Position: </b></label>";
-      echo "<label>" . $row['position'] . " - <i>" . $row['refnumber'] . "</i></label><br>";
+      echo "<label>" . $row['position'] . " - <i>" . $row['Job_Reference_Number'] . "</i></label><br>";
       // Create a form, this will be used to update the status of an EOI
       echo "<form method='post' action='manage_update_eoi.php'>";
       // Create status label and drop down
@@ -145,14 +149,14 @@ the eoi table and returns a web page with the appropriate results.
       echo "<option value='Expired'" . ($status == 'Expired' ? " selected" : "") . ">Expired</option>";
       echo "</select><br>";
       // Create hidden variable that links to the row ID which we use to update the status in the database
-      echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
+      echo "<input type='hidden' name='id' value='" . $row['EOInumber'] . "'>";
       echo "<input type='submit' name='update' value='Update' class='update'>";
       echo "</form>";
       // Create a new form, this sends a user to a new prompt page before they delete a listing
       // Also have a hidden variable for the row id
       // Create a delete button that submits the form
       echo "<form action='manage_delete_eoi.php' method='post'>";
-      echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
+      echo "<input type='hidden' name='id' value='" . $row['EOInumber'] . "'>";
       echo "<input type='submit' value='🗑 Delete' class='delete'>";
       echo "</form>";
       echo "</fieldset>";
