@@ -1,99 +1,120 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <?php
-    session_start();
-    require_once("settings.php");
-    include './header.inc';
+<?php
+session_start();
+require_once("settings.php");
 
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    ?>
+// Access control
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+    exit();
+}
 
-<title>Confirm Deletion</title>
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Job reference mapping
+const JOB_REFERENCES = [
+    'job-cybersecurity-specialist' => ['title' => 'Cyber-Security Specialist', 'code' => 'S9475'],
+    'job-network-admin' => ['title' => 'Network Admin', 'code' => 'K9986'],
+    'job-software-developer' => ['title' => 'Software Developer', 'code' => 'J7652']
+];
+
+function getJobTitle($jobRef) {
+    return JOB_REFERENCES[$jobRef]['title'] ?? 'UNKNOWN';
+}
+
+function getCode($jobRef) {
+    return JOB_REFERENCES[$jobRef]['code'] ?? 'UNKNOWN';
+}
+
+function santitizeOutput($data){
+    return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php include './header.inc'; ?>
+    <title>Confirm Deletion</title>
 </head>
-  <body>
+<body class="manage">
     <div class="logoContainer">
-      <img id="Logo" src="./images/final_logo.png" alt="JKTN Logo">
+        <img id="Logo" src="./images/final_logo.png" alt="JKTN Logo">
     </div>
 
-    <!-- Include nav bar, set manage as active and make sure user is signed in -->
     <?php 
-    // Sets the active page for navigation highlighting
     $activePage = 'manage';
     include './nav.inc'; 
-    // Doesn't allow anyone to access this page unless they are logged in
-    if(!isset($_SESSION['username'])){
-      header('Location: index.php');
-      exit();
-    }
     ?>
 
-    <!-- WIP div container for page -->
     <div class="apply_container">
-        <h2><b>Are you sure you want to <i>delete</i> this?</b></h2>
-        <p><i>This cannot be undone.</i></p>
+        <?php
+        // Has user submitted form to confirm deletion?
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['confirm_delete']) && isset($_POST['job_ref'])) {
+            // Handle the deletion
+            $jobRef = $_POST['job_ref'];
 
-    <?php
-    // Get the POST submission from manage.php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
-        
-        // Set the id variable from post 
-        $id = $_POST['id'];
+            // $delete_query safely
+            $delete_query = "DELETE FROM eoi WHERE Job_Reference_Number = ?";
+            $stmt = mysqli_prepare($conn, $delete_query);
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, "s", $jobRef);
+                if (mysqli_stmt_execute($stmt)) {
+                    // Add success message to session and redirect
+                    $_SESSION['delete_success'] = true;
+                    header("Location: manage.php");
+                    exit();
+                } else {
+                    error_log("Error deleting records: " . mysqli_error($conn));
+                    echo "<p class='error'>❌ Error deleting items. Contact administrator.</p>";
+                }
+            }
+        } else if (isset($_GET['job_ref'])) {
+            $jobRef = $_GET['job_ref'];
+            
+            // Get count of EOIs to be deleted
+            $count_query = "SELECT COUNT(*) as count FROM eoi WHERE Job_Reference_Number = ?";
+            $stmt = mysqli_prepare($conn, $count_query);
+            if($stmt){
+                mysqli_stmt_bind_param($stmt, "s", $jobRef);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $count = mysqli_fetch_assoc($result)['count'] ?? 0;
+            
+            if ($count > 0) {
+                ?>
+                <p class="warning"><i>⚠️ This action cannot be undone!</i></p>
+                <fieldset>
+                    <legend>Delete Entries</legend>
+                    <p>You are about to delete <strong>all entries</strong> for:</p>
+                    <p><strong>Position:</strong> <?= santitizeOutput(getJobTitle($jobRef)) ?></p>
+                    <p><strong>Reference Code:</strong> <?= santitizeOutput(getCode($jobRef)) ?></p>
+                    <p><strong>Number of EOIs to delete:</strong> <?= santitizeOutput($count) ?></p>
 
-        // If a confirmation flag is set, delete the entry and redirect back to manage.php
-        if (isset($_POST['confirm_delete'])) {
-            $delete_query = "DELETE FROM eoi WHERE id = $id";
-            if (mysqli_query($conn, $delete_query)) {
-                // Commented out section until we add a continue button, otherwise there is no point in showing something nobody will see!
-                // echo "<p>✅ Item deleted successfully.</p>";
-                header("Location: manage.php");
-                exit();
+                    <div class="button-group">
+                        <form action="manage_delete_eoi.php" method="post" class="button-form">
+                            <input type="hidden" name="job_ref" value="<?= santitizeOutput($jobRef) ?>">
+                            <input type="hidden" name="confirm_delete" value="1">
+                            <input type="submit" value="🗑 Delete All" class="delete">
+                        </form>
+                        <form action="manage.php" method="get" class="button-form">
+                            <input type="submit" value="Cancel" class="submit">
+                        </form>
+                    </div>
+                </fieldset>
+                <?php
             } else {
-                error_log("Error deleting record: " . mysqli_error($conn, $delete_query));
-                echo "<p>❌ Error deleting item. Contact administrator.</p>";
+                echo "<p>No EOIs found for the selected position.</p>";
+                echo "<p><a href='manage.php' class='submit'>Back to Manage</a></p>";
             }
         }
-        // If we haven't got a flag yet, then we should show the information we want deleted!
-        else {
-            // Show confirmation prompt as you already do
-            $query = "SELECT * FROM eoi WHERE id = $id";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-
-            // Show information of row for user
-            if ($row) {
-                echo "<form action='manage_delete_eoi.php' method='post'>";
-                echo "<fieldset>";
-                //echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
-                echo "<input type='hidden' name='confirm_delete' value='1'>";
-                echo "<label><b>Name: </b></label>";
-                echo "<label>" . $row['firstname'] . " " . $row['lastname'] . "</label><br>";
-                echo "<label><b>Position: </b></label>";
-                echo "<label>" . $row['position'] . " - <i>" . $row['refnumber'] . "</i></label><br>";
-                echo "<label><b>Status: </b></label>";
-                echo "<label>" . $row['status'] . "</label><br><br>";
-                echo "<input type='submit' value='🗑 Delete' class='delete'>";
-                echo "</form>";
-
-                // Cancel button (back to manage.php or wherever you came from)
-                echo "<form action='manage.php' method='post' style='display:inline;'>";
-                echo "<input type='submit' value='Cancel' class='submit'>";
-                echo "</form>";
-                echo "</fieldset>";
-
-            } else {
-                error_log("Failed to get row for manage_delete. Error Code:  " .  mysqli_error($row););
-                echo "<p>Item to delete not found 😢</p>";
-            }
+        } else {
+            echo "<p class='error'>❌ Invalid request.</p>";
+            echo "<p><a href='manage.php' class='submit'>Back to Manage</a></p>";
         }
-    } else {
-        error_log("Failed to lookup id number from database in manage_delete. Error Code: "  . mysqli_error($_POST['id']));
-        echo "<p>❌ Failed to find item in database.</p>";
-    }
-?>
+        ?>
     </div>
-        <?php include './footer.inc' ?>
-    </body>
+    <?php include './footer.inc' ?>
+</body>
 </html>
