@@ -199,6 +199,22 @@ footer a{
     color: black;
 }
 /* STYLING FOR ABOUT PAGE: used flex method for responsive design */
+.about_intro {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.responsibilities_image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.intro {
+    flex: 1; /* allows the intro section to go before about us. */
+    margin-right: 20px; /* adds space between the intro and the image */
+}
 li {
     list-style-type: none;
 }
@@ -220,10 +236,13 @@ section {
     align-items: center;
     text-align: center;
 }
-
+#responsibilities { 
+    max-width: fit-content;
+}
 #aboutJKTN {
     padding: 0 20px; 
     align-self: flex-end;
+    order: 2; /* ensures this section is displayed after the responsibilities section */
 }
 #teamimage {
     border-radius: 50%;
@@ -236,10 +255,7 @@ dt {
     font-weight: bold;
     margin-top: 1em; 
 }
-#responsibilities {
-    float: left;
-    max-width: fit-content;
-}
+
 /* Login Page Styling */
 #login_register_Form {
     display: flex;
