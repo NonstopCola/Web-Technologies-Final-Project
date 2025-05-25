@@ -29,7 +29,8 @@
 
             if ($_SESSION['errortype'] == 'authorisation'){
                 // Displays an error message if the user is not logged in
-                echo "<h2 class='setMiddle'>You do not have access to this page, please login to access it.</h2>";
+                echo "<h2 class='setMiddle'>You do not have access to this page.</h2>
+                <p class='setMiddle'>Please login to access it.</p>";
             } elseif ($_SESSION['errortype'] == 'validation'){
                 // Displays an error message if something went wrong with the form validation
                 echo "<h2 class='setMiddle'>There was an error with the form submission.</h2>";
