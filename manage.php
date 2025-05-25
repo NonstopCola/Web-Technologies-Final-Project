@@ -177,6 +177,65 @@ if (isset($_POST['delete'])) {
         error_log("Database connection error: " . mysqli_connect_error());
         die('<p class="error">❌ Failed to connect to database! Contact administrator.</p>');
     }
+
+    // Check if the form has been submitted for sorting
+    if (isset($_POST['sort_first_name'])) { // Sort by First Name
+        $filters['sort'] = 'First_Name ' . $_SESSION['sort_order']['First_Name'];
+        // Toggle sort order
+        $_SESSION['sort_order']['First_Name'] = ($_SESSION['sort_order']['First_Name'] === 'ASC') ? 'DESC' : 'ASC';
+        $_SESSION['sort_state'] = [
+            'First_Name' => ($_SESSION['sort_state']['First_Name'] + 1),
+            'Last_Name' => 0,
+            'Job_Reference_Number' => 0,
+            'Status' => 0
+        ];
+        if ($_SESSION['sort_state']['First_Name'] == 3) {
+            $_SESSION['sort_state']['First_Name'] = 0; // Reset state after 3 clicks
+            unset($filters['sort']); // Reset sort if clicked 3 times
+        }
+    } elseif (isset($_POST['sort_last_name'])) { // Sort by Last Name
+        $filters['sort'] = 'Last_Name ' . $_SESSION['sort_order']['Last_Name'];
+        // Toggle sort order
+        $_SESSION['sort_order']['Last_Name'] = ($_SESSION['sort_order']['Last_Name'] === 'ASC') ? 'DESC' : 'ASC';
+        $_SESSION['sort_state'] = [
+            'First_Name' => 0,
+            'Last_Name' => ($_SESSION['sort_state']['Last_Name'] + 1),
+            'Job_Reference_Number' => 0,
+            'Status' => 0
+        ];
+        if ($_SESSION['sort_state']['Last_Name'] == 3) {
+            $_SESSION['sort_state']['Last_Name'] = 0; // Reset state after 3 clicks
+            unset($filters['sort']); // Reset sort if clicked 3 times
+        }
+    } elseif (isset($_POST['sort_job_title'])) { // Sort by Job Title
+        $filters['sort'] = 'Job_Reference_Number ' . $_SESSION['sort_order']['Job_Reference_Number'];
+        // Toggle sort order
+        $_SESSION['sort_order']['Job_Reference_Number'] = ($_SESSION['sort_order']['Job_Reference_Number'] === 'ASC') ? 'DESC' : 'ASC';
+        $_SESSION['sort_state'] = [
+            'First_Name' => 0,
+            'Last_Name' => 0,
+            'Job_Reference_Number' => ($_SESSION['sort_state']['Job_Reference_Number'] + 1),
+            'Status' => 0
+        ];
+        if ($_SESSION['sort_state']['Job_Reference_Number'] == 3) {
+            $_SESSION['sort_state']['Job_Reference_Number'] = 0; // Reset state after 3 clicks
+            unset($filters['sort']); // Reset sort if clicked 3 times
+        }
+    } elseif (isset($_POST['sort_status'])) { // Sort by Status
+        $filters['sort'] = 'Status ' . $_SESSION['sort_order']['Status'];
+        // Toggle sort order
+        $_SESSION['sort_order']['Status'] = ($_SESSION['sort_order']['Status'] === 'ASC') ? 'DESC' : 'ASC';
+        $_SESSION['sort_state'] = [
+            'First_Name' => 0,
+            'Last_Name' => 0,
+            'Job_Reference_Number' => 0,
+            'Status' => ($_SESSION['sort_state']['Status'] + 1)
+        ];
+        if ($_SESSION['sort_state']['Status'] == 3) {
+            $_SESSION['sort_state']['Status'] = 0; // Reset state after 3 clicks
+            unset($filters['sort']); // Reset sort if clicked 3 times
+        }
+    }
     ?>
 
     <div class="manage_container">
@@ -241,65 +300,6 @@ if (isset($_POST['delete'])) {
         
         <div class="manage_list">
             <?php
-            // Check if the form has been submitted for sorting
-            if (isset($_POST['sort_first_name'])) { // Sort by First Name
-                $filters['sort'] = 'First_Name ' . $_SESSION['sort_order']['First_Name'];
-                // Toggle sort order
-                $_SESSION['sort_order']['First_Name'] = ($_SESSION['sort_order']['First_Name'] === 'ASC') ? 'DESC' : 'ASC';
-                $_SESSION['sort_state'] = [
-                    'First_Name' => ($_SESSION['sort_state']['First_Name'] + 1),
-                    'Last_Name' => 0,
-                    'Job_Reference_Number' => 0,
-                    'Status' => 0
-                ];
-                if ($_SESSION['sort_state']['First_Name'] == 3) {
-                    $_SESSION['sort_state']['First_Name'] = 0; // Reset state after 3 clicks
-                    empty($filters['sort']); // Reset sort if clicked 3 times
-                }
-            } elseif (isset($_POST['sort_last_name'])) { // Sort by Last Name
-                $filters['sort'] = 'Last_Name ' . $_SESSION['sort_order']['Last_Name'];
-                // Toggle sort order
-                $_SESSION['sort_order']['Last_Name'] = ($_SESSION['sort_order']['Last_Name'] === 'ASC') ? 'DESC' : 'ASC';
-                $_SESSION['sort_state'] = [
-                    'First_Name' => 0,
-                    'Last_Name' => ($_SESSION['sort_state']['Last_Name'] + 1),
-                    'Job_Reference_Number' => 0,
-                    'Status' => 0
-                ];
-                if ($_SESSION['sort_state']['Last_Name'] == 3) {
-                    $_SESSION['sort_state']['Last_Name'] = 0; // Reset state after 3 clicks
-                    empty($filters['sort']); // Reset sort if clicked 3 times
-                }
-            } elseif (isset($_POST['sort_job_title'])) { // Sort by Job Title
-                $filters['sort'] = 'Job_Reference_Number ' . $_SESSION['sort_order']['Job_Reference_Number'];
-                // Toggle sort order
-                $_SESSION['sort_order']['Job_Reference_Number'] = ($_SESSION['sort_order']['Job_Reference_Number'] === 'ASC') ? 'DESC' : 'ASC';
-                $_SESSION['sort_state'] = [
-                    'First_Name' => 0,
-                    'Last_Name' => 0,
-                    'Job_Reference_Number' => ($_SESSION['sort_state']['Job_Reference_Number'] + 1),
-                    'Status' => 0
-                ];
-                if ($_SESSION['sort_state']['Job_Reference_Number'] == 3) {
-                    $_SESSION['sort_state']['Job_Reference_Number'] = 0; // Reset state after 3 clicks
-                    empty($filters['sort']); // Reset sort if clicked 3 times
-                }
-            } elseif (isset($_POST['sort_status'])) { // Sort by Status
-                $filters['sort'] = 'Status ' . $_SESSION['sort_order']['Status'];
-                // Toggle sort order
-                $_SESSION['sort_order']['Status'] = ($_SESSION['sort_order']['Status'] === 'ASC') ? 'DESC' : 'ASC';
-                $_SESSION['sort_state'] = [
-                    'First_Name' => 0,
-                    'Last_Name' => 0,
-                    'Job_Reference_Number' => 0,
-                    'Status' => ($_SESSION['sort_state']['Status'] + 1)
-                ];
-                if ($_SESSION['sort_state']['Status'] == 3) {
-                    $_SESSION['sort_state']['Status'] = 0; // Reset state after 3 clicks
-                    empty($filters['sort']); // Reset sort if clicked 3 times
-                }
-            }
-
             $result = getEOIs($conn, $filters);
 
             if ($result && mysqli_num_rows($result) > 0) {
