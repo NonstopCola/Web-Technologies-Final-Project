@@ -365,22 +365,14 @@ dt {
 }
 .deny input[type="submit"]{
     background-color: #da7777;
+    margin-left: 1em;
 }
-/* Ensuring the empty fields in the registrations table aren't visible */
-.empty {
-    border: none;
-    background-color: transparent;
-}
-.regmanage {
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 40%;
-    margin-top: 2em;
-    margin: 2em auto;
-    display: block;
+/* Remove any margin or padding that might force a new line */
+.approve,
+.deny {
+    display: inline-block; /* Ensure the container stays inline */
+    margin: 0; /* Remove unnecessary margins */
+    padding: 0; /* Remove unnecessary padding */
 }
 table {
     border-collapse: collapse;
@@ -840,4 +832,15 @@ p.reference {
 .manage h4::first-letter,
 .manage fieldset legend::first-letter {
     color: inherit;
+}
+
+.reg-entry {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
 }
