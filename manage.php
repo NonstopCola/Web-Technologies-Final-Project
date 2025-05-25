@@ -15,6 +15,12 @@ TODO:
 require_once("settings.php");
 session_start();
 
+// Reset the filters if the user clicks "Show All" and deactives the "Delete All" button
+if (isset($_POST['show_all'])) {
+    header("Location: manage.php");
+    exit();
+}
+
 // FUNCTIONS
 // Used to Quickly sanitize filter inputs
 function sanitizeInput($data) {
@@ -50,6 +56,25 @@ $filters = [
     'Status' => sanitizeInput($_POST['Status'] ?? '')
 ];
 
+// Initialize sort order tracking in the session
+if (!isset($_SESSION['sort_order'])) {
+    $_SESSION['sort_order'] = [
+        'First_Name' => 'ASC',
+        'Last_Name' => 'ASC',
+        'Job_Reference_Number' => 'ASC',
+        'Status' => 'ASC',
+    ];
+}
+
+if (!isset($_SESSION['sort_state'])) {
+    $_SESSION['sort_state'] = [
+        'First_Name' => 0,
+        'Last_Name' => 0,
+        'Job_Reference_Number' => 0,
+        'Status' => 0
+    ];
+}
+
 // Job reference mapping - This changes the job reference number to a job title and code which we can use 
 const JOB_REFERENCES = [
     'job-cybersecurity-specialist' => ['title' => 'Cyber-Security Specialist', 'code' => 'S9475'],
@@ -82,6 +107,20 @@ function getEOIs($conn, $filters=[]) {
         } else {
             return false;
         }
+    }
+
+    // Sorting added
+    if (!empty($filters['sort'])) {
+        $allowedSortFields = ['First_Name', 'Last_Name', 'Job_Reference_Number', 'Status'];
+        $sortParts = explode(' ', $filters['sort']);
+        if (in_array($sortParts[0], $allowedSortFields) && (count($sortParts) === 1 || in_array($sortParts[1], ['ASC', 'DESC']))) {
+            $query .= " ORDER BY " . $filters['sort'];
+        } else {
+            error_log("Invalid sort field: " . $filters['sort']);
+            return false; // Invalid sort field
+        }
+    } else {
+        $query .= " ORDER BY EOInumber ASC"; // Default sort
     }
     
     // Querys safely
@@ -182,11 +221,66 @@ if (isset($_POST['delete'])) {
                 </div>
             </form>
         </div>
-
+        
         <div class="manage_list">
             <?php
-            if (isset($_POST['show_all'])) {
-                $filters = []; // show all EOIs, no filter
+            // Check if the form has been submitted for sorting
+            if (isset($_POST['sort_first_name'])) { // Sort by First Name
+                $filters['sort'] = 'First_Name ' . $_SESSION['sort_order']['First_Name'];
+                // Toggle sort order
+                $_SESSION['sort_order']['First_Name'] = ($_SESSION['sort_order']['First_Name'] === 'ASC') ? 'DESC' : 'ASC';
+                $_SESSION['sort_state'] = [
+                    'First_Name' => ($_SESSION['sort_state']['First_Name'] + 1),
+                    'Last_Name' => 0,
+                    'Job_Reference_Number' => 0,
+                    'Status' => 0
+                ];
+                if ($_SESSION['sort_state']['First_Name'] == 3) {
+                    $_SESSION['sort_state']['First_Name'] = 0; // Reset state after 3 clicks
+                    empty($filters['sort']); // Reset sort if clicked 3 times
+                }
+            } elseif (isset($_POST['sort_last_name'])) { // Sort by Last Name
+                $filters['sort'] = 'Last_Name ' . $_SESSION['sort_order']['Last_Name'];
+                // Toggle sort order
+                $_SESSION['sort_order']['Last_Name'] = ($_SESSION['sort_order']['Last_Name'] === 'ASC') ? 'DESC' : 'ASC';
+                $_SESSION['sort_state'] = [
+                    'First_Name' => 0,
+                    'Last_Name' => ($_SESSION['sort_state']['Last_Name'] + 1),
+                    'Job_Reference_Number' => 0,
+                    'Status' => 0
+                ];
+                if ($_SESSION['sort_state']['Last_Name'] == 3) {
+                    $_SESSION['sort_state']['Last_Name'] = 0; // Reset state after 3 clicks
+                    empty($filters['sort']); // Reset sort if clicked 3 times
+                }
+            } elseif (isset($_POST['sort_job_title'])) { // Sort by Job Title
+                $filters['sort'] = 'Job_Reference_Number ' . $_SESSION['sort_order']['Job_Reference_Number'];
+                // Toggle sort order
+                $_SESSION['sort_order']['Job_Reference_Number'] = ($_SESSION['sort_order']['Job_Reference_Number'] === 'ASC') ? 'DESC' : 'ASC';
+                $_SESSION['sort_state'] = [
+                    'First_Name' => 0,
+                    'Last_Name' => 0,
+                    'Job_Reference_Number' => ($_SESSION['sort_state']['Job_Reference_Number'] + 1),
+                    'Status' => 0
+                ];
+                if ($_SESSION['sort_state']['Job_Reference_Number'] == 3) {
+                    $_SESSION['sort_state']['Job_Reference_Number'] = 0; // Reset state after 3 clicks
+                    empty($filters['sort']); // Reset sort if clicked 3 times
+                }
+            } elseif (isset($_POST['sort_status'])) { // Sort by Status
+                $filters['sort'] = 'Status ' . $_SESSION['sort_order']['Status'];
+                // Toggle sort order
+                $_SESSION['sort_order']['Status'] = ($_SESSION['sort_order']['Status'] === 'ASC') ? 'DESC' : 'ASC';
+                $_SESSION['sort_state'] = [
+                    'First_Name' => 0,
+                    'Last_Name' => 0,
+                    'Job_Reference_Number' => 0,
+                    'Status' => ($_SESSION['sort_state']['Status'] + 1)
+                ];
+                if ($_SESSION['sort_state']['Status'] == 3) {
+                    $_SESSION['sort_state']['Status'] = 0; // Reset state after 3 clicks
+                    empty($filters['sort']); // Reset sort if clicked 3 times
+                }
             }
 
             $result = getEOIs($conn, $filters);
@@ -205,7 +299,7 @@ if (isset($_POST['delete'])) {
                                 <label><b>Status</b></label>
                                 <select name="Status">
                                     <?php
-                                    $statuses = ['New', 'Current', 'Final'];
+                                    $statuses = ['New', 'In Progress', 'Finalised'];
                                     foreach ($statuses as $status) {
                                         echo "<option value='$status'" . ($row['Status'] === $status ? " selected" : "") . ">$status</option>";
                                     }
@@ -224,6 +318,22 @@ if (isset($_POST['delete'])) {
             }
             ?>
         </div>
+    </div>
+
+    <div class="sort_nav">
+        <form method="POST" action="manage.php">
+            <h2>Sort Table by</h2>
+            <div class="form-group">
+                <input type="submit" name="sort_first_name" 
+                value="First Name<?= $_SESSION['sort_state']['First_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['First_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_last_name" 
+                value="Last Name<?= $_SESSION['sort_state']['Last_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Last_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_job_title" 
+                value="Job Title<?= $_SESSION['sort_state']['Job_Reference_Number'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Job_Reference_Number'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_status" 
+                value="Status<?= $_SESSION['sort_state']['Status'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Status'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+            </div>
+        </form>
     </div>
 
     <?php include './footer.inc'; ?>

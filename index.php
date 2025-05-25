@@ -21,7 +21,7 @@
             // Set the active page for navigation highlighting
             include './nav.inc';
             if (isset($_SESSION['EOInumber'])){
-                echo "<input type = 'checkboc' id = 'close'> 
+                echo "<input type = 'checkbox' id = 'close'> 
                 <label for = 'close' id = 'success'>Application submitted, EOI number: " . $_SESSION['EOInumber'] . "</label>";
                 unset($_SESSION['EOInumber']);
             }
