@@ -670,7 +670,7 @@ p.reference {
     width: 100%;
     height: 40px;
     font-size: 1rem;
-    background-color: #007bff;
+    background-color: navy;
     color: white;
     cursor: pointer;
 }
@@ -680,7 +680,7 @@ p.reference {
 }
 
 .manage .submit:active {
-    background-color: #005eff;
+    background-color: navy;
 }
 
 .manage .delete {
