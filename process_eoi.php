@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 require_once("settings.php");
 //-- Allow access strictly by POST when data is posted to form not by typing in process_eoi URL
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    header("Location: apply.php"); //Redirects back to apply page if accessed directly 
+    header("Location: ./apply.php"); //Redirects back to apply page if accessed directly 
     exit();
 }
 
@@ -153,6 +153,6 @@ if ($stmt) {
 mysqli_close($conn);
 
 // -- Success redirection to index.php
-header("Location: index.php");
+header("Location: ./index.php");
 exit;
 ?>

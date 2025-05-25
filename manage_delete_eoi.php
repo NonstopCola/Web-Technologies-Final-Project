@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("settings.php");
+require_once("./settings.php");
 
 // Access control
 if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
+    header('Location: ./index.php');
     exit();
 }
 
@@ -93,12 +93,12 @@ function santitizeOutput($data){
                     <p><strong>Number of EOIs to delete:</strong> <?= santitizeOutput($count) ?></p>
 
                     <div class="button-group">
-                        <form action="manage_delete_eoi.php" method="post" class="button-form">
+                        <form action="./manage_delete_eoi.php" method="post" class="button-form">
                             <input type="hidden" name="job_ref" value="<?= santitizeOutput($jobRef) ?>">
                             <input type="hidden" name="confirm_delete" value="1">
                             <input type="submit" value="🗑 Delete All" class="delete">
                         </form>
-                        <form action="manage.php" method="get" class="button-form">
+                        <form action="./manage.php" method="get" class="button-form">
                             <input type="submit" value="Cancel" class="submit">
                         </form>
                     </div>
@@ -106,12 +106,12 @@ function santitizeOutput($data){
                 <?php
             } else {
                 echo "<p>No EOIs found for the selected position.</p>";
-                echo "<p><a href='manage.php' class='submit'>Back to Manage</a></p>";
+                echo "<p><a href='./manage.php' class='submit'>Back to Manage</a></p>";
             }
         }
         } else {
             echo "<p class='error'>❌ Invalid request.</p>";
-            echo "<p><a href='manage.php' class='submit'>Back to Manage</a></p>";
+            echo "<p><a href='./manage.php' class='submit'>Back to Manage</a></p>";
         }
         ?>
     </div>

@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("settings.php");
+require_once("./settings.php");
 
 // Access control
 if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
+    header('Location: ./index.php');
     exit();
 }
 
@@ -92,7 +92,7 @@ if (!$conn) {
         ?>
 
         <div class="button-group">
-            <form action="manage.php" method="get" class="button-form">
+            <form action="./manage.php" method="get" class="button-form">
                 <input type="submit" value="Back to Manage" class="submit">
             </form>
         </div>
