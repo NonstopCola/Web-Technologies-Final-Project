@@ -703,7 +703,7 @@ p.reference {
 }
 
 .manage .update {
-    background-color: #27b225;
+    background-color: navy;
     color: white;
     padding: 10px 15px;
     margin-top: 20px;
@@ -713,7 +713,7 @@ p.reference {
 }
 
 .manage .update:hover {
-    background-color: #208d1a;
+    background-color: #209bff;
 }
 
 /* EOI list styles */
