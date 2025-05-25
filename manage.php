@@ -283,7 +283,7 @@ if (isset($_POST['delete'])) {
             <div class="sort_nav">
         <form method="POST" action="manage.php">
             <hr>
-            <label>Sort By</label>
+            <label>Sort By
             <div class="form-group">
                 <input type="submit" name="sort_first_name" 
                 value="First Name<?= $_SESSION['sort_state']['First_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['First_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
@@ -292,7 +292,7 @@ if (isset($_POST['delete'])) {
                 <input type="submit" name="sort_job_title" 
                 value="Job Title<?= $_SESSION['sort_state']['Job_Reference_Number'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Job_Reference_Number'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
                 <input type="submit" name="sort_status" 
-                value="Status<?= $_SESSION['sort_state']['Status'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Status'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                value="Status<?= $_SESSION['sort_state']['Status'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Status'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort"></label>
             </div>
         </form>
     </div>
