@@ -79,7 +79,8 @@
                     }
                     // Displays the username, formatted date, and valid status
                     echo "<fieldset class='reg-entry'>";
-                    echo "<h2>" . $row['username'] . "</h2>";
+                    echo "<legend>Registration Details for " . htmlspecialchars($row['username']) . "</legend>";
+                    echo "<h2>Name: " . $row['username'] . "</h2>";
                     if ($row['register_date'] == null){
                         // If the date is null, displays a message
                         echo "<p>Registered: Null</p>";
