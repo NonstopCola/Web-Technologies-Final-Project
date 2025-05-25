@@ -313,7 +313,7 @@ if (isset($_POST['delete'])) {
                             </h3>
                             
                             <div class="status-group">
-                                <label><b>Status</b></label>
+                                <label><b>Status</b>
                                 <select name="Status">
                                     <?php
                                     $statuses = ['New', 'In Progress', 'Finalised'];
@@ -325,7 +325,7 @@ if (isset($_POST['delete'])) {
                             </div>
 
                             <input type="hidden" name="id" value="<?= $row['EOInumber'] ?>">
-                            <input type="submit" name="update" value="Update" class="update">
+                            <input type="submit" name="update" value="Update" class="update"></label>
                         </form>
                     </fieldset>
                     <?php
