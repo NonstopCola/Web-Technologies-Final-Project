@@ -12,12 +12,12 @@ TODO:
 -->
 
 <?php
-require_once("settings.php");
+require_once("./settings.php");
 session_start();
 
 // Reset the filters if the user clicks "Show All" and deactives the "Delete All" button
 if (isset($_POST['show_all'])) {
-    header("Location: manage.php");
+    header("Location: ./manage.php");
     exit();
 }
 
@@ -241,7 +241,7 @@ if (isset($_POST['delete'])) {
     <div class="manage_container">
         <div class="manage_side_nav">
             
-            <form method="POST" action="manage.php">
+            <form method="POST" action="./manage.php">
                 <div class="form-group">
                     <label for="First_Name"><b>First Name</b></label>
                     <input type="text" id="First_Name" name="First_Name" 
@@ -281,7 +281,7 @@ if (isset($_POST['delete'])) {
                 </div>
             </form>
             <div class="sort_nav">
-        <form method="POST" action="manage.php">
+        <form method="POST" action="./manage.php">
             <hr>
             <label>Sort By
             <div class="form-group">
@@ -306,7 +306,7 @@ if (isset($_POST['delete'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <fieldset class="eoi-entry">
-                        <form method="post" action="manage_update_eoi.php">
+                        <form method="post" action="./manage_update_eoi.php">
                             <h2><?= htmlspecialchars($row['First_Name'] . " " . $row['Last_Name']) ?></h2>
                             <h3><?= htmlspecialchars(getJobTitle($row['Job_Reference_Number'])) ?> 
                                 (<i><?= htmlspecialchars(getCode($row['Job_Reference_Number'])) ?></i>)

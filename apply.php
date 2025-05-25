@@ -37,7 +37,7 @@
         <p>See a role you like? Submit an application and we'll get in contact with your shortly!</p>
 
         <!--create form, data top be sent to process_eoi file to add records to table-->
-        <form action="process_eoi.php" method="post" novalidate="novalidate">
+        <form action="./process_eoi.php" method="post" novalidate="novalidate">
             <!--job reference-->
             <fieldset>
                 <legend>Job Reference</legend>

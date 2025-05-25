@@ -2,7 +2,7 @@
     session_start();
     // Redirects to homepage if there was no error
     if (!isset($_SESSION['errortype'])){
-        header('Location: index.php');
+        header('Location: ./index.php');
         exit();
     }
 ?>
@@ -44,7 +44,7 @@
             } elseif ($_SESSION['errortype'] == 'over_authorised'){
                 echo "<h2 class='setMiddle'>You are already logged in.</h2>";
                 echo "<p class='setMiddle'>Please logout to access this page.</p>";
-                echo "<form method='POST' action='login.php' class='setMiddle'>";
+                echo "<form method='POST' action='./login.php' class='setMiddle'>";
                 echo "<input type='submit' value='Logout' name='logout'>";
                 echo "</form>";
             }
