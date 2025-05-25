@@ -84,7 +84,7 @@
                 } else{
                     // Echos a failure message if the user is found
                     echo "<input type='checkbox' id='close'>
-                        <label for='close' id='fail'>Registration failed: " . mysqli_error($conn) . "</label>";
+                        <label for='close' id='failed'>Registration failed: " . mysqli_error($conn) . "</label>";
                 }
             }
             

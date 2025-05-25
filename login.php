@@ -64,7 +64,7 @@
             
             if (!mysqli_query($conn, $create_table)){
                 echo "<input type='checkbox' id='close'>
-                    <label for='close' id='fail'>Table creation failed: " . mysqli_error($conn) . "</label>";            
+                    <label for='close' id='failed'>Table creation failed: " . mysqli_error($conn) . "</label>";            
             }
 
             mysqli_query($conn, $create_table);
@@ -166,7 +166,7 @@
                 } else { // If the user is not found, display an error message
                     if ($_SESSION['login_attempts'] < 3){
                         echo "<input type='checkbox' id='close'>
-                            <label for='close' id='fail'>Login failed: " . mysqli_error($conn) . "</label>";; 
+                            <label for='close' id='failed'>Invalid username or password.</label>";
                     }  
                 }
             }

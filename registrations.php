@@ -40,7 +40,7 @@
                     } else{
                         // If it wasn't, displays a failure message
                         echo "<input type='checkbox' id='close'>
-                            <label for='close' id='fail'>Approval failed: " . mysqli_error($conn) . "</label>";                    }
+                            <label for='close' id='failed'>Approval failed: " . mysqli_error($conn) . "</label>";                    }
                 }
 
                 if (isset($_POST['deny'])){
@@ -59,7 +59,7 @@
                     } else{
                         // If it wasn't, displays a failure message
                         echo "<input type='checkbox' id='close'>
-                            <label for='close' id='fail'>Denial failed: " . mysqli_error($conn) . "</label>";
+                            <label for='close' id='failed'>Denial failed: " . mysqli_error($conn) . "</label>";
                     }
                 }
             }
@@ -108,7 +108,7 @@
             } else {
                 // If the query failed, displays a failure message
                 echo "<input type='checkbox' id='close'>
-                    <label for='close' id='fail'>Query failed: " . mysqli_error($conn) . "</label>";
+                    <label for='close' id='failed'>Query failed: " . mysqli_error($conn) . "</label>";
             }
             
             // Redirects to error page if an issue arises, sets it so a login is required
