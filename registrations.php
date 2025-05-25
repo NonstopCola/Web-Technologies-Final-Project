@@ -69,45 +69,56 @@
             $result = mysqli_query($conn, $query);
 
             // Checks if the query was successful
-            if ($result && mysqli_num_rows($result) > 0){
-                echo "<h2 class='setMiddle'>Pending Registrations</h2>";
-                // Loops through the results and displays them
+            if ($result){
+                // Creates a table to display the results
+                echo "<section id='regmanage'>";
+                echo "<table class='empty'>";
+                echo "<tr>";
+                echo "<th>Username</th>";
+                echo "<th>Application Date</th>";
+                echo "<th>Valid</th>";
+                echo "<th class='empty'></th>";
+                echo "<th class='empty'></th>";
+                echo "</tr>";
+                // Loops through the results and displays them in the table
                 while ($row = mysqli_fetch_assoc($result)){
                     if ($row['register_date'] != null){
                         // Formats the date to be in the Australian fromat of dd/mm/yyyy
                         $formatted_date = date('d/m/Y', strtotime($row['register_date']));
                     }
+                    echo "<tr>";
                     // Displays the username, formatted date, and valid status
-                    echo "<fieldset class='reg-entry'>";
-                    echo "<h2>" . $row['username'] . "</h2>";
+                    echo "<td>" . $row['username'] . "</td>";
                     if ($row['register_date'] == null){
                         // If the date is null, displays a message
-                        echo "<p>Registered: Null</p>";
+                        echo "<td>Null</td>";
                     } else{
                         // Otherwise, displays the formatted date
-                        echo "<p>Registered: " . $formatted_date . "</p>";
+                        echo "<td>" . $formatted_date . "</td>";
                     }
-                    echo "<p>Valid Status: False</p>";
+                    echo "<td>" . $row['valid'] . "</td>";
+                    echo "<td>";
                     // Creates a form for approving the registration
                     echo "<form method='POST' action='registrations.php' class='approve'>";
                     echo "<input type='hidden' name='username' value='" . $row['username'] . "'>";
                     echo "<input type='submit' name='approve' value='Approve'>";
                     echo "</form>";
+                    echo "</td>";
+                    echo "<td>";
                     // Creates a form for denying the registration
                     echo "<form method='POST' action='registrations.php' class='deny'>";
                     echo "<input type='hidden' name='username' value='" . $row['username'] . "'>";
                     echo "<input type='submit' name='deny' value='Deny'>";
                     echo "</form>";
-                    echo "</fieldset>";
+                    echo "</td>";
+                    echo "</tr>";
                 }
-            } elseif ($result && mysqli_num_rows($result) == 0){
-                // If there are no pending registrations, displays a message
-                echo "<h2 class='setMiddle'>No pending registrations found.</h2>";
-                echo "<p class='setMiddle'>Please check back later.</p>";
-            } else {
+                echo "</table>";
+                echo "</section>";
+            } else{
                 // If the query failed, displays a failure message
                 echo "<input type='checkbox' id='close'>
-                    <label for='close' id='fail'>Query failed: " . mysqli_error($conn) . "</label>";
+                    <label for='close' id='failed'>No registrations found.</label>";
             }
             
             // Redirects to error page if an issue arises, sets it so a login is required

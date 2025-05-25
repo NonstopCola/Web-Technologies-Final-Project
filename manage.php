@@ -181,6 +181,7 @@ if (isset($_POST['delete'])) {
 
     <div class="manage_container">
         <div class="manage_side_nav">
+            
             <form method="POST" action="manage.php">
                 <div class="form-group">
                     <label for="First_Name"><b>First Name</b></label>
@@ -220,6 +221,22 @@ if (isset($_POST['delete'])) {
                     <?= (!empty($_POST['Job_Reference_Number']) || !empty($_POST['Job_Code'])) ? '' : 'disabled' ?>>
                 </div>
             </form>
+            <div class="sort_nav">
+        <form method="POST" action="manage.php">
+            <hr>
+            <label>Sort By</label>
+            <div class="form-group">
+                <input type="submit" name="sort_first_name" 
+                value="First Name<?= $_SESSION['sort_state']['First_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['First_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_last_name" 
+                value="Last Name<?= $_SESSION['sort_state']['Last_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Last_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_job_title" 
+                value="Job Title<?= $_SESSION['sort_state']['Job_Reference_Number'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Job_Reference_Number'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+                <input type="submit" name="sort_status" 
+                value="Status<?= $_SESSION['sort_state']['Status'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Status'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
+            </div>
+        </form>
+    </div>
         </div>
         
         <div class="manage_list">
@@ -318,22 +335,6 @@ if (isset($_POST['delete'])) {
             }
             ?>
         </div>
-    </div>
-
-    <div class="sort_nav">
-        <form method="POST" action="manage.php">
-            <h2>Sort Table by</h2>
-            <div class="form-group">
-                <input type="submit" name="sort_first_name" 
-                value="First Name<?= $_SESSION['sort_state']['First_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['First_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
-                <input type="submit" name="sort_last_name" 
-                value="Last Name<?= $_SESSION['sort_state']['Last_Name'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Last_Name'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
-                <input type="submit" name="sort_job_title" 
-                value="Job Title<?= $_SESSION['sort_state']['Job_Reference_Number'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Job_Reference_Number'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
-                <input type="submit" name="sort_status" 
-                value="Status<?= $_SESSION['sort_state']['Status'] === 1 ? ' ⬇️' : ($_SESSION['sort_state']['Status'] === 2 ? ' ⬆️' : '') ?>" class="submit_sort">
-            </div>
-        </form>
     </div>
 
     <?php include './footer.inc'; ?>

@@ -53,7 +53,7 @@
                 // Server-side validation
                 if (!isset($_POST['username'], $_POST['password'], $_POST['date']) ||
                     !preg_match('/^[a-zA-Z0-9_]{3,20}$/', $_POST['username']) ||
-                    !preg_match('/^[a-zA-Z0-9_]{7,20}$/', $_POST['password'])){
+                    strlen($_POST['password']) < 6){
                         echo "<input type='checkbox' id='close'>
                         <label for='close' id='failed'>Invalid username or password.</label>";
                         include './footer.inc';

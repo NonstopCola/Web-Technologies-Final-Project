@@ -367,6 +367,22 @@ dt {
     background-color: #da7777;
     margin-left: 1em;
 }
+/* Ensuring the empty fields in the registrations table aren't visible */
+.empty {
+    border: none;
+    background-color: transparent;
+}
+.regmanage {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin-top: 2em;
+    margin: 2em auto;
+    display: block;
+}
 /* Remove any margin or padding that might force a new line */
 .approve,
 .deny {
@@ -833,6 +849,27 @@ p.reference {
 .manage fieldset legend::first-letter {
     color: inherit;
 }
+
+.sort_nav {
+    flex: 0 0 300px;
+    height: auto;
+    position: sticky;
+    top: 20px;
+}
+
+ .sort_nav .submit_sort:hover {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+ .sort_nav label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+    color: #3d3d3d;
+} 
 
 .reg-entry {
     background-color: white;
