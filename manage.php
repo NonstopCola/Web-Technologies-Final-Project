@@ -306,6 +306,8 @@ if (isset($_POST['delete'])) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <fieldset class="eoi-entry">
+                        <legend>EOI #<?= htmlspecialchars($row['EOInumber']) ?></legend>
+                        <br>
                         <form method="post" action="./manage_update_eoi.php">
                             <h2><?= htmlspecialchars($row['First_Name'] . " " . $row['Last_Name']) ?></h2>
                             <h3><?= htmlspecialchars(getJobTitle($row['Job_Reference_Number'])) ?> 
