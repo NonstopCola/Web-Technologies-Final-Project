@@ -841,3 +841,24 @@ p.reference {
 .manage fieldset legend::first-letter {
     color: inherit;
 }
+
+.sort_nav {
+    flex: 0 0 300px;
+    height: auto;
+    position: sticky;
+    top: 20px;
+}
+
+ .sort_nav .submit_sort:hover {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+ .sort_nav label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+    color: #3d3d3d;
+} 
